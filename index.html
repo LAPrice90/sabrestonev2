@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabre Stone Commercial</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header id="main-header" class="transparent">
+        <div id="header-include"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>IDEAL STONE<span class="mobile-break"></span> COMMERCIAL</h1>
+    <p class="tagline">Excellence Set In Stone</p>
+  </section>
+
+    <!-- Three-column Feature Section -->
+    <section class="feature-grid">
+    <div class="feature" id="about">
+        <img src="images/about-us-column.jpg" alt="Stone sheets">
+        <h3>About&nbsp;Us</h3>
+        <p>Our mission and values behind creating bespoke stone solutions.</p>
+        <a href="#about" class="cta-btn">
+            LEARN MORE<span class="cta-dot"></span>
+        </a>
+    </div>
+
+    <div class="feature" id="products">
+        <img src="images/about-us-column.jpg" alt="Interior with marble table">
+        <h3>Product&nbsp;Range</h3>
+        <p>Luxury wall cladding, bespoke tables, worktops, equipment.</p>
+        <a href="#about" class="cta-btn">
+            VIEW PRODUCTS<span class="cta-dot"></span>
+        </a>
+    </div>
+
+    <div class="feature" id="projects">
+        <img src="images/about-us-column.jpg" alt="Commercial lobby in stone">
+        <h3>Projects</h3>
+        <p>Some of our standout projects and collaborations.</p>
+        <a href="#about" class="cta-btn">
+            VIEW PROJECTS<span class="cta-dot"></span>
+        </a>
+    </div>
+    </section>
+
+    <!-- Wall Cladding Section -->
+    <section class="cladding">
+  <div class="cladding-content">
+    <div class="cladding-img">
+      <img src="images/wall-cladding-index.jpg" alt="Large-format porcelain wall">
+    </div>
+    <div class="cladding-info">
+      <div class="cladding-info-top">
+        <h2 class="cladding-heading">WALL&nbsp;CLADDING</h2>
+      </div>
+      <div class="cladding-info-bottom">
+        <div class="cladding-copy">
+          <h4 class="cladding-sub">Engineered for seamless, luxury finishes.</h4>
+          
+          <p>
+            Sabre Stone Commercial specialises in large-format porcelain wall
+            cladding, fabricated with unmatched precision and installed with minimal
+            visible joins. From internal staircases to exterior facades, our
+            solutions combine elegance with extreme durability.
+          </p>
+          
+          <a href="#process" class="cta-btn">
+            VIEW OUR PROCESS<span class="cta-dot"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('header-include').innerHTML = data;
+        });
+    </script>
+
+    <script>
+    // wait until #header-include exists in the DOM
+    window.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('header-include').innerHTML = html;
+
+            // header is now in place → attach behaviour
+            const s = document.createElement('script');
+            s.src = 'script.js';
+            document.body.appendChild(s);
+        });
+    });
+    </script>
+
+
+</body>
+</html>

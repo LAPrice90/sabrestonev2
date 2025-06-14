@@ -1,0 +1,550 @@
+@font-face {
+  font-family: 'sangbleu_empireregular';
+  src: url('fonts/sangbleu-empire-regular.woff2') format('woff2'),
+       url('fonts/sangbleu-empire-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  background-color: #fff;
+  color: #333;
+  font-weight: 400;
+  font-size: max(16px, min(16px, .8333333333vw));
+  line-height: 150%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: 100px;
+  padding: 0 30px;
+}
+
+.navbar .logo img {
+  height: 40px;
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#header-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.navbar nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li a {
+  font-family: 'Work Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: max(14px, min(16px, 0.8333333333vw));
+  line-height: 120%;
+  letter-spacing: -0.32px;
+  color: #003b5c;
+  text-decoration: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  color: #a58629;
+}
+
+header.scrolled .navbar nav ul li a {
+  color: white;
+}
+
+header.scrolled .navbar nav ul li a:hover {
+  color: #a58629;
+}
+
+.hero {
+  background: url('images/arabescato-gold-laminam.png') no-repeat center center/cover;
+  text-align: center;
+  min-height: 100vh;
+  padding: 80px 40px 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #003b5c;
+  position: relative;
+  z-index: 1;
+}
+
+/* Removed dark overlay */
+.hero::before {
+  content: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 100%);
+  z-index: 0;
+}
+
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 10vw, 120px);
+  font-weight: 400;
+  font-family: 'sangbleu_empireregular', serif;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  transform: translateY(-15%);
+}
+
+.hero .tagline {
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: #a58629;
+  font-family: 'Work Sans', sans-serif;
+  font-style: italic;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin-top: 8px;
+  transform: translateY(-15%);
+}
+
+
+.hero-cta {
+  margin-top: 10px;
+  background: #003b5c;
+  color: white;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-family: 'Work Sans', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  transform: translateY(-15%);
+}
+
+.hero-cta:hover {
+  background: #a58629;
+}
+
+.info-boxes {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 40px;
+  background-color: #f8f8f8;
+}
+
+.info-boxes .box {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.info-boxes .box h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.info-boxes .box ul {
+  padding-left: 0;
+  list-style: none;
+  line-height: 1.6;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+header.transparent {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+header.scrolled {
+  background-color: #003b5c;
+  transition: background-color 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: clamp(64px, 6vw, 96px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  .hero .tagline {
+    font-size: clamp(20px, 2vw, 26px);
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+
+  .cladding-heading {
+    text-align: right;
+    margin-right: 150px; /* adjust buffer as desired */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    padding: 60px 30px 80px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 6vw, 64px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  .hero .tagline {
+    font-size: clamp(16px, 2vw, 22px);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 40px 20px 60px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    max-width: 90%;
+  }
+
+  .hero .tagline {
+    font-size: clamp(14px, 4vw, 18px);
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 90%;
+  }
+}
+
+/* hide hamburger on tablets / desktops */
+@media (min-width: 768px) {
+  .hamburger { display: none; }
+}
+
+/* crest looks white on blue header (desktop) */
+@media (min-width: 768px) {
+  header.scrolled #header-logo {
+    filter: brightness(0) invert(1);   /* turns blue line-art to white */
+  }
+}
+
+/* ── mobile navigation (≤ 767 px) ── */
+@media (max-width: 767px) {
+
+  /* hamburger button */
+  .hamburger {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #003b5c;
+    cursor: pointer;
+  }
+
+  /* icon colour rules */
+  header.menu-open .hamburger           { color: #fff;      }  /* menu open */
+  header.scrolled:not(.menu-open) .hamburger { color: #003b5c; }  /* just scrolled */
+
+  /* crest always blue on phones */
+  #header-logo                     { height: 60px; }
+  header.scrolled #header-logo     { filter: none; }
+
+  /* dropdown panel */
+  .navbar .nav-links {
+    display: none;                     /* hidden by default */
+    position: fixed;
+    top: 100px;                        /* navbar height */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 100px);       /* rest of screen */
+    background: #fff;
+    border-bottom: 1px solid #e4e4e4;  /* faint bottom line */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10px;
+    gap: 20px;
+    text-align: center;
+    overflow-y: auto;
+    z-index: 998;
+  }
+  .navbar .nav-links.open { display: flex; }
+
+  /* big serif links, always blue */
+  .navbar .nav-links a,
+  .navbar .nav-links a:hover {
+    font-family: 'sangbleu_empireregular', serif;
+    font-weight: 300;
+    font-size: clamp(20px, 8vw, 48px);
+    letter-spacing: -0.5px;
+    color: #003b5c !important;
+  }
+}
+
+/* Force hamburger to always be white when header.scrolled or active */
+header.scrolled .hamburger,
+.hamburger.active {
+    color: white !important;
+    transition: none !important;
+}
+
+/* ── three-column feature style ─────────────────────────── */
+.feature-grid {
+  display: flex;
+  justify-content: space-between; /* push to edges */
+  gap: 2vw;                       /* fluid gap */
+  padding: 80px 5vw;              /* narrow side-margins */
+  background: #fff;
+}
+
+.feature {
+  flex: 1 1 0;                    /* each column takes equal space */
+  text-align: center;
+}
+
+.feature img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 32px;
+}
+
+.feature h3 {
+  font-family: 'sangbleu_empireregular', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #003b5c;
+  letter-spacing: -0.5px;
+  margin: 0 0 20px;
+}
+
+.feature p {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0 0 24px;   /* space below the text */
+}
+
+
+/* stack the columns on tablets / phones */
+@media (max-width: 991px) {
+  .feature-grid {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    gap: 40px;
+  }
+}
+
+/* CTA pill button */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #003b5c;
+  color: #fff;
+  padding: 4px 32px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 40px;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover { background: #a58629; }
+
+.cta-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+
+.cta-btn:hover { background: #a58629; }
+
+.cta-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* ── Wall-Cladding split layout ───────────────────────── */
+.cladding {
+  display: flex;
+  min-height: calc(100vh - 100px);        /* fill viewport minus sticky header */
+}
+
+/* left image column */
+.cladding-img,
+.cladding-copy { flex: 1 1 50%; }
+
+.cladding-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* right column */
+.cladding-copy {
+  display: flex;
+  justify-content: center;                /* vertical centering */
+  align-items: flex-end;                  /* flush against right edge */
+  padding: 100px 0 100px max(5vw, 60px);  /* top / bottom / left offset */
+}
+
+/* inner cap (600 px max) */
+.cladding-inner {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* heading */
+.cladding-heading {
+  font-family: 'sangbleu_empireregular', serif;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 1.1;
+  font-weight: 400;
+  color: #003b5c;
+  margin: 0 0 16px;
+  letter-spacing: -1px;
+}
+
+/* sub-headline */
+.cladding-sub {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #003b5c;
+  margin: 0 0 24px;
+  letter-spacing: 0.4px;
+}
+
+/* body copy */
+.cladding-copy p {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0 0 32px;
+}
+
+/* CTA sits right after copy */
+.cladding-inner .cta-btn { margin-top: 0; }
+
+/* ── Responsive tweaks ────────────────────────────────── */
+@media (max-width: 991px) {
+  .cladding          { flex-direction: column; }
+  .cladding-img      { height: 60vh; }
+  .cladding-copy     { align-items: flex-start; padding: 10vw 6vw; }
+}
+
+.cladding-content {
+    display: flex;
+    align-items: flex-start; /* ensure image and info start at the top */
+    justify-content: space-between;
+}
+
+.cladding-img {
+    flex: 1; /* adjust width as needed */
+}
+
+.cladding-info {
+    flex: 1; /* adjust width as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* top container stays up; bottom container at bottom */
+    padding-left: 20px;
+}
+
+.cladding-info-bottom {
+  display: block; /* ensure the container stacks its contents */
+}
+
+.cladding-copy h4,
+.cladding-copy p,
+.cladding-copy a {
+  display: block; /* force each element on a separate line */
+  margin-bottom: 10px; /* adjust spacing as needed */
+}
+
+/* Optionally, if the image height controls the section height, you could enforce min-height */
+.cladding-info {
+    min-height: 100%; /* or set a specific height if needed */
+}
+
+/* force the elements inside .cladding-copy to stack top-to-bottom */
+.cladding-copy{
+  display:flex;
+  flex-direction:column;   /* vertical layout */
+  align-items:flex-start;  /* left-align text */
+  gap:24px;                /* space between h4, p, and button */
+  justify-content:flex-start;
+}
+
+@media (min-width: 1024px) {
+  .cladding-info-top {
+    position: relative;
+    padding-right: 0px; /* adds the right buffer */
+  }
+
+  .cladding-heading {
+    text-align: right;
+  }
+
+  .cladding-info-bottom {
+    max-width: 900px; /* adjust value as needed */
+    margin-right: auto;  /* optional if you want it centered within available space */
+  }
+}
