@@ -718,3 +718,18 @@ header.menu-open  .hamburger .line {
   }
 }
 
+/***** FINAL mobile dropdown polish (≤ 767 px) *****/
+@media (max-width: 767px){
+
+  /* centre the links block itself */
+  .nav-links{
+    align-items: center;     /* was flex-start  */
+    gap: 24px;               /* a little more breathing room */
+  }
+
+  /* headline scale exactly like Laminam */
+  .nav-wrapper .nav-links a{
+    font-size: clamp(36px, 9vw, 60px) !important;
+    text-align: center;      /* keep text visually centred   */
+  }
+}
