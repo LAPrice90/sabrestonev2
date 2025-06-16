@@ -230,6 +230,7 @@ body {
   transform: translateY(-15%);
 }
 
+
 .hero .tagline {
   font-size: clamp(16px, 1.5vw, 18px);
   color: #a58629;
