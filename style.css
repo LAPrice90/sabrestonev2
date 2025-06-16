@@ -1,90 +1,162 @@
-@font-face {
-  font-family: 'sangbleu_empireregular';
-  src: url('fonts/sangbleu-empire-regular.woff2') format('woff2'),
-       url('fonts/sangbleu-empire-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
   margin: 0;
   font-family: 'Work Sans', sans-serif;
   background-color: #fff;
   color: #333;
   font-weight: 400;
-  font-size: max(16px, min(16px, .8333333333vw));
+  font-size: 16px;
   line-height: 150%;
 }
 
+/* === NAVIGATION (shared wrapper + included header) ===================== */
+/*  We treat BOTH header elements the same:
+      – #main-header  → wrapper that lives in every page
+      – .site-header  → header fragment loaded via header.html */
+
+:root {
+  /* brand palette */
+  --navy: #001f3f;
+  --blue: #003b5c;
+  --gold: #a58629;
+}
+
+/* ───────────────────────── TOP–LEVEL WRAPPERS ───────────────────────── */
+#main-header,
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;          /* stick to very top */
+  width: 100%;
+  z-index: 999;
+  background: transparent;    /* transparent until “active” */
+  border-bottom: none;
+  transition: background 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* ACTIVE (scroll ▸ hover ▸ menu‑open)  →  navy bar */
+#main-header.scrolled,
+#main-header:hover,
+#main-header.menu-open {
+  background: var(--navy);
+  border-bottom: 1px solid #eee;
+}
+/* keep the inner .site-header & .navbar in sync */
+#main-header.scrolled  .site-header,
+#main-header:hover     .site-header,
+#main-header.menu-open .site-header,
+#main-header.scrolled  .navbar,
+#main-header:hover     .navbar,
+#main-header.menu-open .navbar {
+  background: var(--navy);
+}
+
+/* ───────────────────────── INNER FLEX STRIP ───────────────────────── */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  position: sticky;
-  top: 0;
-  z-index: 999;
   height: 100px;
   padding: 0 30px;
 }
 
-.navbar .logo img {
+/* LOGO */
+.logo img { height: 80px; width: auto; object-fit: contain; }
+
+/* ───────────────────────── HAMBURGER ───────────────────────── */
+.hamburger {
+  display: none;              /* appears below 1200 px */
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 40px;
   height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.logo {
-  height: 100%;
-  display: flex;
-  align-items: center;
+.hamburger .line {
+  width: 24px;
+  height: 2px;
+  background: var(--blue);
+  transition: transform 0.3s, background 0.3s;
 }
 
-#header-logo {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-  display: block;
+/* turn into an ❌ and force white lines when open */
+.hamburger.active .line:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+.hamburger.active .line:nth-child(2){ transform:translateY(-5px) rotate(-45deg);} 
+.hamburger.active .line            { background:#fff!important; }
+
+/* ───────────────────────── PRIMARY NAV LINKS ───────────────────────── */
+.nav-wrapper { display:flex; }
+
+.nav-links {
+  display:flex;
+  list-style:none;
+  gap:30px;
+  margin:0;
+  padding:0;
 }
 
-.navbar nav ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.nav-links li a {
+  font-family:'Work Sans',sans-serif;
+  font-size:16px;
+  letter-spacing:-0.32px;
+  text-decoration:none;
+  color:var(--blue);
+  transition:color 0.3s ease;
 }
 
-.navbar nav ul li a {
-  font-family: 'Work Sans', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: max(14px, min(16px, 0.8333333333vw));
-  line-height: 120%;
-  letter-spacing: -0.32px;
-  color: #003b5c;
-  text-decoration: none;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: color 0.3s ease;
+/* white links ONLY when the desktop bar is active */
+#main-header.scrolled  .nav-links li a,
+#main-header:hover     .nav-links li a,
+#main-header.menu-open .nav-links li a { color:#fff; }
+
+.nav-links li a:hover { color:var(--gold); }
+
+/* ───────────────────────── MOBILE (<1200 px) ───────────────────────── */
+@media (max-width:1199px){
+  .hamburger{display:flex;}
+
+  .nav-wrapper{
+    position:absolute;
+    top:100px; left:0; width:100%;
+    background:#fff;          /* drawer ALWAYS white */
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  }
+  .nav-wrapper.open{display:flex;}
+
+  /* vertical list */
+  .nav-links{flex-direction:column; gap:20px;}
+  .nav-links li a{
+    font-family:'Bodoni Moda',serif;
+    font-size:clamp(20px,6vw,36px);
+    color:var(--blue)!important;     /* blue text on white */
+  }
 }
 
-.navbar nav ul li a:hover {
-  color: #a58629;
+/* ───────────────────────── DESKTOP (≥1200 px) ───────────────────────── */
+@media (min-width:1200px){
+  .nav-wrapper{display:flex!important;}   /* keep inline */
+  .hamburger  {display:none;}
 }
 
-header.scrolled .navbar nav ul li a {
-  color: white;
-}
+/* when drawer is open we keep it white (defensive) */
+#main-header.menu-open .nav-wrapper{ background:#fff!important; }
 
-header.scrolled .navbar nav ul li a:hover {
-  color: #a58629;
-}
+/* === end of NAVIGATION section === */
+
+
+
+/* === HERO SECTION ===================== */
 
 .hero {
   background: url('images/arabescato-gold-laminam.png') no-repeat center center/cover;
   text-align: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: 80px 40px 120px;
   display: flex;
   flex-direction: column;
@@ -120,11 +192,15 @@ header.scrolled .navbar nav ul li a:hover {
 .hero h1 {
   font-size: clamp(48px, 10vw, 120px);
   font-weight: 400;
-  font-family: 'sangbleu_empireregular', serif;
+  font-family: 'Bodoni Moda', serif;
   letter-spacing: -1.5px;
   line-height: 1.1;
   margin-bottom: 32px;
   transform: translateY(-15%);
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .hero .tagline {
@@ -218,9 +294,11 @@ header.scrolled {
   }
 
   .cladding-heading {
-    text-align: right;
-    margin-right: 150px; /* adjust buffer as desired */
+    margin-right: 0;
+    padding-right: clamp(30px,5vw,80px);
   }
+
+
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -261,17 +339,14 @@ header.scrolled {
   }
 }
 
-/* hide hamburger on tablets / desktops */
-@media (min-width: 768px) {
-  .hamburger { display: none; }
-}
-
 /* crest looks white on blue header (desktop) */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   header.scrolled #header-logo {
-    filter: brightness(0) invert(1);   /* turns blue line-art to white */
+    filter: brightness(0) invert(1);
   }
 }
+
+
 
 /* ── mobile navigation (≤ 767 px) ── */
 @media (max-width: 767px) {
@@ -280,44 +355,59 @@ header.scrolled {
   .hamburger {
     background: none;
     border: none;
-    font-size: 32px;
-    color: #003b5c;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
   }
 
   /* icon colour rules */
   header.menu-open .hamburger           { color: #fff;      }  /* menu open */
-  header.scrolled:not(.menu-open) .hamburger { color: #003b5c; }  /* just scrolled */
+
+  @media (max-width: 767px){
+    header.scrolled .hamburger { color: #fff !important; }
+  }
+
 
   /* crest always blue on phones */
   #header-logo                     { height: 60px; }
-  header.scrolled #header-logo     { filter: none; }
 
-  /* dropdown panel */
-  .navbar .nav-links {
-    display: none;                     /* hidden by default */
-    position: fixed;
-    top: 100px;                        /* navbar height */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 100px);       /* rest of screen */
-    background: #fff;
-    border-bottom: 1px solid #e4e4e4;  /* faint bottom line */
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 10px;
-    gap: 20px;
-    text-align: center;
-    overflow-y: auto;
-    z-index: 998;
+  @media (max-width: 767px){
+    header.scrolled #header-logo { filter: brightness(0) invert(1); }
+    header.scrolled .hamburger   { color: #fff; }
   }
-  .navbar .nav-links.open { display: flex; }
+
+
+  @media (max-width:767px){
+    .nav-wrapper{
+      position:fixed;
+      top:100px;left:0;
+      width:100%;height:calc(100vh - 100px);
+      background:#fff;
+      display:none;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      gap:20px;
+      padding-top:10px;
+      overflow-y:auto;
+      z-index:998;
+    }
+    .nav-wrapper.open{display:flex;}
+
+    .nav-wrapper .nav-links{flex-direction:column;gap:20px;}
+  }
+
+
 
   /* big serif links, always blue */
   .navbar .nav-links a,
   .navbar .nav-links a:hover {
-    font-family: 'sangbleu_empireregular', serif;
+    font-family: 'Bodoni Moda', serif;
     font-weight: 300;
     font-size: clamp(20px, 8vw, 48px);
     letter-spacing: -0.5px;
@@ -325,12 +415,76 @@ header.scrolled {
   }
 }
 
-/* Force hamburger to always be white when header.scrolled or active */
-header.scrolled .hamburger,
-.hamburger.active {
-    color: white !important;
-    transition: none !important;
+@media (min-width:768px) and (max-width:1199px){
+  .nav-wrapper{
+    position:fixed;
+    top:100px;left:0;
+    width:100%;height:calc(100vh - 100px);
+    background:#fff;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    gap:20px;
+    padding-top:10px;
+    overflow-y:auto;
+    z-index:998;
+  }
+  .nav-wrapper.open{display:flex;}
+
+  .nav-wrapper .nav-links{flex-direction:column;gap:20px;}
 }
+
+
+/* White hamburger lines when the bar turns navy */
+header.scrolled .hamburger .line,
+header.menu-open  .hamburger .line {
+    background:#fff !important;
+}
+
+@media (min-width:768px) and (max-width:1199px){
+  #main-header.scrolled  .hamburger,
+  #main-header:hover     .hamburger,
+  #main-header.menu-open .hamburger{
+      color:#fff !important;
+  }
+
+  #main-header.scrolled  .hamburger .line,
+  #main-header:hover     .hamburger .line,
+  #main-header.menu-open .hamburger .line{
+      background:#fff !important;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199px){
+  #main-header.scrolled  #header-logo,
+  #main-header.menu-open #header-logo{
+      filter:brightness(0) invert(1) !important;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199px){
+  #main-header:hover #header-logo{
+      filter:brightness(0) invert(1)!important;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199px){
+  .nav-wrapper{
+    position:fixed;
+    top:100px;left:0;
+    width:100%;height:calc(100vh - 100px);
+    background:#fff;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    display:none;
+  }
+  .nav-wrapper.open{display:flex;}
+
+  .nav-links{flex-direction:column;gap:20px;}
+}
+
 
 /* ── three-column feature style ─────────────────────────── */
 .feature-grid {
@@ -354,7 +508,7 @@ header.scrolled .hamburger,
 }
 
 .feature h3 {
-  font-family: 'sangbleu_empireregular', serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 28px;
   font-weight: 400;
   color: #003b5c;
@@ -418,133 +572,105 @@ header.scrolled .hamburger,
   border-radius: 50%;
 }
 
-/* ── Wall-Cladding split layout ───────────────────────── */
+/* ───────────────────────── Wall-Cladding split layout ───────────────────────── */
+/* ========= WALL CLADDING Section ========== */
 .cladding {
   display: flex;
-  min-height: calc(100vh - 100px);        /* fill viewport minus sticky header */
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
 }
-
-/* left image column */
-.cladding-img,
-.cladding-copy { flex: 1 1 50%; }
 
 .cladding-img img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
 }
 
-/* right column */
-.cladding-copy {
-  display: flex;
-  justify-content: center;                /* vertical centering */
-  align-items: flex-end;                  /* flush against right edge */
-  padding: 100px 0 100px max(5vw, 60px);  /* top / bottom / left offset */
-}
-
-/* inner cap (600 px max) */
-.cladding-inner {
-  max-width: 600px;
-  width: 100%;
+/* Mobile layout */
+.cladding-info {
+  padding: 60px 24px;
+  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  background-color: #fff;
 }
 
-/* heading */
+.cladding-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* ensures top and bottom alignments */
+  gap: 1rem; /* adjust the gap value to increase/decrease space */
+}
+
+.cladding-info-top {
+  margin-bottom: 1.5rem; /* adjust value as needed */
+}
+
 .cladding-heading {
-  font-family: 'sangbleu_empireregular', serif;
-  font-size: clamp(48px, 6vw, 80px);
-  line-height: 1.1;
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 400;
   color: #003b5c;
-  margin: 0 0 16px;
-  letter-spacing: -1px;
+  margin: 0;
 }
 
-/* sub-headline */
 .cladding-sub {
   font-family: 'Work Sans', sans-serif;
   font-size: 18px;
-  font-style: italic;
-  color: #003b5c;
-  margin: 0 0 24px;
-  letter-spacing: 0.4px;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
 }
 
-/* body copy */
 .cladding-copy p {
   font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #333;
-  margin: 0 0 32px;
+  margin: 0;
+  max-width: 600px;
 }
 
-/* CTA sits right after copy */
-.cladding-inner .cta-btn { margin-top: 0; }
+/* Reuse CTA button (already styled) */
 
-/* ── Responsive tweaks ────────────────────────────────── */
-@media (max-width: 991px) {
-  .cladding          { flex-direction: column; }
-  .cladding-img      { height: 60vh; }
-  .cladding-copy     { align-items: flex-start; padding: 10vw 6vw; }
-}
-
-.cladding-content {
-    display: flex;
-    align-items: flex-start; /* ensure image and info start at the top */
-    justify-content: space-between;
-}
-
-.cladding-img {
-    flex: 1; /* adjust width as needed */
-}
-
-.cladding-info {
-    flex: 1; /* adjust width as needed */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* top container stays up; bottom container at bottom */
-    padding-left: 20px;
-}
-
-.cladding-info-bottom {
-  display: block; /* ensure the container stacks its contents */
-}
-
-.cladding-copy h4,
-.cladding-copy p,
-.cladding-copy a {
-  display: block; /* force each element on a separate line */
-  margin-bottom: 10px; /* adjust spacing as needed */
-}
-
-/* Optionally, if the image height controls the section height, you could enforce min-height */
-.cladding-info {
-    min-height: 100%; /* or set a specific height if needed */
-}
-
-/* force the elements inside .cladding-copy to stack top-to-bottom */
-.cladding-copy{
-  display:flex;
-  flex-direction:column;   /* vertical layout */
-  align-items:flex-start;  /* left-align text */
-  gap:24px;                /* space between h4, p, and button */
-  justify-content:flex-start;
-}
-
+/* Desktop layout (≥1024px) */
 @media (min-width: 1024px) {
-  .cladding-info-top {
-    position: relative;
-    padding-right: 0px; /* adds the right buffer */
+  .cladding {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .cladding-img {
+    flex: 0 0 55vw;
+    overflow: hidden;
+  }
+
+  .cladding-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .cladding-info {
+    flex: 1;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 80px clamp(60px, 8vw, 100px);
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .cladding-heading {
-    text-align: right;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    text-align: left;
   }
 
-  .cladding-info-bottom {
-    max-width: 900px; /* adjust value as needed */
-    margin-right: auto;  /* optional if you want it centered within available space */
+  .cladding-info .cta-btn {
+    margin-top: 24px;
   }
 }

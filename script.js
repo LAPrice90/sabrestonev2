@@ -1,87 +1,77 @@
-/* script.js – logo swap + mobile menu */
+/* === NAVIGATION SCRIPT ===================== */
 (function () {
-  const header   = document.getElementById('main-header');
-  const logo     = document.getElementById('header-logo');
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks  = document.querySelector('.nav-links');
-  if (!header || !logo) return;
+  const header     = document.getElementById('main-header');
+  const logo       = document.getElementById('header-logo');
+  const hamburger  = document.querySelector('.hamburger');
+  const navWrapper = document.querySelector('.nav-wrapper');
+  const navLinks   = document.querySelector('.nav-links');
 
   let isHovered = false;
 
-  /* MOBILE MENU */
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        hamburger.classList.toggle('active');
-
-        // Force header blue and white logo when the menu is open
-        if (navLinks.classList.contains('open')) {
-            header.classList.add('scrolled');
-            logo.src = 'images/symbol-white.svg'; // force white logo immediately
-        } else {
-            updateHeaderState();
-        }
-    });
-  }
-
-  /* LOGO LOGIC */
   function isHomePage() {
     const p = window.location.pathname;
     return p === '/' || p.endsWith('index.html');
   }
 
-    function getCorrectLogo() {
-    const mobile = window.innerWidth <= 767;     // always blue symbol on phones
-    if (mobile) return 'images/symbol-blue.svg';
+  function isMobile() {
+    return window.innerWidth < 1200;
+  }
 
-    const scrolled = window.scrollY > 10;
-    const home     = isHomePage();
-
-    // header blue (hover / scroll / other pages) → white symbol
-    if (scrolled || isHovered || !home) {
-        return 'images/symbol-white.svg';
+  function getCorrectLogo() {
+    if (isMobile()) return 'images/symbol-blue.svg';
+    if (isHovered || window.scrollY > 10 || !isHomePage()) {
+      return 'images/symbol-white.svg';
     }
-    // top of home page → blue symbol
     return 'images/symbol-blue.svg';
-    }
-
+  }
 
   function updateHeaderState() {
-    // If the mobile menu is open, force blue header and white logo
-    if (navLinks && navLinks.classList.contains('open')) {
-        header.classList.add('scrolled');
-        if (!logo.src.includes('symbol-white.svg')) {
-            logo.src = 'images/symbol-white.svg';
-        }
-        return;
-    }
-
-    // Otherwise, update based on scroll/hover state
-    const next = getCorrectLogo();
-    if (!logo.src.includes(next)) {
-        logo.src = next;
-    }
-    
     const scrolled = window.scrollY > 10;
-    const home     = isHomePage();
-    if (scrolled || isHovered || !home) {
+    const mobileMenuOpen = navWrapper && navWrapper.classList.contains('open');
+
+    // When on mobile with the menu closed: if at the top and not hovered, remove the background
+    if (mobileMenuOpen) {
+        header.classList.add('scrolled');
+    } else if (!isHomePage() || isHovered || scrolled) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
-}
 
-  header.addEventListener('mouseenter', () => {
-    if (navLinks && navLinks.classList.contains('open')) return;
-    isHovered = true;
-    updateHeaderState();
-});
-  header.addEventListener('mouseleave', () => {
-    if (navLinks && navLinks.classList.contains('open')) return;
-    isHovered = false;
-    updateHeaderState();
-});
+    const logoSrc = getCorrectLogo();
+    if (!logo.src.includes(logoSrc)) {
+      logo.src = logoSrc;
+    }
+  }
+
+  /* MOBILE MENU TOGGLE */
+  if (hamburger && navWrapper) {
+    hamburger.addEventListener('click', () => {
+      navWrapper.classList.toggle('open');
+      hamburger.classList.toggle('active');
+      header.classList.toggle('menu-open', navWrapper.classList.contains('open'));
+      hamburger.setAttribute('aria-expanded', navWrapper.classList.contains('open'));
+      updateHeaderState();
+    });
+  }
+
+  /* DESKTOP HOVER LOGIC */
+  if (header) {
+    header.addEventListener('mouseenter', () => {
+      if (isMobile() || (navWrapper && navWrapper.classList.contains('open'))) return;
+      isHovered = true;
+      updateHeaderState();
+    });
+
+    header.addEventListener('mouseleave', () => {
+      if (isMobile() || (navWrapper && navWrapper.classList.contains('open'))) return;
+      isHovered = false;
+      updateHeaderState();
+    });
+  }
+
   window.addEventListener('scroll', updateHeaderState);
   window.addEventListener('resize', updateHeaderState);
+
   updateHeaderState();
 })();
