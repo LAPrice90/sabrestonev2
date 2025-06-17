@@ -779,6 +779,10 @@ header.menu-open  .hamburger .line {
   max-width: 1200px;
   margin: 0 auto;
 }
+.process-swiper .swiper-wrapper {
+  transition-property: transform;
+  transition-duration: 3s;
+}
 .process-swiper .swiper-slide { text-align: center; }
 .process-swiper img { width: 100%; display: block; }
 .slide-title {
