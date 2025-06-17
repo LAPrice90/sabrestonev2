@@ -87,6 +87,21 @@
       spaceBetween: 20,
       speed: 500,
       slidesPerView: 1.35,           // desktop width
+      watchSlidesProgress: true,     // allow smooth scaling based on progress
+      on: {
+        progress(swiper) {
+          swiper.slides.forEach(slide => {
+            const p = Math.min(Math.abs(slide.progress), 1);
+            const scale = 0.90 + (1 - p) * 0.13; // 0.90 -> 1.03
+            slide.style.transform = `scale(${scale})`;
+          });
+        },
+        setTransition(swiper, speed) {
+          swiper.slides.forEach(slide => {
+            slide.style.transitionDuration = `${speed}ms`;
+          });
+        },
+      },
       breakpoints:{
         1200:{ slidesPerView: 2.6 },   // desktop / large laptop
         900:{ slidesPerView: 2.0 },   // tablet landscape
@@ -98,6 +113,8 @@
         prevEl: '.swiper-button-prev',
       },
     });
+    // ensure initial transforms are correct
+    processSwiper.emit('progress');
 
     /* pill ⇄ slide sync */
     const tabs = document.querySelectorAll('.process-tabs .tab');
