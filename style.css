@@ -246,7 +246,8 @@ body {
   display: inline-block;
   width: auto;
   max-width: none;
-  transform: translateY(-15%) scaleX(var(--tagline-scale, 1));
+  /* scale height along with width so the text isn't stretched */
+  transform: translateY(-15%) scale(var(--tagline-scale, 1));
   transform-origin: center top;
 }
 
