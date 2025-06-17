@@ -246,14 +246,13 @@ section:last-of-type {
 
 
 .hero .tagline {
-  font-size: clamp(16px, 1.5vw, 18px);
+  font-size: clamp(22px, 3vw, 36px);
   color: #a58629;
   font-family: 'Work Sans', sans-serif;
-  font-style: italic;
+  font-style: normal;
   letter-spacing: 1px;
-  font-weight: 400;
-  margin-top: 0;
-  transform: translateY(-15%);
+  font-weight: 300;
+  margin: 0;
   max-width: 90%;
 }
 
@@ -331,9 +330,11 @@ header.scrolled {
   }
 
   .hero .tagline {
-    font-size: clamp(20px, 2vw, 26px);
+    font-size: clamp(28px, 4vw, 48px);
     letter-spacing: 1px;
-    line-height: 1.6;
+    line-height: 1.3;
+    font-weight: 300;
+    font-style: normal;
   }
 
   .cladding-heading {
@@ -356,9 +357,11 @@ header.scrolled {
   }
 
   .hero .tagline {
-    font-size: clamp(16px, 2vw, 22px);
+    font-size: clamp(24px, 4vw, 40px);
     letter-spacing: 0.5px;
-    line-height: 1.5;
+    line-height: 1.3;
+    font-weight: 300;
+    font-style: normal;
   }
 }
 
@@ -375,9 +378,10 @@ header.scrolled {
   }
 
   .hero .tagline {
-    font-size: clamp(14px, 4vw, 18px);
-    line-height: 1.4;
-    font-style: italic;
+    font-size: clamp(20px, 6vw, 30px);
+    line-height: 1.2;
+    font-style: normal;
+    font-weight: 300;
     max-width: 90%;
   }
 }
