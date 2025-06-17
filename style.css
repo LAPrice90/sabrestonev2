@@ -227,7 +227,7 @@ body {
   letter-spacing: -1.5px;
   line-height: 1.1;
   margin-bottom: 0;
-  transform: translateY(-15%);
+  transform: translateY(-25%);
     max-width: 90%;
 }
 
@@ -241,13 +241,13 @@ body {
   color: #a58629;
   font-family: 'Work Sans', sans-serif;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 200;
   margin-top: 0;
   display: inline-block;
   width: auto;
   max-width: none;
   /* scale height along with width so the text isn't stretched */
-  transform: translateY(-15%) scale(var(--tagline-scale, 1));
+  transform: translateY(-120%) scale(var(--tagline-scale, 1));
   transform-origin: center top;
 }
 
