@@ -98,11 +98,6 @@
     },
   });
 
-  /* extra clicks to ensure navigation works on all setups */
-  const nextBtn = document.querySelector('.swiper-button-next');
-  const prevBtn = document.querySelector('.swiper-button-prev');
-  if (nextBtn) nextBtn.addEventListener('click', () => processSwiper.slideNext());
-  if (prevBtn) prevBtn.addEventListener('click', () => processSwiper.slidePrev());
 
   /* pill ⇄ slide sync */
   const tabs = document.querySelectorAll('.process-tabs .tab');
