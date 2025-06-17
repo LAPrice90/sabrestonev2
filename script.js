@@ -94,3 +94,32 @@
   window.addEventListener('resize', updateTaglineScale);
   updateTaglineScale();
 })();
+
+
+/* === INSTALL PROCESS CAROUSEL ===================== */
+(function () {
+  const sliderEl = document.querySelector('.process-swiper');
+  const tabs = document.querySelectorAll('.process-tabs .tab');
+  if (!sliderEl || tabs.length === 0 || typeof Swiper === 'undefined') return;
+
+  const swiper = new Swiper(sliderEl, {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      swiper.slideTo(index);
+    });
+  });
+
+  swiper.on('slideChange', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    const idx = swiper.activeIndex;
+    if (tabs[idx]) tabs[idx].classList.add('active');
+  });
+})();
