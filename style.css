@@ -812,6 +812,15 @@ header.menu-open  .hamburger .line {
   margin:0 auto 40px;
   text-align:center;
 }
+.process-title{
+  display:none;
+  margin:0 0 10px;
+  font-family:'Work Sans',sans-serif;
+  font-size:18px;
+  font-weight:600;
+  color:#333;
+}
+.process-title.active{display:block;}
 .process-text{display:none;}
 .process-text.active{display:block;}
 

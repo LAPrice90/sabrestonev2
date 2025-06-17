@@ -105,11 +105,13 @@
   if (prevBtn) prevBtn.addEventListener('click', () => processSwiper.slidePrev());
 
   /* pill ⇄ slide sync */
-  const tabs = document.querySelectorAll('.process-tabs .tab');
-  const texts = document.querySelectorAll('.process-text');
+  const tabs   = document.querySelectorAll('.process-tabs .tab');
+  const texts  = document.querySelectorAll('.process-text');
+  const titles = document.querySelectorAll('.process-title');
 
   function updateCopy(index){
     texts.forEach((t,i)=>{t.classList.toggle('active', i===index);});
+    titles.forEach((t,i)=>{t.classList.toggle('active', i===index);});
   }
 
   function centre(tab){                          // 🆕 helper
