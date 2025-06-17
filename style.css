@@ -812,6 +812,8 @@ header.menu-open  .hamburger .line {
   position:absolute;
   top:50%;
   transform:translateY(-50%);
+  cursor:pointer;
+  z-index:6; /* ensure buttons sit above slides */
 }
 .install-process .swiper-button-prev{left:100px;}
 .install-process .swiper-button-next{right:100px;}
