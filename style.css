@@ -243,9 +243,12 @@ body {
   font-style: italic;
   letter-spacing: 1px;
   font-weight: 400;
-  margin-top: 0;
-  transform: translateY(-15%);
-  max-width: 90%;
+  margin-top: -4px;
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  transform: translateY(-25%) scale(var(--tagline-scale, 1));
+  transform-origin: center top;
 }
 
 
@@ -369,7 +372,7 @@ header.scrolled {
     font-size: clamp(14px, 4vw, 18px);
     line-height: 1.4;
     font-style: italic;
-    max-width: 90%;
+    max-width: none;
   }
 }
 
