@@ -774,6 +774,12 @@ header.menu-open  .hamburger .line {
   padding: 4px 8px;
 }
 .process-tabs .tab.active { color: var(--gold); }
+.process-swiper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.process-swiper .swiper-slide { text-align: center; }
 .process-swiper img { width: 100%; display: block; }
 .slide-title {
   margin: 8px 0 0;

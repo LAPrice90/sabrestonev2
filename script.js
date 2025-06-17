@@ -103,8 +103,17 @@
   if (!sliderEl || tabs.length === 0 || typeof Swiper === 'undefined') return;
 
   const swiper = new Swiper(sliderEl, {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
     slidesPerView: 1,
     spaceBetween: 20,
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -113,13 +122,13 @@
 
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
-      swiper.slideTo(index);
+      swiper.slideToLoop(index);
     });
   });
 
   swiper.on('slideChange', () => {
     tabs.forEach(t => t.classList.remove('active'));
-    const idx = swiper.activeIndex;
+    const idx = swiper.realIndex;
     if (tabs[idx]) tabs[idx].classList.add('active');
   });
 })();
