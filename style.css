@@ -8,6 +8,14 @@ body {
   line-height: 150%;
 }
 
+/* add vertical space between sections */
+section {
+  margin-bottom: 150px;
+}
+section:last-of-type {
+  margin-bottom: 0;
+}
+
 /* === NAVIGATION (shared wrapper + included header) ===================== */
 /*  We treat BOTH header elements the same:
       – #main-header  → wrapper that lives in every page
