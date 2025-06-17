@@ -755,3 +755,29 @@ header.menu-open  .hamburger .line {
   }
 }
 
+/* === INSTALL PROCESS CAROUSEL ===================== */
+.install-process { padding: 40px 0; }
+.process-tabs-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.process-tabs { display: flex; gap: 20px; }
+.process-tabs .tab {
+  background: none;
+  border: none;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.process-tabs .tab.active { color: var(--gold); }
+.process-swiper img { width: 100%; display: block; }
+.slide-title {
+  margin: 8px 0 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
