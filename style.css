@@ -226,8 +226,13 @@ body {
   font-family: 'Bodoni Moda', serif;
   letter-spacing: -1.5px;
   line-height: 1.1;
-  margin-bottom: 32px;
+  margin-bottom: 0;
   transform: translateY(-15%);
+    max-width: 90%;
+}
+
+.hero h1 span {
+  display: block;
 }
 
 
@@ -238,8 +243,9 @@ body {
   font-style: italic;
   letter-spacing: 1px;
   font-weight: 400;
-  margin-top: 8px;
+  margin-top: 0;
   transform: translateY(-15%);
+  max-width: 90%;
 }
 
 
