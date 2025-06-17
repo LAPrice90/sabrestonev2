@@ -122,7 +122,25 @@
       t.classList.toggle('active', i === idx);
       if (i === idx) centre(t);                  // 🆕 centre on swipe
     });
-  });
+});
 
 })();                                   // ← last line (was just });)
+
+/* === HERO TAGLINE WIDTH MATCH ===================== */
+(function () {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const heading = hero.querySelector('h1');
+  const tagline = hero.querySelector('.tagline');
+  if (!heading || !tagline) return;
+
+  function updateTaglineScale() {
+    const scale = heading.offsetWidth / tagline.offsetWidth;
+    tagline.style.setProperty('--tagline-scale', scale);
+  }
+
+  window.addEventListener('load', updateTaglineScale);
+  window.addEventListener('resize', updateTaglineScale);
+  updateTaglineScale();
+})();
 
