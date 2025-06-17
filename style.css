@@ -118,26 +118,47 @@ body {
   .hamburger{display:flex;}
 
   .nav-wrapper{
-    position:absolute;
-    top:100px; left:0; width:100%;
-    background:#fff;          /* drawer ALWAYS white */
+    position:fixed;
+    top:100px;
+    left:0;
+    width:100%;
+    height:calc(100vh - 100px);
+    background:#fff;
     display:none;
     flex-direction:column;
     align-items:center;
-    padding:20px 0;
+    justify-content:flex-start;
+    padding-top:10vh;
+    overflow-y:auto;
     box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    z-index:998;
   }
   .nav-wrapper.open{display:flex;}
 
-  /* vertical list */
-  .nav-links{flex-direction:column; gap:20px;}
-  .nav-links li a{
+  .nav-links{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    width:90%;
+    max-width:600px;
+    gap:48px;
+  }
+
+  .nav-links li{width:100%;}
+
+  .nav-links a,
+  .nav-links a:hover{
     font-family:'Bodoni Moda',serif;
-    font-size:clamp(20px,6vw,36px);
-    color:var(--blue)!important;     /* blue text on white */
+    font-weight:300;
+    font-size:clamp(32px,8vw,56px);
+    line-height:1.2;
+    letter-spacing:-0.5px;
+    color:#003b5c!important;
+    text-align:center;
+    display:block;
+    width:100%;
   }
 }
-
 @media (min-width:1200px){
   .hamburger{display:none;}
 
@@ -463,25 +484,6 @@ header.scrolled {
 }
 
 
-@media (min-width:768px) and (max-width:1199px){
-  .nav-wrapper{
-    position:fixed;
-    top:100px;left:0;
-    width:100%;height:calc(100vh - 100px);
-    background:#fff;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    gap:20px;
-    padding-top:10px;
-    overflow-y:auto;
-    z-index:998;
-  }
-  .nav-wrapper.open{display:flex;}
-
-  .nav-wrapper .nav-links{flex-direction:column;gap:20px;}
-}
 
 
 /* White hamburger lines when the bar turns navy */
@@ -517,21 +519,6 @@ header.menu-open  .hamburger .line {
   }
 }
 
-@media (min-width:768px) and (max-width:1199px){
-  .nav-wrapper{
-    position:fixed;
-    top:100px;left:0;
-    width:100%;height:calc(100vh - 100px);
-    background:#fff;
-    flex-direction:column;
-    align-items:center;
-    padding:20px 0;
-    display:none;
-  }
-  .nav-wrapper.open{display:flex;}
-
-  .nav-links{flex-direction:column;gap:20px;}
-}
 
 
 
