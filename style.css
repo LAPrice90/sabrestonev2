@@ -240,15 +240,12 @@ body {
   font-size: clamp(16px, 1.5vw, 18px);
   color: #a58629;
   font-family: 'Work Sans', sans-serif;
+  font-style: italic;
   letter-spacing: 1px;
   font-weight: 400;
   margin-top: 0;
-  display: inline-block;
-  width: auto;
-  max-width: none;
-  /* scale height along with width so the text isn't stretched */
-  transform: translateY(-15%) scale(var(--tagline-scale, 1));
-  transform-origin: center top;
+  transform: translateY(-15%);
+  max-width: 90%;
 }
 
 
@@ -372,7 +369,7 @@ header.scrolled {
     font-size: clamp(14px, 4vw, 18px);
     line-height: 1.4;
     font-style: italic;
-    max-width: none;
+    max-width: 90%;
   }
 }
 
@@ -837,10 +834,8 @@ header.menu-open  .hamburger .line {
 }
 .process-swiper .swiper-wrapper{overflow:visible!important;}
 
-.process-swiper .swiper-slide{
-  /* base transition for JS-driven scaling */
-  transition:transform .5s ease;
-}
+.process-swiper .swiper-slide-active{transform:scale(1.03);}
+.process-swiper .swiper-slide:not(.swiper-slide-active){transform:scale(.90);}
 
 /* images fill slide */
 .process-swiper .swiper-slide img{
