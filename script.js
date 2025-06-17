@@ -104,6 +104,7 @@
 
   const swiper = new Swiper(sliderEl, {
     loop: true,
+    speed: 3000,
     autoplay: {
       delay: 3000,
       disableOnInteraction: false,
