@@ -83,9 +83,15 @@
   const processSwiper = new Swiper('.process-swiper', {
     loop: true,
     centeredSlides: true,
-    centeredSlidesBounds: true,   // ✅ keeps edges flush
-    slidesPerView:1.55,
+    centeredSlidesBounds: true,
     spaceBetween: 20,
+    slidesPerView: 1.35,           // desktop width
+    breakpoints: {                 // tablet & mobile widths
+        1200: { slidesPerView: 2.8 },
+        900: { slidesPerView: 2.4 },
+        600: { slidesPerView: 2 },
+          0: { slidesPerView: 1.40 }
+    },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
