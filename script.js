@@ -90,7 +90,7 @@
       1200:{ slidesPerView: 2.6 },   // desktop / large laptop
       900:{ slidesPerView: 2.0 },   // tablet landscape
       600:{ slidesPerView: 1.6 },   // tablet portrait
-        0:{ slidesPerView: 1.25 }   // phones – shows both side peeks
+        0:{ slidesPerView: 1.2 }   // phones – shows both side peeks
     },
     navigation: {
       nextEl: '.swiper-button-next',
