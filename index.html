@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sabre Stone Commercial</title>
+
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script> <!-- ✅ Add this -->
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <!-- Header -->
   <header id="main-header" class="transparent">
@@ -79,6 +83,33 @@
       </div>
     </section>
 
+    <!-- INSTALLATION PROCESS / Applications -->
+    <section id="process" class="install-process">
+      <h2 class="section-title">INSTALLATION&nbsp;PROCESS</h2>
+
+      <!-- Tabs -->
+      <div class="process-tabs-wrapper">
+        <div class="swiper-button-prev"></div>
+
+        <div class="process-tabs">
+          <button class="tab active" data-slide="0">Templating</button>
+          <button class="tab" data-slide="1">Manufacturing</button>
+          <button class="tab" data-slide="2">Installation</button>
+        </div>
+
+        <div class="swiper-button-next"></div>
+      </div>
+
+
+      <!-- Carousel -->
+      <div class="swiper process-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="images/wall-cladding-index.jpg"   alt="Templating"></div>
+          <div class="swiper-slide"><img src="images/products-column.jpg" alt="Manufacturing"></div>
+          <div class="swiper-slide"><img src="images/products-column.jpg"  alt="Installation"></div>
+        </div>
+      </div>
+    </section>
 
 
     <script>

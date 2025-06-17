@@ -718,7 +718,7 @@ header.menu-open  .hamburger .line {
   }
 }
 
-/***** FINAL mobile dropdown polish (≤ 767 px) *****/
+
 @media (max-width: 767px){
 
   /* centre the links block itself */
@@ -733,3 +733,147 @@ header.menu-open  .hamburger .line {
     text-align: center;      /* keep text visually centred   */
   }
 }
+
+/* === INSTALLATION PROCESS SECTION === */
+.install-process{padding:100px 5vw;background:#fff;text-align:center;}
+.install-process .section-title{
+  font-family:'Bodoni Moda',serif;
+  letter-spacing:.08em;
+  font-weight:400;
+  color:#003b5c;
+  margin:0 0 60px;
+  font-size: clamp(32px, 6vw, 72px); /* scale down */
+  padding: 0 4vw;                    /* adds breathing room on sides */
+  word-break: break-word;           /* prevents overflow */
+}
+
+/* tabs */
+.process-tabs{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:60px;}
+.process-tabs .tab{
+  font-family:'Work Sans',sans-serif;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  padding:6px 32px;
+  border-radius:40px;
+  border:2px solid #003b5c;
+  background:#fff;color:#003b5c;
+  cursor:pointer;transition:.3s;
+}
+.process-tabs .tab.active,
+.process-tabs .tab:hover{background:#003b5c;color:#fff;border-color:#003b5c;}
+
+/* move arrows above the image, next to tabs */
+.install-process {
+  position: relative;
+}
+
+.process-tabs-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.install-process .swiper-button-prev {
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.install-process .swiper-button-next {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.install-process .swiper-button-prev::after,
+.install-process .swiper-button-next::after {
+  font-size: 18px;
+  color: #003b5c;
+}
+
+@media (max-width: 1024px) {
+  .install-process .swiper-button-prev,
+  .install-process .swiper-button-next {
+    display: none !important;
+  }
+}
+
+.install-process .swiper-button-prev,
+.install-process .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;         /* ← makes it a circle */
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* tighter edge + visible gaps + smaller sides */
+.process-swiper {       /* allow slides to hug the sides */
+  padding: 0 20px;
+}
+
+/* smaller cards + lighter zoom */
+.process-swiper .swiper-slide{
+  width:35%;          /* centre card ≈55 % of screen   */
+  transition:transform .3s;
+}
+.process-swiper .swiper-slide-active{transform:scale(1.03);}
+.process-swiper .swiper-slide:not(.swiper-slide-active){transform:scale(.90);}
+
+
+.process-swiper .swiper-slide-active {
+  transform: scale(1.05);  /* centre card slightly larger */
+}
+
+/* optionally shrink the non-active cards a touch */
+.process-swiper .swiper-slide:not(.swiper-slide-active) {
+  transform: scale(0.92);
+}
+
+/* make carousel edge-to-edge */
+.process-swiper{
+  max-width:none !important;   /* kill 1200px cap   */
+  width:100%;
+  margin:0;
+  padding:0;                   /* no side padding   */
+}
+
+
+.install-process{padding-left:0;padding-right:0;}       /* kill 5vw gutters   */
+.process-swiper{padding:0!important;}                   /* kill 20px gutters  */
+.process-swiper .swiper-wrapper{overflow:visible;}      /* show side slides   */
+
+/*  ─── FINAL OVERRIDES: kill all leftover gutters ───  */
+.install-process{
+  padding-left:0!important;
+  padding-right:0!important;          /* wipes the 5vw gutters        */
+}
+
+.process-swiper{
+  max-width:none!important;           /* remove 1200px cap            */
+  width:100%!important;
+  padding:0!important;                /* wipes the 0 20px old gutter  */
+  margin:0!important;
+}
+
+.process-swiper .swiper-wrapper{
+  overflow:visible!important;         /* let side slides peek out     */
+}
+
+.process-swiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+

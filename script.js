@@ -75,3 +75,36 @@
 
   updateHeaderState();
 })();
+
+/* === INSTALLATION PROCESS carousel === */
+(function () {                         // ← line 1  (was document.addEventListener …)
+  if (typeof Swiper === 'undefined') return;
+
+  const processSwiper = new Swiper('.process-swiper', {
+    loop: true,
+    centeredSlides: true,
+    centeredSlidesBounds: true,   // ✅ keeps edges flush
+    slidesPerView:1.55,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  /* pill ⇄ slide sync */
+  const tabs = document.querySelectorAll('.process-tabs .tab');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      processSwiper.slideToLoop(i);
+    });
+  });
+
+  processSwiper.on('slideChange', () => {
+    const idx = processSwiper.realIndex;
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  });
+})();                                   // ← last line (was just });)
+
