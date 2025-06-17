@@ -94,4 +94,3 @@
   window.addEventListener('resize', updateTaglineScale);
   updateTaglineScale();
 })();
-
