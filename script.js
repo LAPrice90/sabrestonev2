@@ -112,7 +112,7 @@
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        processSwiper.slideToLoop(i);
+        processSwiper.slideToLoop(i, processSwiper.params.speed);
         centre(tab);                               // 🆕 centre on tap
       });
     });
