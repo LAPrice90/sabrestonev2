@@ -196,6 +196,7 @@ section:last-of-type {
   background: url('images/arabescato-gold-laminam.png') no-repeat center center/cover;
   text-align: center;
   height: 100vh;
+  box-sizing: border-box; /* include padding in height */
   padding: 80px 40px 120px;
   display: flex;
   flex-direction: column;
