@@ -123,7 +123,7 @@
 
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
-      swiper.slideToLoop(index);
+      swiper.slideToLoop(index, 3000);
     });
   });
 
