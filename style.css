@@ -838,11 +838,9 @@ header.menu-open  .hamburger .line {
 .process-swiper .swiper-wrapper{overflow:visible!important;}
 
 .process-swiper .swiper-slide{
+  /* base transition for JS-driven scaling */
   transition:transform .5s ease;
 }
-
-.process-swiper .swiper-slide-active{transform:scale(1.03);}
-.process-swiper .swiper-slide:not(.swiper-slide-active){transform:scale(.90);}
 
 /* images fill slide */
 .process-swiper .swiper-slide img{
