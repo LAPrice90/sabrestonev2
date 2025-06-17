@@ -874,3 +874,20 @@ header.menu-open  .hamburger .line {
     display:none!important;
   }
 }
+
+/* ─── mobile pills: one row, scrollable, no wrap ─────────────────────── */
+@media (max-width:600px){
+  .process-tabs{
+    flex-wrap:nowrap;           /* never drop to a 2nd line      */
+    overflow-x:auto;            /* allow sideways scrolling      */
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;       /* hide scrollbar (Firefox)      */
+  }
+  .process-tabs::-webkit-scrollbar{display:none;} /* hide scrollbar (WebKit) */
+
+  .process-tabs .tab{
+    flex:0 0 auto;              /* shrink-to-fit, keep on one row */
+    padding:6px 24px;           /* a little narrower              */
+    font-size:13px;
+  }
+}

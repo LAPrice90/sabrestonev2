@@ -86,11 +86,11 @@
     centeredSlidesBounds: true,
     spaceBetween: 20,
     slidesPerView: 1.35,           // desktop width
-    breakpoints: {                 // tablet & mobile widths
-        1200: { slidesPerView: 2.8 },
-        900: { slidesPerView: 2.4 },
-        600: { slidesPerView: 2 },
-          0: { slidesPerView: 1.40 }
+    breakpoints:{
+      1200:{ slidesPerView: 2.6 },   // desktop / large laptop
+      900:{ slidesPerView: 2.0 },   // tablet landscape
+      600:{ slidesPerView: 1.6 },   // tablet portrait
+        0:{ slidesPerView: 1.25 }   // phones – shows both side peeks
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -100,17 +100,29 @@
 
   /* pill ⇄ slide sync */
   const tabs = document.querySelectorAll('.process-tabs .tab');
+
+  function centre(tab){                          // 🆕 helper
+    const box = tab.parentElement;
+    const x   = tab.offsetLeft + tab.offsetWidth/2 - box.offsetWidth/2;
+    box.scrollTo({left:x, behavior:'smooth'});
+  }
+
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       processSwiper.slideToLoop(i);
+      centre(tab);                               // 🆕 centre on tap
     });
   });
 
   processSwiper.on('slideChange', () => {
     const idx = processSwiper.realIndex;
-    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+    tabs.forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+      if (i === idx) centre(t);                  // 🆕 centre on swipe
+    });
   });
+
 })();                                   // ← last line (was just });)
 
