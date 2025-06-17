@@ -785,7 +785,7 @@ header.menu-open  .hamburger .line {
   justify-content:center;
   flex-wrap:wrap;
   gap:16px;
-  margin-bottom:60px;
+  margin-bottom:0;           /* tighter height */
 }
 .process-tabs .tab{
   font-family:'Work Sans',sans-serif;
@@ -818,8 +818,8 @@ header.menu-open  .hamburger .line {
 /* arrow buttons */
 .install-process .swiper-button-prev,
 .install-process .swiper-button-next{
-  width:44px;
-  height:44px;
+  width:36px;
+  height:36px;               /* match pill height */
   border-radius:50%;
   border:1px solid #ccc;
   background:#fff;
@@ -870,7 +870,7 @@ header.menu-open  .hamburger .line {
   justify-content:center;
   align-items:center;
   gap:24px;        /* space between arrow ↔ tabs */
-  margin-bottom:60px;
+  margin-bottom:40px;      /* less empty space */
 }
 
 /* ─── INSTALLATION-PROCESS ▸ arrow position ─────────────────────────── */
@@ -882,8 +882,8 @@ header.menu-open  .hamburger .line {
   .install-process .swiper-button-next{
     position:absolute;
     top:160px;              /* ≈ vertical centre of pill-tabs line */
-    width:44px;
-    height:44px;
+    width:36px;
+    height:36px;
     border-radius:50%;
     border:1px solid #ccc;
     background:#fff;
