@@ -78,51 +78,59 @@
 
 /* === INSTALLATION PROCESS carousel === */
 (function () {                         // ← line 1  (was document.addEventListener …)
-  if (typeof Swiper === 'undefined') return;
 
-  const processSwiper = new Swiper('.process-swiper', {
-    loop: true,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    spaceBetween: 20,
-    slidesPerView: 1.35,           // desktop width
-    breakpoints:{
-      1200:{ slidesPerView: 2.6 },   // desktop / large laptop
-      900:{ slidesPerView: 2.0 },   // tablet landscape
-      600:{ slidesPerView: 1.6 },   // tablet portrait
-        0:{ slidesPerView: 1.2 }   // phones – shows both side peeks
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+  function initProcessSwiper(){
+    const processSwiper = new Swiper('.process-swiper', {
+      loop: true,
+      centeredSlides: true,
+      centeredSlidesBounds: true,
+      spaceBetween: 20,
+      speed: 500,
+      slidesPerView: 1.35,           // desktop width
+      breakpoints:{
+        1200:{ slidesPerView: 2.6 },   // desktop / large laptop
+        900:{ slidesPerView: 2.0 },   // tablet landscape
+        600:{ slidesPerView: 1.6 },   // tablet portrait
+          0:{ slidesPerView: 1.2 }   // phones – shows both side peeks
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    /* pill ⇄ slide sync */
+    const tabs = document.querySelectorAll('.process-tabs .tab');
+
+    function centre(tab){                          // 🆕 helper
+      const box = tab.parentElement;
+      const x   = tab.offsetLeft + tab.offsetWidth/2 - box.offsetWidth/2;
+      box.scrollTo({left:x, behavior:'smooth'});
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        processSwiper.slideToLoop(i);
+        centre(tab);                               // 🆕 centre on tap
+      });
+    });
+
+    processSwiper.on('slideChange', () => {
+      const idx = processSwiper.realIndex;
+      tabs.forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+        if (i === idx) centre(t);                  //  centre on swipe
+      });
   });
-
-  /* pill ⇄ slide sync */
-  const tabs = document.querySelectorAll('.process-tabs .tab');
-
-  function centre(tab){                          // 🆕 helper
-    const box = tab.parentElement;
-    const x   = tab.offsetLeft + tab.offsetWidth/2 - box.offsetWidth/2;
-    box.scrollTo({left:x, behavior:'smooth'});
   }
 
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      processSwiper.slideToLoop(i);
-      centre(tab);                               // 🆕 centre on tap
-    });
-  });
-
-  processSwiper.on('slideChange', () => {
-    const idx = processSwiper.realIndex;
-    tabs.forEach((t, i) => {
-      t.classList.toggle('active', i === idx);
-      if (i === idx) centre(t);                  // 🆕 centre on swipe
-    });
-});
+  if (typeof Swiper === 'undefined') {
+    window.addEventListener('load', initProcessSwiper);
+  } else {
+    initProcessSwiper();
+  }
 
 })();                                   // ← last line (was just });)
 
