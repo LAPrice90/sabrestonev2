@@ -464,23 +464,50 @@ header.scrolled {
 
 
 @media (min-width:768px) and (max-width:1199px){
-  .nav-wrapper{
-    position:fixed;
-    top:100px;left:0;
-    width:100%;height:calc(100vh - 100px);
-    background:#fff;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    gap:20px;
-    padding-top:10px;
-    overflow-y:auto;
-    z-index:998;
+  .nav-wrapper {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 100px);
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    align-items: center;          /* center container */
+    justify-content: flex-start;  /* push links up */
+    padding-top: 10vh;            /* Laminam-style spacing */
+    overflow-y: auto;
+    z-index: 998;
   }
-  .nav-wrapper.open{display:flex;}
+  .nav-wrapper.open {
+    display: flex;
+  }
 
-  .nav-wrapper .nav-links{flex-direction:column;gap:20px;}
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 600px;
+    gap: 48px;                    /* Laminam’s vertical spacing */
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a,
+  .nav-links a:hover {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 300;
+    font-size:clamp(32px,8vw,56px);  /* bigger headline scale      */
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: #003b5c !important;
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
 }
 
 
@@ -517,21 +544,6 @@ header.menu-open  .hamburger .line {
   }
 }
 
-@media (min-width:768px) and (max-width:1199px){
-  .nav-wrapper{
-    position:fixed;
-    top:100px;left:0;
-    width:100%;height:calc(100vh - 100px);
-    background:#fff;
-    flex-direction:column;
-    align-items:center;
-    padding:20px 0;
-    display:none;
-  }
-  .nav-wrapper.open{display:flex;}
-
-  .nav-links{flex-direction:column;gap:20px;}
-}
 
 
 
