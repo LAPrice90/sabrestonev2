@@ -106,6 +106,11 @@
 
   /* pill ⇄ slide sync */
   const tabs = document.querySelectorAll('.process-tabs .tab');
+  const texts = document.querySelectorAll('.process-text');
+
+  function updateCopy(index){
+    texts.forEach((t,i)=>{t.classList.toggle('active', i===index);});
+  }
 
   function centre(tab){                          // 🆕 helper
     const box = tab.parentElement;
@@ -119,6 +124,7 @@
       tab.classList.add('active');
       processSwiper.slideToLoop(i);
       centre(tab);                               // 🆕 centre on tap
+      updateCopy(i);
     });
   });
 
@@ -128,6 +134,7 @@
       t.classList.toggle('active', i === idx);
       if (i === idx) centre(t);                  // 🆕 centre on swipe
     });
+    updateCopy(idx);
   });
 
 })();                                   // ← last line (was just });)
