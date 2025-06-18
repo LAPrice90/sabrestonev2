@@ -14,13 +14,14 @@ function isMobile() {
 
 function getCorrectLogo() {
   const isMenuOpen = navWrapper.classList.contains("open");
+  const isMobileView = window.innerWidth < 1200;
   const scrolled = window.scrollY > 10;
 
-  // Force dark logo only when mobile menu is open
-  if (isMenuOpen && isMobile()) return "../images/symbol-blue.svg";
-
-  return scrolled ? "../images/symbol-white.svg" : "../images/symbol-blue.svg";
+  if (isMenuOpen && isMobileView) return "../images/symbol-white.svg";
+  if (scrolled) return "../images/symbol-white.svg";
+  return "../images/symbol-blue.svg";
 }
+
 
 
 

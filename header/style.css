@@ -14,23 +14,24 @@
   transition: background 0.3s ease, border-bottom 0.3s ease;
 }
 
-/* add navy bar on scroll / hover / mobile-menu open */
 #main-header.scrolled,
-#main-header:hover,
-#main-header.menu-open {
+#main-header:hover {
   background: var(--color-navy);
   border-bottom: 1px solid #eee;
 }
 
-/* keep inner elements synced with wrapper background */
-#main-header.scrolled  .site-header,
-#main-header:hover     .site-header,
+#main-header.menu-open {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+#main-header.scrolled .site-header,
 #main-header.menu-open .site-header,
-#main-header.scrolled  .navbar,
-#main-header:hover     .navbar,
+#main-header.scrolled .navbar,
 #main-header.menu-open .navbar {
   background: var(--color-navy);
 }
+
 
 /* ---------- 2.  Flex strip inside header ---------------- */
 .navbar {
@@ -97,8 +98,10 @@
 
 /* white links when header is navy */
 #main-header.scrolled  .nav-links a,
-#main-header:hover     .nav-links a,
-#main-header.menu-open .nav-links a { color: #fff; }
+#main-header:hover     .nav-links a {
+  color: #fff;
+}
+
 
 /* ---------- 6.  Responsive ( < 1200 px ) ---------------- */
 @media (max-width: 1199px) {
@@ -205,3 +208,5 @@
 /* =========================================================
    END OF HEADER / NAVIGATION MODULE
    ========================================================= */
+
+  
