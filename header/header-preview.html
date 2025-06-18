@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header Preview – Sabre Stone</title>
+
+    <!-- GLOBAL STYLES (only what the header needs) -->
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/variables.css" />
+    <link rel="stylesheet" href="../style/base.css" />
+    <link rel="stylesheet" href="../style/layout.css" />
+    <link rel="stylesheet" href="../style/buttons.css" />
+
+    <!-- HEADER MODULE STYLES -->
+    <link rel="stylesheet" href="header.css" />
+
+  
+  <style>
+    /* Demo helpers – give the page height so you can scroll */
+    body::after{
+      content:"Scroll down to test the sticky / colour-change behaviour";
+      position:fixed;bottom:12px;right:12px;
+      font:12px/1 var(--font-body);color:#666;
+    }
+    main{height:200vh;background:linear-gradient(#fafafa,#e6e6e6);}
+  </style>
+</head>
+<body>
+
+  <!-- Header will be injected here -->
+  <div id="main-header"></div>
+
+  <!-- Dummy content so you can test scroll -->
+  <main></main>
+
+  <!-- Inject the header HTML and then its JS -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-header').innerHTML = html;
+
+        // load header JS **after** the HTML is in the DOM
+        const s = document.createElement('script');
+        s.src = 'header.js';
+        document.body.appendChild(s);
+      });
+  </script>
+</body>
+</html>

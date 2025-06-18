@@ -1,0 +1,152 @@
+/* =========================================================
+   SABRE STONE — HEADER / NAVIGATION MODULE
+   ---------------------------------------------------------
+   Depends on global variables defined in style/variables.css
+   ========================================================= */
+
+/* ---------- 1.  Wrapper & scrolling state --------------- */
+#main-header,
+.site-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 999;
+  background: transparent;
+  transition: background 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* add navy bar on scroll / hover / mobile-menu open */
+#main-header.scrolled,
+#main-header:hover,
+#main-header.menu-open {
+  background: var(--color-navy);
+  border-bottom: 1px solid #eee;
+}
+
+/* keep inner elements synced with wrapper background */
+#main-header.scrolled  .site-header,
+#main-header:hover     .site-header,
+#main-header.menu-open .site-header,
+#main-header.scrolled  .navbar,
+#main-header:hover     .navbar,
+#main-header.menu-open .navbar {
+  background: var(--color-navy);
+}
+
+/* ---------- 2.  Flex strip inside header ---------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 30px;
+}
+
+/* ---------- 3.  Logo ------------------------------------ */
+.logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* logo turns white only when header is navy (desktop) */
+@media (min-width: 1200px) {
+  #main-header.scrolled  #header-logo,
+  #main-header:hover     #header-logo {
+    filter: brightness(0) invert(1);
+  }
+}
+
+/* ---------- 4.  Hamburger (visible < 1200 px) ----------- */
+.hamburger {
+  display: none; /* default = hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 24px; height: 2px;
+  background: var(--color-blue);
+  transition: transform 0.3s, background 0.3s;
+}
+
+/* “X” animation & white lines when open */
+.hamburger.active .line:nth-child(1) { transform: translateY(5px)  rotate(45deg); }
+.hamburger.active .line:nth-child(2) { transform: translateY(-5px) rotate(-45deg); }
+.hamburger.active .line              { background: #fff !important; }
+
+/* ---------- 5.  Primary nav links ----------------------- */
+.nav-wrapper            { display: flex; }
+.nav-links              { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* gold hover */
+.nav-links a:hover { color: var(--color-gold); }
+
+/* white links when header is navy */
+#main-header.scrolled  .nav-links a,
+#main-header:hover     .nav-links a,
+#main-header.menu-open .nav-links a { color: #fff; }
+
+/* ---------- 6.  Responsive ( < 1200 px ) ---------------- */
+@media (max-width: 1199px) {
+
+  .hamburger { display: flex; }
+
+  .nav-wrapper {
+    position: absolute;
+    top: 100px; left: 0; width: 100%;
+    background: #fff;          /* mobile drawer always white */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: none;             /* hidden until .open class */
+  }
+  .nav-wrapper.open { display: flex; }
+
+  /* vertical list */
+  .nav-links          { flex-direction: column; gap: 20px; }
+  .nav-links a        {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 6vw, 36px);
+    color: var(--color-blue) !important;
+  }
+
+  /* keep hamburger lines white when bar is navy */
+  #main-header.scrolled  .hamburger .line,
+  #main-header.menu-open .hamburger .line { background: #fff !important; }
+}
+
+/* ---------- 7.  Desktop ( ≥ 1200 px ) ------------------- */
+@media (min-width: 1200px) {
+
+  .hamburger { display: none; }           /* hidden on large screens */
+
+  .nav-wrapper {
+    position: static;
+    display: flex !important;
+    height: 100%;
+    margin-left: auto;
+    align-items: center;
+    background: transparent !important;
+  }
+
+  .nav-links  { gap: 40px; }               /* wider spacing on desktop */
+}
+
+/* =========================================================
+   END OF HEADER / NAVIGATION MODULE
+   ========================================================= */

@@ -1,0 +1,80 @@
+/* === BUTTONS =============================================== */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Solid dark blue button (primary) */
+.btn--primary {
+  background: #003b5c;
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: #a58629;
+}
+
+/* White background with blue border */
+.btn--outline {
+  background: #fff;
+  color: #003b5c;
+  border: 2px solid #003b5c;
+}
+
+.btn--outline:hover {
+  background: #003b5c;
+  color: #fff;
+}
+
+/* Extra pill-shaped button (CTA style) */
+.btn--pill {
+  padding: 6px 32px;
+  border-radius: 40px;
+  background: #003b5c;
+  color: #fff;
+}
+
+.btn--pill:hover {
+  background: #a58629;
+}
+
+/* Decorative dot (used with .btn--pill if needed) */
+.btn-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+/* Tabs (used in installation process) */
+.btn--tab {
+  padding: 6px 32px;
+  border-radius: 40px;
+  border: 2px solid #003b5c;
+  background: #fff;
+  color: #003b5c;
+  font-size: 14px;
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.btn--tab:hover,
+.btn--tab.active {
+  background: #003b5c;
+  color: #fff;
+}

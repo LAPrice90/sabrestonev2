@@ -1,0 +1,89 @@
+/* === GLOBAL BASE STYLES =================================== */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&family=Bodoni+Moda:wght@400&display=swap');
+
+/* === VARIABLES ============================================ */
+:root {
+  /* Colors */
+  --color-navy: #001f3f;
+  --color-blue: #003b5c;
+  --color-gold: #a58629;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text: #333;
+
+  /* Fonts */
+  --font-body: 'Work Sans', sans-serif;
+  --font-heading: 'Bodoni Moda', serif;
+
+  /* Spacing scale */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+}
+
+/* === RESET / GLOBAL BOX MODEL ============================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* === BODY STYLING ========================================= */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* === HEADINGS ============================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  margin: 0 0 1rem;
+  color: var(--color-blue);
+}
+
+h1 {
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+/* === LINKS ================================================ */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* === GLOBAL SPACING ======================================= */
+section {
+  margin-bottom: 150px;
+}
+
+section:last-of-type {
+  margin-bottom: 0;
+}
+
+/* === LAYOUT UTILITIES ===================================== */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
