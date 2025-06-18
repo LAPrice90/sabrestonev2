@@ -42,6 +42,22 @@
         });
     </script>
 
+    <!-- About section target -->
+    <div id="about-section"></div>
+
+    <script>
+    fetch('about/about.html')
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('about-section').innerHTML = html;
+
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'about/style.css';
+        document.head.appendChild(style);
+    });
+    </script>
+
 
 
   <!-- Inject header HTML and its script -->
