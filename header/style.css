@@ -112,29 +112,30 @@
 
   .nav-wrapper {
     position: fixed;
-    top: 100px;
+    top: 60px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 60px);
     background: #fff;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 40px 20px;
-    box-shadow: none; /* remove shadow */
+    padding-top: 80px;
+    gap: 32px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
   }
 
   .nav-wrapper.open {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;     /* Align to top */
-    align-items: center;
-    height: calc(100vh - 60px);      /* Adjust for shorter header */
-    background: #fff;
-    padding-top: 80px;               /* Add space below header */
-    gap: 32px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
+
 
   .nav-links {
     flex-direction: column;

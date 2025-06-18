@@ -43,8 +43,6 @@ function updateHeaderState() {
   }
 }
 
-
-
 // 🟡 Toggle Mobile Menu
 hamburger.addEventListener("click", () => {
   navWrapper.classList.toggle("open");
@@ -58,3 +56,28 @@ hamburger.addEventListener("click", () => {
 window.addEventListener("scroll", updateHeaderState);
 window.addEventListener("resize", updateHeaderState);
 updateHeaderState();
+
+// 🟡 Close menu when any nav link is clicked (mobile only)
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (isMobile() && navWrapper.classList.contains('open')) {
+      navWrapper.classList.remove('open');
+      hamburger.classList.remove('active');
+      header.classList.remove('menu-open');
+      hamburger.setAttribute("aria-expanded", "false");
+      updateHeaderState();
+    }
+  });
+});
+
+// 🔑 Close menu on ESC key
+document.addEventListener('keydown', (e) => {
+  const escPressed = e.key === "Escape" || e.key === "Esc";
+  if (escPressed && navWrapper.classList.contains("open")) {
+    navWrapper.classList.remove("open");
+    hamburger.classList.remove("active");
+    header.classList.remove("menu-open");
+    hamburger.setAttribute("aria-expanded", "false");
+    updateHeaderState();
+  }
+});
