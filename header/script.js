@@ -3,10 +3,12 @@ const logo       = document.getElementById("header-logo");
 const hamburger  = document.querySelector(".hamburger");
 const navWrapper = document.querySelector(".nav-wrapper");
 
-// Determine relative path from current page to project root
+// Determine absolute path to the project root based on this script's location
 const basePath = (() => {
-  const segments = window.location.pathname.split('/').filter(Boolean);
-  return segments.length <= 1 ? '' : '../'.repeat(segments.length - 1);
+  // document.currentScript is the <script> element loading this file
+  const src = document.currentScript?.src || '';
+  // script is located in "header/script.js" - one level below project root
+  return new URL('../', src).href; // e.g. https://user.github.io/repo/
 })();
 
 function isHomePage() {

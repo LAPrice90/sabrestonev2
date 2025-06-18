@@ -2,17 +2,23 @@ const categories = document.querySelectorAll('.app-category');
 const heroImage = document.querySelector('#app-hero img');
 const heroTitle = document.querySelector('.app-overlay h3');
 
+// Determine absolute path to the project root using this script's location
+const basePath = (() => {
+  const src = document.currentScript?.src || '';
+  return new URL('../', src).href; // e.g. https://user.github.io/repo/
+})();
+
 const appData = {
   cladding: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Wall Cladding',
   },
   tables: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Tables',
   },
   worktops: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Worktops',
   },
 };
