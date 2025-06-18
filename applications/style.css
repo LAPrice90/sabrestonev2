@@ -1,0 +1,40 @@
+.applications-wrapper {
+  display: flex;
+  gap: 60px;
+  padding: 100px 60px;
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.applications-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.applications-title {
+  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+  color: #003b5c;
+  margin-bottom: 40px;
+}
+
+.applications-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.app-category {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 40px;
+  color: #003b5c;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
