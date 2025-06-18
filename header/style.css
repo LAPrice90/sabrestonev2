@@ -32,6 +32,10 @@
   background: var(--color-navy);
 }
 
+#main-header:hover .site-header,
+#main-header:hover .navbar {
+  background: var(--color-navy);
+}
 
 /* ---------- 2.  Flex strip inside header ---------------- */
 .navbar {
@@ -202,6 +206,10 @@
 }
 
 #main-header:not(.scrolled):not(.menu-open) .nav-links a:hover {
+  color: var(--color-gold);
+}
+
+#main-header.scrolled .nav-links a:hover {
   color: var(--color-gold);
 }
 
