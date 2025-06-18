@@ -35,17 +35,18 @@
   <main></main>
 
   <!-- Inject the header HTML and then its JS -->
-  <script>
+    <script>
     fetch('header.html')
-      .then(res => res.text())
-      .then(html => {
+        .then(res => res.text())
+        .then(html => {
         document.getElementById('main-header').innerHTML = html;
 
-        // load header JS **after** the HTML is in the DOM
+        // JS must load after the header is in the DOM
         const s = document.createElement('script');
-        s.src = 'header.js';
+        s.src = 'script.js'; // this is your header/script.js file
         document.body.appendChild(s);
-      });
-  </script>
+        });
+    </script>
+
 </body>
 </html>
