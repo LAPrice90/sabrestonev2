@@ -184,6 +184,10 @@
     margin-top: 40px;
   }
 
+  #main-header:hover .hamburger .line {
+    background: #fff;
+  }
+
 
 }
 
@@ -211,6 +215,10 @@
 
 #main-header.scrolled .nav-links a:hover {
   color: var(--color-gold);
+}
+
+#main-header:hover #header-logo {
+  filter: brightness(0) invert(1);
 }
 
 
