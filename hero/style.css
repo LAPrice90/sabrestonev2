@@ -12,8 +12,10 @@
 .hero-inner {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100vh;
+  padding-bottom: 25vh;
+  position: relative;
 }
 
 .hero-block {
@@ -41,4 +43,5 @@
   text-align: center;
   margin-top: 0.8rem;
   padding: 0;
+  color: var(--color-gold);
 }

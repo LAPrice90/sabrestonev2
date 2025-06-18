@@ -27,3 +27,7 @@ function scaleTaglineToMatchHeadline() {
   // Step 3: apply scaled size
   tagline.style.fontSize = `${newSize}px`;
 }
+
+window.addEventListener('load', scaleTaglineToMatchHeadline);
+window.addEventListener('resize', scaleTaglineToMatchHeadline);
+
