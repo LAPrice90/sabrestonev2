@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabre Stone</title>
+
+  <!-- Header styles -->
+  <link rel="stylesheet" href="header/style.css" />
+
+  <!-- Global site styles -->
+  <link rel="stylesheet" href="style/reset.css" />
+  <link rel="stylesheet" href="style/variables.css" />
+  <link rel="stylesheet" href="style/base.css" />
+  <link rel="stylesheet" href="style/layout.css" />
+  <link rel="stylesheet" href="style/buttons.css" />
+  <link rel="stylesheet" href="style/forms.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+
+  <!-- Logo preload -->
+  <link rel="preload" href="images/symbol-blue.svg" as="image" />
+  <link rel="preload" href="images/symbol-white.svg" as="image" />
+</head>
+<body>
+
+    <!-- Header inject target -->
+    <div id="main-header"></div>
+
+    <!-- Hero section target -->
+    <div id="hero-section"></div>
+
+    <script>
+    fetch('hero/hero.html')
+        .then(res => res.text())
+        .then(html => {
+        document.getElementById('hero-section').innerHTML = html;
+
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'hero/style.css';
+        document.head.appendChild(style);
+
+        const script = document.createElement('script');
+        script.src = 'hero/script.js';
+        document.body.appendChild(script);
+        });
+    </script>
+
+
+
+  <!-- Inject header HTML and its script -->
+  <script>
+    fetch('header/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-header').innerHTML = html;
+
+        const s = document.createElement('script');
+        s.src = 'header/script.js';
+        document.body.appendChild(s);
+      });
+  </script>
+
+</body>
+</html>
