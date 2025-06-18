@@ -2,11 +2,8 @@ const categories = document.querySelectorAll('.app-category');
 const heroImage = document.querySelector('#app-hero img');
 const heroTitle = document.querySelector('.app-overlay h3');
 
-// Determine absolute path to the project root using this script's location
-const basePath = (() => {
-  const src = document.currentScript?.src || '';
-  return new URL('../', src).href; // e.g. https://user.github.io/repo/
-})();
+// Get absolute base path from site root
+const basePath = window.location.origin + '/sabrestonev2/';
 
 const appData = {
   cladding: {
@@ -24,9 +21,7 @@ const appData = {
 };
 
 categories.forEach(btn => {
-  console.log('basePath resolves to →', basePath);
   btn.addEventListener('click', () => {
-    alert('Category clicked: ' + btn.dataset.target);
     document.querySelector('.app-category.active')?.classList.remove('active');
     btn.classList.add('active');
 
