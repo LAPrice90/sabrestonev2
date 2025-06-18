@@ -63,16 +63,23 @@
 
     <script>
     fetch('applications/applications.html')
-        .then(res => res.text())
-        .then(html => {
+    .then(res => res.text())
+    .then(html => {
         document.getElementById('applications-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
         style.href = 'applications/style.css';
         document.head.appendChild(style);
-        });
+
+        // ✅ Inject script.js after HTML is loaded
+        const script = document.createElement('script');
+        script.src = 'applications/script.js';
+        document.body.appendChild(script);
+    });
     </script>
+
+
 
 
   <!-- Inject header HTML and its script -->
