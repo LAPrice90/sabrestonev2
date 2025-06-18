@@ -106,19 +106,20 @@
   .hamburger { display: flex; }
 
   .nav-wrapper {
-    position: absolute;
+    position: fixed;
     top: 100px; left: 0; width: 100%;
-    background: #fff;          /* mobile drawer always white */
+    height: calc(100vh - 100px);  /* fill viewport below header */
+    background: #fff;             /* solid white background */
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 20px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    display: none;             /* hidden until .open class */
+    display: none;                /* hidden until .open class */
   }
   .nav-wrapper.open { display: flex; }
 
   /* vertical list */
-  .nav-links          { flex-direction: column; gap: 20px; }
+  .nav-links          { flex-direction: column; gap: 20px; align-items: center; }
   .nav-links a        {
     font-family: var(--font-heading);
     font-size: clamp(20px, 6vw, 36px);
