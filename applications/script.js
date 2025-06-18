@@ -24,6 +24,7 @@ const appData = {
 };
 
 categories.forEach(btn => {
+  console.log('basePath resolves to →', basePath);
   btn.addEventListener('click', () => {
     alert('Category clicked: ' + btn.dataset.target);
     document.querySelector('.app-category.active')?.classList.remove('active');
