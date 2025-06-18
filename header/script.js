@@ -3,6 +3,12 @@ const logo       = document.getElementById("header-logo");
 const hamburger  = document.querySelector(".hamburger");
 const navWrapper = document.querySelector(".nav-wrapper");
 
+// Determine relative path from current page to project root
+const basePath = (() => {
+  const segments = window.location.pathname.split('/').filter(Boolean);
+  return segments.length <= 1 ? '' : '../'.repeat(segments.length - 1);
+})();
+
 function isHomePage() {
   const p = window.location.pathname;
   return p === '/' || p.endsWith('index.html');
@@ -17,9 +23,12 @@ function getCorrectLogo() {
   const isMobileView = window.innerWidth < 1200;
   const scrolled = window.scrollY > 10;
 
-  if (isMenuOpen && isMobileView) return "../images/symbol-white.svg";
-  if (scrolled) return "../images/symbol-white.svg";
-  return "../images/symbol-blue.svg";
+  const whiteLogo = basePath + "images/symbol-white.svg";
+  const blueLogo  = basePath + "images/symbol-blue.svg";
+
+  if (isMenuOpen && isMobileView) return whiteLogo;
+  if (scrolled) return whiteLogo;
+  return blueLogo;
 }
 
 
