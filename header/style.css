@@ -147,6 +147,11 @@
   .nav-links  { gap: 40px; }               /* wider spacing on desktop */
 }
 
+#main-header:not(.scrolled):not(.menu-open) .nav-links a:hover {
+  color: var(--color-gold);
+}
+
+
 /* =========================================================
    END OF HEADER / NAVIGATION MODULE
    ========================================================= */
