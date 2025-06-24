@@ -87,8 +87,37 @@
     });
     </script>
 
+    <!-- Installation section target -->
+    <div id="installation-section"></div>
 
+    <script>
+    fetch('installation/installation.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('installation-section').innerHTML = html;
 
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'installation/style.css';
+        document.head.appendChild(style);
+      });
+    </script>
+
+    <!-- Projects section target -->
+    <div id="projects-section"></div>
+
+    <script>
+    fetch('projects/projects.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('projects-section').innerHTML = html;
+
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'projects/style.css';
+        document.head.appendChild(style);
+      });
+    </script>
 
   <!-- Inject header HTML and its script -->
   <script>
