@@ -2,24 +2,26 @@ const categories = document.querySelectorAll('.app-category');
 const heroImage = document.querySelector('#app-hero img');
 const heroTitle = document.querySelector('.app-overlay h3');
 
+// Get absolute base path from site root
+const basePath = window.location.origin + '/sabrestonev2/';
+
 const appData = {
   cladding: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Wall Cladding',
   },
   tables: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Tables',
   },
   worktops: {
-    image: '../images/projects-column.jpg',
+    image: basePath + 'images/projects-column.jpg',
     title: 'Worktops',
   },
 };
 
 categories.forEach(btn => {
   btn.addEventListener('click', () => {
-    alert('Category clicked: ' + btn.dataset.target);
     document.querySelector('.app-category.active')?.classList.remove('active');
     btn.classList.add('active');
 
