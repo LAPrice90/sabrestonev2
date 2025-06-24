@@ -61,6 +61,37 @@
   margin-bottom: 1rem;
 }
 
+/* subtle zoom on hover */
+.project-item {
+  overflow: hidden;                /* hide image edges when zoomed */
+}
+.project-item img {
+  transition: transform 0.3s ease;
+}
+.project-item:hover img {
+  transform: scale(1.05);
+}
+
+
+/* --- Mobile: show 1 card (slightly oversized so next edge peeks) --- */
+@media (max-width: 767px) {
+  .project-item {
+    flex: 0 0 95%;   /* 1.05 × viewport width */
+    max-width: 95%;
+  }
+}
+
+/* --- Small-tablet (768-1023 px): show 2 cards side-by-side --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .project-item {
+    flex: 0 0 48%;    /* exactly two fit in viewport */
+    max-width: 48%;
+  }
+}
+
+/* --- Desktop rule you already have (≥1024 px) remains unchanged --- */
+
+
 /* ---- Desktop & large-tablet: stop scrolling, show all 4 cards ---- */
 @media (min-width: 1024px) {
   .projects-scroller {
