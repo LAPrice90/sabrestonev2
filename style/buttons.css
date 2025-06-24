@@ -101,6 +101,7 @@
 
 /* Text-only buttons reused for tabs and links */
 .btn--text {
+  display: inline-block; /* keep gaps consistent */
   padding: 0;
   background: none;
   border: none;
