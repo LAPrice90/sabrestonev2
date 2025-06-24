@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const swiper = new Swiper('.applications-slider', {
     loop: true,
     centeredSlides: true,
-    spaceBetween: 20,
+    spaceBetween: 0,
     slidesPerView: 3,          // always aim for three at desktop
     breakpoints: {             // responsive counts (side slides peek)
       0:   { slidesPerView: 1.2 },
