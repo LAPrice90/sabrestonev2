@@ -27,7 +27,175 @@
 
 
 .frames__title {
+  margin-bottom: 40px;/* ==================================================================== */
+/*  APPLICATIONS SECTION — OVERRIDES & LAYOUT                           */
+/*  (Scoped to #applications / .frames only)                            */
+/* ==================================================================== */
+
+/* ---------- Pill Navigation ----------------------------------------- */
+
+.nav-pills {
+  display: flex;
+  flex-wrap: nowrap;                 /* keep pills in one row           */
+  gap: var(--space-xs, 10px);
+  overflow-x: auto;                  /* sideways scroll on small screens */
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* smooth iOS scrolling            */
+}
+
+.nav-pills::-webkit-scrollbar {      /* hide scrollbar on WebKit        */
+  display: none;
+}
+
+/* Make each pill snap cleanly */
+.btn--tab {
+  scroll-snap-align: center;
+  flex-shrink: 0;                    /* prevent shrinking               */
+}
+
+/* ---------- Section Heading & Controls ------------------------------ */
+
+.frames__title {
   margin-bottom: 40px;
+  text-align: center;
+}
+
+.frames__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;                         /* space between arrow & pills     */
+  padding: 0 20px;
+}
+
+/* Optional: hide arrows on very narrow screens */
+@media (max-width: 480px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+
+/* ---------- Slider Layout ------------------------------------------- */
+
+:root {
+  --slide-gap: 0px;                  /* mobile default (gap collapses)  */
+}
+
+@media (min-width: 1020px) {
+  :root { --slide-gap: 40px; }       /* desktop gap between slides      */
+}
+
+.applications-slider {
+  width: 100%;
+  padding: 60px 0;                   /* space above & below slider row  */
+  overflow: visible;
+}
+
+/* Let Swiper manage overflow but keep wrapper flex for safety */
+.applications-slider .swiper {
+  width: 100%;
+  overflow: visible;
+}
+
+.applications-slider .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Each slide width = one-third viewport on desktop, adjusted below     */
+.applications-slider .swiper-slide {
+  flex-shrink: 0;
+  width: calc((100vw - var(--slide-gap) * 6) / 3);
+  margin: 0 var(--slide-gap);
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.35s ease;
+}
+
+.applications-slider .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.applications-slider .swiper-slide-active {
+  transform: scale(1.07);
+}
+
+/* ---------- Slide Overlay ------------------------------------------- */
+
+.slide-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  max-width: 70%;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.swiper-slide-active .slide-overlay {
+  opacity: 1;
+}
+
+.slide-overlay h3 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.slide-overlay p {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* ---------- Navigation Arrows --------------------------------------- */
+/* Uses brand blue (#003b5c) already set in global palette              */
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--brand-blue, #003b5c);
+  border-radius: 50%;
+  background: #fff center/16px no-repeat;
+  top: 50% !important;
+  transform: translateY(-50%);
+}
+
+.swiper-button-prev {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%23003b5c' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+}
+
+.swiper-button-next {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%23003b5c' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
+}
+
+/* ---------- Responsive Width Tweaks --------------------------------- */
+
+@media (max-width: 1020px) {
+  .applications-slider .swiper-slide {
+    width: calc(100vw / 2.2);
+  }
+  .applications-slider .swiper-slide-active {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .applications-slider .swiper-slide,
+  .applications-slider .swiper-slide-active {
+    width: 80vw;
+    transform: none;
+  }
+}
+
 }
 
 .content_center {

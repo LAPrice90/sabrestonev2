@@ -1,38 +1,45 @@
 <!-- — APPLICATIONS --------------------------------------------------------->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-<section class="section frames">
+<section id="applications" class="section frames">
 
-  <!-- centred heading + pills (inside max-1400 container) -->
+  <!-- heading + pills (inside 1400-px container) -->
   <div class="container">
 
-    <div class="frames__top">
-      <div class="frames__title content_center">
-        <h1 class="section-header">APPLICATIONS</h1>
-      </div>
-    </div>
+    <!-- title -->
+    <header class="frames__top">
+      <h1 class="section-header content_center">APPLICATIONS</h1>
+    </header>
 
+    <!-- pill tabs with arrows -->
     <div class="frames__controls">
-      <div class="pill-container">
-        <nav class="nav-pills tabs--applications u-flex-center">
-          <button class="btn btn--text app-category active" data-target="0">WALL CLADDING</button>
-          <button class="btn btn--text app-category" data-target="1">KITCHEN WORKTOPS</button>
-          <button class="btn btn--text app-category" data-target="2">BESPOKE TABLES</button>
-          <button class="btn btn--text app-category" data-target="3">WASHBASINS &amp; VANITY TOPS</button>
-          <button class="btn btn--text app-category" data-target="4">RECEPTION DESKS &amp; COUNTERS</button>
-        </nav>
-      </div>
-    </div>
+
+      <!-- left arrow -->
+      <button class="swiper-button-prev" aria-label="Previous category"></button>
+
+      <!-- pill nav -->
+      <nav class="nav-pills" aria-label="Application categories">
+        <button class="btn btn--tab app-category active" data-target="0">WALL CLADDING</button>
+        <button class="btn btn--tab app-category" data-target="1">KITCHEN WORKTOPS</button>
+        <button class="btn btn--tab app-category" data-target="2">BESPOKE TABLES</button>
+        <button class="btn btn--tab app-category" data-target="3">WASHBASINS &amp; VANITY TOPS</button>
+        <button class="btn btn--tab app-category" data-target="4">RECEPTION DESKS &amp; COUNTERS</button>
+      </nav>
+
+      <!-- right arrow -->
+      <button class="swiper-button-next" aria-label="Next category"></button>
+
+    </div><!-- /.frames__controls -->
 
   </div><!-- /.container -->
 
   <!-- full-width slider (outside container) -->
-  <div class="applications-slider swiper">
+  <div class="applications-slider swiper" aria-label="Application gallery">
     <div class="swiper-wrapper">
 
       <!-- Slide 0 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="">
+        <img src="../images/Installation.jpg" alt="Wall Cladding application">
         <div class="slide-overlay">
           <h3>Wall Cladding</h3>
           <p>Large-format porcelain for internal and external feature walls, façades, and columns.</p>
@@ -41,7 +48,7 @@
 
       <!-- Slide 1 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="">
+        <img src="../images/Installation.jpg" alt="Kitchen Worktops application">
         <div class="slide-overlay">
           <h3>Kitchen Worktops</h3>
           <p>Precision-cut surfaces for hospitality kitchens, residential installs, and chef-grade counters.</p>
@@ -50,7 +57,7 @@
 
       <!-- Slide 2 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="">
+        <img src="../images/Installation.jpg" alt="Bespoke Tables application">
         <div class="slide-overlay">
           <h3>Bespoke Tables</h3>
           <p>Commercial dining, meeting-room, and reception tables built with stone or porcelain.</p>
@@ -59,7 +66,7 @@
 
       <!-- Slide 3 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="">
+        <img src="../images/Installation.jpg" alt="Washbasins and Vanity Tops application">
         <div class="slide-overlay">
           <h3>Washbasins &amp; Vanity Tops</h3>
           <p>Sculptural, hygienic, and durable — ideal for hotels, spas, and luxury retail.</p>
@@ -68,20 +75,18 @@
 
       <!-- Slide 4 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="">
+        <img src="../images/Installation.jpg" alt="Reception Desks and Counters application">
         <div class="slide-overlay">
           <h3>Reception Desks &amp; Counters</h3>
           <p>Statement surfaces for front-of-house spaces in hotels, offices, and lobbies.</p>
         </div>
       </div>
 
-    </div>
-
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    </div><!-- /.swiper-wrapper -->
   </div><!-- /.applications-slider -->
 
 </section>
 
+<!-- SwiperJS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
+<script src="applications/script.js"></script>

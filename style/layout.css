@@ -16,27 +16,3 @@
   display: none;
 }
 
-/* Applications category tabs container */
-.tabs--applications {
-  flex-wrap: nowrap;               /* keep in one line */
-  overflow-x: auto;                /* sideways scroll if needed */
-  gap: var(--space-xs);            /* spacing token */
-  white-space: nowrap;             /* prevent wrapping */
-  -webkit-overflow-scrolling: touch; /* smooth iOS scroll */
-}
-.tabs--applications {
-  /* hide scrollbars when overflowing */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.tabs--applications::-webkit-scrollbar {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .tabs--applications {
-    flex-wrap: wrap;              /* allow wrapping on larger screens */
-    gap: var(--space-sm);         /* slightly larger gap */
-  }
-}
-
