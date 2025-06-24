@@ -1,37 +1,36 @@
-const categories = document.querySelectorAll('.app-category');
-const heroImage = document.querySelector('#app-hero img');
-const heroTitle = document.querySelector('.app-overlay h3');
+/* === SWIPER INITIALISATION ============================================= */
+document.addEventListener('DOMContentLoaded', () => {
 
-// Get absolute base path from site root
-const basePath = window.location.origin + '/sabrestonev2/';
-
-const appData = {
-  cladding: {
-    image: basePath + 'images/projects-column.jpg',
-    title: 'Wall Cladding',
-  },
-  tables: {
-    image: basePath + 'images/projects-column.jpg',
-    title: 'Tables',
-  },
-  worktops: {
-    image: basePath + 'images/projects-column.jpg',
-    title: 'Worktops',
-  },
-};
-
-categories.forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.app-category.active')?.classList.remove('active');
-    btn.classList.add('active');
-
-    const target = btn.dataset.target;
-    heroImage.style.opacity = 0;
-
-    setTimeout(() => {
-      heroImage.src = appData[target].image;
-      heroTitle.textContent = appData[target].title;
-      heroImage.style.opacity = 1;
-    }, 300);
+  const swiper = new Swiper('.applications-slider', {
+    loop: true,
+    centeredSlides: true,
+    spaceBetween: 20,
+    slidesPerView: 3,          // always aim for three at desktop
+    breakpoints: {             // responsive counts (side slides peek)
+      0:   { slidesPerView: 1.2 },
+      768: { slidesPerView: 2.2 },
+      1020:{ slidesPerView: 3   }
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
   });
+
+  /* === PILLS <-> SLIDER SYNC =========================================== */
+  const pills = document.querySelectorAll('.app-category');
+
+  pills.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      swiper.slideToLoop(i);                 // jump to matched slide
+    });
+  });
+
+  swiper.on('slideChange', () => {           // keep active pill highlighted
+    const current = swiper.realIndex;
+    pills.forEach((b, i) => {
+      b.classList.toggle('active', i === current);
+    });
+  });
+
 });

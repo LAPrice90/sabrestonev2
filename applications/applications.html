@@ -1,10 +1,87 @@
-<section class="applications">
-  <h1 class="about-section">APPLICATIONS</h1>
-  <nav class="nav-pills">
-    <button class="btn btn--tab active">WALL CLADDING</button>
-    <button class="btn btn--tab">FLOORING</button>
-    <button class="btn btn--tab">KITCHEN WORKTOPS</button>
-    <button class="btn btn--tab">FURNISHING ELEMENTS</button>
-    <button class="btn btn--tab">EXTERIOR FAÇADE CLADDING</button>
-  </nav>
+<!-- — APPLICATIONS --------------------------------------------------------->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<section class="section frames">
+
+  <!-- centred heading + pills (inside max-1400 container) -->
+  <div class="container">
+
+    <div class="frames__top">
+      <div class="frames__title content_center">
+        <h1 class="section-header">APPLICATIONS</h1>
+      </div>
+    </div>
+
+    <div class="frames__controls">
+      <div class="pill-container">
+        <nav class="nav-pills">
+          <button class="btn btn--tab app-category active" data-target="0">WALL CLADDING</button>
+          <button class="btn btn--tab app-category" data-target="1">KITCHEN WORKTOPS</button>
+          <button class="btn btn--tab app-category" data-target="2">BESPOKE TABLES</button>
+          <button class="btn btn--tab app-category" data-target="3">WASHBASINS &amp; VANITY TOPS</button>
+          <button class="btn btn--tab app-category" data-target="4">RECEPTION DESKS &amp; COUNTERS</button>
+        </nav>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+
+  <!-- full-width slider (outside container) -->
+  <div class="applications-slider swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 0 -->
+      <div class="swiper-slide">
+        <img src="../images/Installation.jpg" alt="">
+        <div class="slide-overlay">
+          <h3>Wall Cladding</h3>
+          <p>Large-format porcelain for internal and external feature walls, façades, and columns.</p>
+        </div>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <img src="../images/Installation.jpg" alt="">
+        <div class="slide-overlay">
+          <h3>Kitchen Worktops</h3>
+          <p>Precision-cut surfaces for hospitality kitchens, residential installs, and chef-grade counters.</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <img src="../images/Installation.jpg" alt="">
+        <div class="slide-overlay">
+          <h3>Bespoke Tables</h3>
+          <p>Commercial dining, meeting-room, and reception tables built with stone or porcelain.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <img src="../images/Installation.jpg" alt="">
+        <div class="slide-overlay">
+          <h3>Washbasins &amp; Vanity Tops</h3>
+          <p>Sculptural, hygienic, and durable — ideal for hotels, spas, and luxury retail.</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="swiper-slide">
+        <img src="../images/Installation.jpg" alt="">
+        <div class="slide-overlay">
+          <h3>Reception Desks &amp; Counters</h3>
+          <p>Statement surfaces for front-of-house spaces in hotels, offices, and lobbies.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div><!-- /.applications-slider -->
+
 </section>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
