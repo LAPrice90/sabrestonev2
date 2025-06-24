@@ -35,3 +35,24 @@ categories.forEach(btn => {
     }, 300);
   });
 });
+
+// ----- Applications Swiper setup -----
+window.addEventListener('DOMContentLoaded', () => {
+  const sliderEl = document.querySelector('.applications-slider');
+  if (!sliderEl || typeof Swiper === 'undefined') return;
+
+  const slider = new Swiper(sliderEl, {
+    slidesPerView: 1,
+    centeredSlides: true,
+    loop: true,
+  });
+
+  function updateActive() {
+    sliderEl.querySelectorAll('.swiper-slide').forEach(slide => {
+      slide.classList.toggle('is-current', slide.classList.contains('swiper-slide-active'));
+    });
+  }
+
+  slider.on('slideChangeTransitionEnd', updateActive);
+  updateActive();
+});

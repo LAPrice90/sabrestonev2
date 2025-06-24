@@ -32,3 +32,22 @@
   flex-shrink: 0;
 }
 
+:root {
+  --slide-gap: 40px;
+}
+
+@media (min-width: 1020px) {
+  .applications-slider {
+    overflow: visible;
+  }
+
+  .applications-slider .swiper-slide {
+    margin: 0 var(--slide-gap);
+    transition: transform 0.3s ease;
+  }
+
+  .applications-slider .swiper-slide-active {
+    transform: scale(1.07);
+  }
+}
+
