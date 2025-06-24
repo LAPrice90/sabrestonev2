@@ -17,20 +17,14 @@
 }
 
 .nav-pills {
-  display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 10px;
   padding-bottom: 10px;
-  justify-content: flex-start;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
-.btn--tab {
-  scroll-snap-align: center;
-  flex-shrink: 0;
-}
 
 .frames__title {
   margin-bottom: 40px;

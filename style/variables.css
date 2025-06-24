@@ -1,0 +1,6 @@
+:root {
+  /* Brand tokens reused across components */
+  --brand-blue: var(--color-blue);
+  --font-serif-heading: var(--font-heading);
+}
+
