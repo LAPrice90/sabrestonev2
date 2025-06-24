@@ -1,36 +1,67 @@
-/* === SWIPER INITIALISATION ============================================= */
-document.addEventListener('DOMContentLoaded', () => {
+/* === APPLICATIONS carousel (matches old Installation logic) =========== */
+(function () {
+  if (typeof Swiper === 'undefined') return;              // Swiper must already be loaded
 
-  const swiper = new Swiper('.applications-slider', {
+  const section = document.querySelector('.applications-process');
+  if (!section) return;                                   // defensive
+
+  /* DOM references scoped to THIS section only */
+  const swiperEl = section.querySelector('.applications-swiper');
+  const nextBtn  = section.querySelector('.swiper-button-next');
+  const prevBtn  = section.querySelector('.swiper-button-prev');
+  const tabs     = section.querySelectorAll('.process-tabs .tab');
+  const texts    = section.querySelectorAll('.process-text');
+
+  /* Initialise Swiper */
+  const appSwiper = new Swiper(swiperEl, {
     loop: true,
     centeredSlides: true,
-    spaceBetween: 0,
-    slidesPerView: 3,          // default desktop view
-    breakpoints: {             // responsive slide counts
-      0:   { slidesPerView: 1.2 },
-      768: { slidesPerView: 2.2 },
-      1020:{ slidesPerView: 3   }
+    centeredSlidesBounds: true,
+    spaceBetween: 20,
+    slidesPerView: 1.35,
+    breakpoints: {
+      1200: { slidesPerView: 2.6 },
+      900:  { slidesPerView: 2.0 },
+      600:  { slidesPerView: 1.6 },
+        0:  { slidesPerView: 1.2 }
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
+    navigation: { nextEl: nextBtn, prevEl: prevBtn }
   });
 
-  /* === PILLS <-> SLIDER SYNC =========================================== */
-  const pills = document.querySelectorAll('.app-category');
+  /* Safety: extra click listeners */
+  if (nextBtn) nextBtn.addEventListener('click', () => appSwiper.slideNext());
+  if (prevBtn) prevBtn.addEventListener('click', () => appSwiper.slidePrev());
 
-  pills.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      swiper.slideToLoop(i);                 // jump to matched slide
+  /* Helper: centre a pill inside its scroll box */
+  function centre(tab) {
+    const box = tab.parentElement;
+    const x = tab.offsetLeft + tab.offsetWidth / 2 - box.offsetWidth / 2;
+    box.scrollTo({ left: x, behavior: 'smooth' });
+  }
+
+  /* Copy/text toggle */
+  function updateCopy(index) {
+    texts.forEach((t, i) => t.classList.toggle('active', i === index));
+  }
+
+  /* Pill click → slide + copy */
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      appSwiper.slideToLoop(i);
+      centre(tab);
+      updateCopy(i);
     });
   });
 
-  swiper.on('slideChange', () => {           // keep active pill highlighted
-    const current = swiper.realIndex;
-    pills.forEach((b, i) => {
-      b.classList.toggle('active', i === current);
+  /* Swipe → update pills + copy */
+  appSwiper.on('slideChange', () => {
+    const idx = appSwiper.realIndex;
+    tabs.forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+      if (i === idx) centre(t);
     });
+    updateCopy(idx);
   });
-
-});
+})();

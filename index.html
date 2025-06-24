@@ -20,6 +20,14 @@
   <!-- Logo preload -->
   <link rel="preload" href="images/symbol-blue.svg" as="image" />
   <link rel="preload" href="images/symbol-white.svg" as="image" />
+
+    <!-- Swiper bundle (CSS + JS) -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
 </head>
 <body>
 
@@ -41,14 +49,6 @@
         document.head.appendChild(style);
         });
     </script>
-
-    <!-- NEW: CTA cards below hero -->
-    <div class="cta-cards">
-      <a class="cta-card" href="/installation/installation.html">
-        <span class="cta-title">Installation Precision</span>
-        <span class="cta-arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
 
     <!-- About section target -->
     <div id="about-section"></div>
@@ -88,6 +88,8 @@
     </script>
 
 
+
+
   <!-- Inject header HTML and its script -->
   <script>
     fetch('header/header.html')
@@ -102,7 +104,7 @@
   </script>
 
   <script>
-    const activeTab = document.querySelector('.app-category.active');
+    const activeTab = document.querySelector('.btn--tab.active');
     if (activeTab) {
       activeTab.scrollIntoView({ inline: 'center', behavior: 'smooth' });
     }

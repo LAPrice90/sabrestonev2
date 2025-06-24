@@ -1,92 +1,59 @@
-<!-- — APPLICATIONS --------------------------------------------------------->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<!-- APPLICATIONS (Laminam-style pill tabs + swiper) -->
+<section id="applications" class="applications-process">
+  <h2 class="section-title">APPLICATIONS</h2>
 
-<section id="applications" class="section frames">
+  <!-- Tabs -->
+  <div class="process-tabs-wrapper">
+    <div class="swiper-button-prev"></div>
 
-  <!-- heading + pills (inside 1400-px container) -->
-  <div class="container">
+    <div class="process-tabs">
+      <button class="tab active" data-slide="0">Wall Cladding</button>
+      <button class="tab" data-slide="1">Flooring</button>
+      <button class="tab" data-slide="2">Kitchen Worktops</button>
+      <button class="tab" data-slide="3">Furnishing Elements</button>
+      <button class="tab" data-slide="4">Exterior Façade</button>
+    </div>
 
-    <!-- title -->
-    <header class="frames__top">
-      <h1 class="section-header content_center">APPLICATIONS</h1>
-    </header>
+    <div class="swiper-button-next"></div>
+  </div>
 
-    <!-- pill tabs with arrows -->
-    <div class="frames__controls">
+  <!-- Rotating copy -->
+  <div class="process-copy">
+    <p class="process-text active" data-step="0">
+      Large-format Laminam slabs create seamless wall cladding with near-invisible joints and easy maintenance.
+    </p>
+    <p class="process-text" data-step="1">
+      Ultra-dense surfaces provide hard-wearing, low-porosity flooring for high-traffic commercial spaces.
+    </p>
+    <p class="process-text" data-step="2">
+      Heat-, scratch- and stain-resistant porcelain tops deliver sleek, hygienic work surfaces for hospitality and residential kitchens.
+    </p>
+    <p class="process-text" data-step="3">
+      Bespoke furniture elements — tables, shelving and reception desks — fabricated for durable, luxury finishes.
+    </p>
+    <p class="process-text" data-step="4">
+      Lightweight, UV-stable panels give buildings a modern stone aesthetic while meeting stringent façade performance specs.
+    </p>
+  </div>
 
-      <!-- left arrow -->
-      <button class="swiper-button-prev" aria-label="Previous category"></button>
-
-      <!-- pill nav -->
-      <nav class="nav-pills" aria-label="Application categories">
-        <button class="btn btn--tab app-category active" data-target="0">WALL CLADDING</button>
-        <button class="btn btn--tab app-category" data-target="1">KITCHEN WORKTOPS</button>
-        <button class="btn btn--tab app-category" data-target="2">BESPOKE TABLES</button>
-        <button class="btn btn--tab app-category" data-target="3">WASHBASINS &amp; VANITY TOPS</button>
-        <button class="btn btn--tab app-category" data-target="4">RECEPTION DESKS &amp; COUNTERS</button>
-      </nav>
-
-      <!-- right arrow -->
-      <button class="swiper-button-next" aria-label="Next category"></button>
-
-    </div><!-- /.frames__controls -->
-
-  </div><!-- /.container -->
-
-  <!-- full-width slider (outside container) -->
-  <div class="applications-slider swiper" aria-label="Application gallery">
+  <!-- Carousel -->
+  <div class="swiper applications-swiper">
     <div class="swiper-wrapper">
-
-      <!-- Slide 0 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="Wall Cladding application">
-        <div class="slide-overlay">
-          <h3>Wall Cladding</h3>
-          <p>Large-format porcelain for internal and external feature walls, façades, and columns.</p>
-        </div>
+        <img src="images/Installation.jpg"   alt="Wall Cladding">
       </div>
-
-      <!-- Slide 1 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="Kitchen Worktops application">
-        <div class="slide-overlay">
-          <h3>Kitchen Worktops</h3>
-          <p>Precision-cut surfaces for hospitality kitchens, residential installs, and chef-grade counters.</p>
-        </div>
+        <img src="images/Manufacturing.jpg"    alt="Flooring">
       </div>
-
-      <!-- Slide 2 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="Bespoke Tables application">
-        <div class="slide-overlay">
-          <h3>Bespoke Tables</h3>
-          <p>Commercial dining, meeting-room, and reception tables built with stone or porcelain.</p>
-        </div>
+        <img src="images/Installation.jpg"    alt="Kitchen Worktops">
       </div>
-
-      <!-- Slide 3 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="Washbasins and Vanity Tops application">
-        <div class="slide-overlay">
-          <h3>Washbasins &amp; Vanity Tops</h3>
-          <p>Sculptural, hygienic, and durable — ideal for hotels, spas, and luxury retail.</p>
-        </div>
+        <img src="images/Manufacturing.jpg"  alt="Furnishing Elements">
       </div>
-
-      <!-- Slide 4 -->
       <div class="swiper-slide">
-        <img src="../images/Installation.jpg" alt="Reception Desks and Counters application">
-        <div class="slide-overlay">
-          <h3>Reception Desks &amp; Counters</h3>
-          <p>Statement surfaces for front-of-house spaces in hotels, offices, and lobbies.</p>
-        </div>
+        <img src="images/Installation.jpg"      alt="Exterior Façade">
       </div>
-
-    </div><!-- /.swiper-wrapper -->
-  </div><!-- /.applications-slider -->
-
+    </div>
+  </div>
 </section>
-
-<!-- SwiperJS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="applications/script.js"></script>
