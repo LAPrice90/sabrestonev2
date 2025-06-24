@@ -91,14 +91,14 @@
     <div id="installation-section"></div>
 
     <script>
-    fetch('installation/installation.html')
+    fetch('Installation/installation.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('installation-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'installation/style.css';
+        style.href = 'Installation/style.css';
         document.head.appendChild(style);
       });
     </script>
