@@ -54,10 +54,14 @@
 }
 
 .applications-slider .swiper { width: 100%; overflow: visible; }
-.applications-slider .swiper-wrapper { align-items: center; }
+.applications-slider .swiper-wrapper {
+  display: flex;                /* ensure horizontal layout */
+  align-items: center;
+}
 
 /* each frame = exactly 1/3 viewport, no side gut- ters  */
 .applications-slider .swiper-slide{
+  flex-shrink: 0;                /* keep slide width consistent */
   width: calc((100vw - var(--slide-gap) * 6) / 3);
   margin: 0 var(--slide-gap);
   position: relative;
