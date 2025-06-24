@@ -98,17 +98,3 @@
   border-radius: 50% !important;
   margin-left: 8px !important;
 }
-
-/* Text-only buttons reused for tabs and links */
-.btn--text {
-  display: inline-block; /* keep gaps consistent */
-  padding: 0;
-  background: none;
-  border: none;
-  font-family: var(--font-serif-heading);
-  color: var(--brand-blue);
-}
-
-.btn--text.active {
-  text-decoration: underline;
-}
