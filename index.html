@@ -95,5 +95,13 @@
       });
   </script>
 
+  <script>
+    const activeTab = document.querySelector('.btn--tab.active');
+    if (activeTab) {
+      activeTab.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+  </script>
+
+
 </body>
 </html>
