@@ -38,14 +38,14 @@
     <div id="hero-section"></div>
 
     <script>
-    fetch('hero/hero.html')
+    fetch('landingpage/hero/hero.html')
         .then(res => res.text())
         .then(html => {
         document.getElementById('hero-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'hero/style.css';
+        style.href = 'landingpage/hero/style.css';
         document.head.appendChild(style);
         });
     </script>
@@ -54,14 +54,14 @@
     <div id="about-section"></div>
 
     <script>
-    fetch('about/about.html')
+    fetch('landingpage/about/about.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('about-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'about/style.css';
+        style.href = 'landingpage/about/style.css';
         document.head.appendChild(style);
     });
     </script>
@@ -70,19 +70,19 @@
     <div id="applications-section"></div>
 
     <script>
-    fetch('applications/applications.html')
+    fetch('landingpage/applications/applications.html')
     .then(res => res.text())
     .then(html => {
         document.getElementById('applications-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'applications/style.css';
+        style.href = 'landingpage/applications/style.css';
         document.head.appendChild(style);
 
         // ✅ Inject script.js after HTML is loaded
         const script = document.createElement('script');
-        script.src = 'applications/script.js';
+        script.src = 'landingpage/applications/script.js';
         document.body.appendChild(script);
     });
     </script>
@@ -91,14 +91,14 @@
     <div id="installation-section"></div>
 
     <script>
-    fetch('Installation/installation.html')
+    fetch('landingpage/Installation/installation.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('installation-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'Installation/style.css';
+        style.href = 'landingpage/Installation/style.css';
         document.head.appendChild(style);
       });
     </script>
@@ -107,14 +107,14 @@
     <div id="projects-section"></div>
 
     <script>
-    fetch('projects/projects.html')
+    fetch('landingpage/projects/projects.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('projects-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'projects/style.css';
+        style.href = 'landingpage/projects/style.css';
         document.head.appendChild(style);
       });
     </script>
@@ -123,14 +123,14 @@
     <div id="partnership-section"></div>
 
     <script>
-    fetch('partnership/partnership.html')
+    fetch('landingpage/partnership/partnership.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('partnership-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'partnership/style.css';
+        style.href = 'landingpage/partnership/style.css';
         document.head.appendChild(style);
       });
     </script>
@@ -139,14 +139,14 @@
     <div id="benifits-section"></div>
 
     <script>
-    fetch('benifits/benifits.html')
+    fetch('landingpage/benifits/benifits.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('benifits-section').innerHTML = html;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
-        style.href = 'benifits/style.css';
+        style.href = 'landingpage/benifits/style.css';
         document.head.appendChild(style);
       });
     </script>
