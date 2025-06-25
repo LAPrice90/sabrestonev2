@@ -122,3 +122,13 @@
     font-size:13px;
   }
 }
+
+/* uniform 4 : 3 canvas for every slide */
+.applications-swiper .swiper-slide{
+  aspect-ratio: 3 / 4;      /* pick any ratio you prefer */
+}
+.applications-swiper .swiper-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;         /* fills the canvas, crops overflow */
+}

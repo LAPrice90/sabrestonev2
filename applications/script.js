@@ -1,28 +1,26 @@
-/* === APPLICATIONS carousel (matches old Installation logic) =========== */
+/* === APPLICATIONS carousel =========================================== */
 (function () {
-  if (window.__applicationsInit) return;  // guard against multiple executions
+  if (window.__applicationsInit) return;     // stop double-runs
   window.__applicationsInit = true;
-  if (typeof Swiper === 'undefined') return;              // Swiper must already be loaded
+  if (typeof Swiper === 'undefined') return;
 
-  const section = document.querySelector('.applications-process');
-  if (!section) return;                                   // defensive
+  const section   = document.querySelector('.applications-process');
+  if (!section) return;
 
-  /* DOM references scoped to THIS section only */
-  const swiperEl = section.querySelector('.applications-swiper');
-  const nextBtn  = section.querySelector('.swiper-button-next');
-  const prevBtn  = section.querySelector('.swiper-button-prev');
-  const tabs     = section.querySelectorAll('.process-tabs .tab');
-  const texts    = section.querySelectorAll('.process-text');
+  /* DOM */
+  const swiperEl  = section.querySelector('.applications-swiper');
+  const nextBtn   = section.querySelector('.swiper-button-next');
+  const prevBtn   = section.querySelector('.swiper-button-prev');
+  const tabs      = section.querySelectorAll('.process-tabs .tab');
+  const texts     = section.querySelectorAll('.process-text');
 
-  /* Initialise Swiper */
   const appSwiper = new Swiper(swiperEl, {
-    loop: true,
+    loop: true,                 // lets you drag 5 ⇄ 1 seamlessly
     centeredSlides: true,
-    centeredSlidesBounds: true,
     spaceBetween: 20,
     slidesPerView: 1.35,
     breakpoints: {
-      1200: { slidesPerView: 2.6 },
+      1200: { slidesPerView: 2.4 },
       900:  { slidesPerView: 2.0 },
       600:  { slidesPerView: 1.6 },
         0:  { slidesPerView: 1.2 }
@@ -31,36 +29,34 @@
   });
 
 
-  /* Helper: centre a pill inside its scroll box */
+  /* Helpers */
   function centre(tab) {
     const box = tab.parentElement;
-    const x = tab.offsetLeft + tab.offsetWidth / 2 - box.offsetWidth / 2;
+    const x   = tab.offsetLeft + tab.offsetWidth / 2 - box.offsetWidth / 2;
     box.scrollTo({ left: x, behavior: 'smooth' });
   }
-
-  /* Copy/text toggle */
-  function updateCopy(index) {
-    texts.forEach((t, i) => t.classList.toggle('active', i === index));
+  function updateCopy(i) {
+    texts.forEach((t, idx) => t.classList.toggle('active', idx === i));
   }
 
-  /* Pill click → slide + copy */
+  /* Pill click */
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      appSwiper.slideToLoop(i);
+      appSwiper.slideToLoop(i);   // picks the closest copy when looping
       centre(tab);
       updateCopy(i);
     });
   });
 
-  /* Swipe → update pills + copy */
-  appSwiper.on('slideChange', () => {
-    const idx = appSwiper.realIndex;
-    tabs.forEach((t, i) => {
-      t.classList.toggle('active', i === idx);
-      if (i === idx) centre(t);
+  /* Swipe or arrows */
+  appSwiper.on('slideChangeTransitionEnd', () => {
+    const i = appSwiper.realIndex;
+    tabs.forEach((t, idx) => {
+      t.classList.toggle('active', idx === i);
+      if (idx === i) centre(t);
     });
-    updateCopy(idx);
+    updateCopy(i);
   });
 })();

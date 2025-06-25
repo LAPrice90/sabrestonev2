@@ -1,0 +1,226 @@
+.site-footer{
+  background: var(--color-navy);
+  color:#f8f8f8;
+  margin-top:6rem;
+  padding:100px 1.5rem 60px;
+  font-size:.95rem;
+}
+
+
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  gap:3rem 4rem;
+}
+
+/* brand column */
+.footer-brand{flex:1 1 280px}
+.footer-logo{
+  max-width:240px;           /* bigger logo */
+  height:auto;
+  margin-bottom:1.25rem;
+}
+.houzz-badges img{
+  width:90px;
+  margin-right:8px;
+  margin-top:1.25rem;
+}
+
+/* link columns */
+.footer-links{
+  flex:2 1 600px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:2rem 4rem;
+}
+.footer-links h4{
+  font-size:1rem;
+  font-family:var(--font-heading);
+  margin:0 0 .75rem;
+}
+.footer-links ul{list-style:none;padding:0;margin:0}
+.footer-links li{margin-bottom:.45rem}
+.footer-links a{
+  color:#f8f8f8;
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer-links a:hover{color:#a58629}
+
+/* ───────────  FOOTER  (final tidy-up)  ─────────── */
+.site-footer{
+  background: var(--color-navy);      /* matches header navy #001f3f */
+  color:#f8f8f8;
+  margin-top:6rem;
+  padding:100px 1.5rem 70px;
+  font-size:.95rem;
+}
+
+/* make EVERYTHING inside the footer white by default  */
+.site-footer,
+.site-footer *{
+  color:#f8f8f8;
+}
+
+/* headings slightly brighter / larger weight */
+.site-footer h3,
+.site-footer h4{
+  font-weight:600;
+  letter-spacing:.03em;
+}
+
+/* big logo */
+.footer-logo{
+  max-width:240px;                    /* bump up from 200px */
+  height:auto;
+  margin-bottom:1.5rem;
+}
+
+/* Houzz badges breathing-room */
+.houzz-badges img{
+  width:90px;
+  margin-right:16px;                  /* wider gap */
+}
+
+/* links */
+.footer-links a{
+  text-decoration:none;
+  transition:color .25s;
+}
+.footer-links a:hover{
+  color:#a58629;                      /* muted gold hover */
+}
+
+/* layout */
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  gap:3rem 4rem;
+}
+
+/* brand column */
+.footer-brand{flex:1 1 280px}
+
+/* link columns */
+.footer-links{
+  flex:2 1 600px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:2rem 4rem;
+}
+
+
+/* mobile stack */
+@media(max-width:767px){
+  .footer-inner{flex-direction:column}
+  .footer-links{flex-direction:column}
+  .footer-logo{max-width:180px}
+}
+
+/* ───── Footer – Tablet “4-across” layout (768-1023 px) ───── */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* 1️⃣  Stack brand on its own row */
+  .footer-inner{
+    display: grid;
+    grid-template-columns: 1fr;          /* first row = brand 100% */
+    grid-row-gap: 3rem;                  /* space under brand */
+    padding: 80px 2rem 70px;             /* side padding a little wider */
+  }
+
+  .footer-brand{
+    margin: 0 auto;                      /* centre brand column */
+    text-align: left;
+  }
+
+  /* 2️⃣  Four equal link columns on second row */
+  .footer-links{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 2rem;                    /* horizontal, vertical */
+    width: 100%;
+  }
+
+  .footer-links > div{
+    width: 100%;                         /* each takes its grid column */
+    margin-top: 0;                       /* reset top spacing */
+  }
+
+  /* 3️⃣  Headings clearer */
+  .footer-links h4{
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* 4️⃣  Slightly smaller body copy */
+  .footer-links li,
+  .footer-links a{
+    font-size: 0.9rem;
+  }
+
+  /* 5️⃣  Houzz badges spaced nicely */
+  .houzz-badges img{
+    margin-right: 16px;
+  }
+
+  /* optional: centre the Get-in-touch list */
+  .footer-links div:last-child li{
+    line-height: 1.6;
+  }
+}
+
+/* ─────────── FOOTER — Desktop ≥ 1200 px ─────────── */
+@media (min-width:1024px){
+
+  /* use more of the screen */
+  .site-footer{
+    padding:120px 4rem 90px;          /* bigger side-padding */
+  }
+
+  /* 5-column grid: brand | About | Product | Legal | Get-in-Touch  */
+  .footer-inner{
+    max-width:1400px;                 /* was 1200 */
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1.2fr repeat(4,1fr);
+    gap:0 4rem;                       /* horizontal gap */
+  }
+
+  /* brand column tighter so links get room */
+  .footer-brand{
+    max-width:none;
+    margin:0;                         /* no auto-centre */
+  }
+
+  /* link columns – full height, no wrapping */
+  .footer-links{
+    grid-column: 2 / span 4;          /* occupy the 4 link cols */
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:0 4rem;
+  }
+
+  /* each group stays top-aligned */
+  .footer-links>div{
+    margin-top:0;
+  }
+}
+
+/* Footer – stop any long word or URL from forcing horizontal scroll */
+.site-footer,
+.site-footer * {
+  overflow-wrap: anywhere;   /* modern browsers */
+  word-break: break-word;    /* fallback */
+}
+
+/* optional: never let the whole page scroll sideways */
+html, body {
+  overflow-x: hidden;
+}

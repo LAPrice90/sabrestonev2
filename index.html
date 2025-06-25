@@ -151,6 +151,31 @@
       });
     </script>
 
+  <!-- Footer container -->
+  <div id="main-footer"></div>
+
+  <!-- Inject footer HTML and footer CSS -->
+  <script>
+    fetch('footer/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-footer').innerHTML = html;
+
+        // Inject CSS
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'footer/style.css';
+        document.head.appendChild(link);
+
+        // Optional: footer script
+        // const s = document.createElement('script');
+        // s.src = 'footer/script.js';
+        // document.body.appendChild(s);
+      });
+  </script>
+
+
+
   <!-- Inject header HTML and its script -->
   <script>
     fetch('header/header.html')
