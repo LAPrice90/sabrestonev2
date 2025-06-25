@@ -156,7 +156,7 @@
 
   <!-- Inject footer HTML and footer CSS -->
   <script>
-    fetch('footer/footer.html')
+    fetch('Footer/footer.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('main-footer').innerHTML = html;
@@ -164,7 +164,7 @@
         // Inject CSS
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'footer/style.css';
+        link.href = 'Footer/style.css';
         document.head.appendChild(link);
 
         // Optional: footer script
