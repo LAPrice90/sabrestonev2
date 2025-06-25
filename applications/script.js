@@ -1,15 +1,13 @@
-/* === APPLICATIONS – gallery + pill carousel ================================= */
+/* === APPLICATIONS – gallery + pill carousel ========================= */
 (function () {
-  if (window.__applicationsInit) return;      // stop double-runs
+  if (window.__applicationsInit) return;
   window.__applicationsInit = true;
   if (typeof Swiper === 'undefined') return;
 
   const section = document.querySelector('.applications-process');
   if (!section) return;
 
-  /* -------------------------------------------------------------------------
-     IMAGE CAROUSEL
-  ------------------------------------------------------------------------- */
+  /* ── main image swiper ───────────────────────────────────────────── */
   const appSwiper = new Swiper(section.querySelector('.applications-swiper'), {
     loop: true,
     centeredSlides: true,
@@ -27,9 +25,7 @@
     }
   });
 
-  /* -------------------------------------------------------------------------
-     PILL CAROUSEL
-  ------------------------------------------------------------------------- */
+  /* ── pill swiper ─────────────────────────────────────────────────── */
   const pillSwiper = new Swiper(section.querySelector('.tabs-swiper'), {
     loop: true,
     slidesPerView: 'auto',
@@ -38,34 +34,38 @@
     slideToClickedSlide: true
   });
 
-  const tabs  = section.querySelectorAll('.tabs-swiper .tab');
-  const texts = section.querySelectorAll('.process-text');
+  /* show clones on the left from the start */
+  pillSwiper.slideToLoop(0, 0, false);
 
-  /* -------------------------------------------------------------------------
-     SYNC HELPERS
-  ------------------------------------------------------------------------- */
+  const allTabs  = [...section.querySelectorAll('.tabs-swiper .tab')];
+  const allTexts = [...section.querySelectorAll('.process-text')];
+
+  /* helper to toggle active pill + copy */
   function setActive(i) {
-    tabs.forEach((t, idx) => t.classList.toggle('active', idx === i));
-    texts.forEach((t, idx) => t.classList.toggle('active', idx === i));
+    allTabs.forEach(btn => btn.classList.toggle('active', +btn.dataset.slide === i));
+    allTexts.forEach(p   => p.classList.toggle('active', +p.dataset.step  === i));
   }
 
-  /* -------------------------------------------------------------------------
-     EVENTS – click pill → slide images
-  ------------------------------------------------------------------------- */
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      appSwiper.slideToLoop(i);
-      pillSwiper.slideToLoop(i);
-      setActive(i);
-    });
+  /* initial highlight */
+  setActive(0);
+
+  /* click / tap on a pill */
+  pillSwiper.on('tap', () => {
+    const slide = pillSwiper.clickedSlide;
+    if (!slide) return;
+    const i = +slide.querySelector('.tab').dataset.slide;
+    appSwiper.slideToLoop(i);              // sync images with pills
   });
 
-  /* -------------------------------------------------------------------------
-     EVENTS – swipe images → move pills
-  ------------------------------------------------------------------------- */
+  /* images finished sliding → centre matching pill */
   appSwiper.on('slideChangeTransitionEnd', () => {
     const i = appSwiper.realIndex;
     pillSwiper.slideToLoop(i);
     setActive(i);
+  });
+
+  /* pills dragged → update highlight / copy */
+  pillSwiper.on('slideChangeTransitionEnd', () => {
+    setActive(pillSwiper.realIndex);
   });
 })();
