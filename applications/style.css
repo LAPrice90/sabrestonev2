@@ -120,6 +120,11 @@
     flex:0 0 auto;
     padding:6px 24px;
     font-size:13px;
+
+  }
+  .process-copy {
+    height: 6em;        /* fits 3 lines comfortably */
+    overflow: hidden;
   }
 }
 
@@ -148,4 +153,8 @@
 .tabs-swiper .swiper-slide {
   flex: 0 0 auto;
   width: auto;
+}
+
+.applications-process .process-copy {
+  padding: 0 1.5rem; /* match install section's side padding */
 }
