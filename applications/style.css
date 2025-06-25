@@ -132,3 +132,12 @@
   height:100%;
   object-fit:cover;         /* fills the canvas, crops overflow */
 }
+
+/* pill-carousel */
+.tabs-swiper{
+  width:100%;
+  margin-bottom:40px;
+  overflow:visible;
+}
+.tabs-swiper .swiper-wrapper{align-items:center;}
+.tabs-swiper .swiper-slide{width:auto;}

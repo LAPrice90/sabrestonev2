@@ -1,21 +1,17 @@
-/* === APPLICATIONS carousel =========================================== */
+/* === APPLICATIONS – gallery + pill carousel ================================= */
 (function () {
-  if (window.__applicationsInit) return;     // stop double-runs
+  if (window.__applicationsInit) return;      // stop double-runs
   window.__applicationsInit = true;
   if (typeof Swiper === 'undefined') return;
 
-  const section   = document.querySelector('.applications-process');
+  const section = document.querySelector('.applications-process');
   if (!section) return;
 
-  /* DOM */
-  const swiperEl  = section.querySelector('.applications-swiper');
-  const nextBtn   = section.querySelector('.swiper-button-next');
-  const prevBtn   = section.querySelector('.swiper-button-prev');
-  const tabs      = section.querySelectorAll('.process-tabs .tab');
-  const texts     = section.querySelectorAll('.process-text');
-
-  const appSwiper = new Swiper(swiperEl, {
-    loop: true,                 // lets you drag 5 ⇄ 1 seamlessly
+  /* -------------------------------------------------------------------------
+     IMAGE CAROUSEL
+  ------------------------------------------------------------------------- */
+  const appSwiper = new Swiper(section.querySelector('.applications-swiper'), {
+    loop: true,
     centeredSlides: true,
     spaceBetween: 20,
     slidesPerView: 1.35,
@@ -25,38 +21,51 @@
       600:  { slidesPerView: 1.6 },
         0:  { slidesPerView: 1.2 }
     },
-    navigation: { nextEl: nextBtn, prevEl: prevBtn }
+    navigation: {
+      nextEl: section.querySelector('.swiper-button-next'),
+      prevEl: section.querySelector('.swiper-button-prev')
+    }
   });
 
+  /* -------------------------------------------------------------------------
+     PILL CAROUSEL
+  ------------------------------------------------------------------------- */
+  const pillSwiper = new Swiper(section.querySelector('.tabs-swiper'), {
+    loop: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 16,
+    slideToClickedSlide: true
+  });
 
-  /* Helpers */
-  function centre(tab) {
-    const box = tab.parentElement;
-    const x   = tab.offsetLeft + tab.offsetWidth / 2 - box.offsetWidth / 2;
-    box.scrollTo({ left: x, behavior: 'smooth' });
-  }
-  function updateCopy(i) {
+  const tabs  = section.querySelectorAll('.tabs-swiper .tab');
+  const texts = section.querySelectorAll('.process-text');
+
+  /* -------------------------------------------------------------------------
+     SYNC HELPERS
+  ------------------------------------------------------------------------- */
+  function setActive(i) {
+    tabs.forEach((t, idx) => t.classList.toggle('active', idx === i));
     texts.forEach((t, idx) => t.classList.toggle('active', idx === i));
   }
 
-  /* Pill click */
+  /* -------------------------------------------------------------------------
+     EVENTS – click pill → slide images
+  ------------------------------------------------------------------------- */
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      appSwiper.slideToLoop(i);   // picks the closest copy when looping
-      centre(tab);
-      updateCopy(i);
+      appSwiper.slideToLoop(i);
+      pillSwiper.slideToLoop(i);
+      setActive(i);
     });
   });
 
-  /* Swipe or arrows */
+  /* -------------------------------------------------------------------------
+     EVENTS – swipe images → move pills
+  ------------------------------------------------------------------------- */
   appSwiper.on('slideChangeTransitionEnd', () => {
     const i = appSwiper.realIndex;
-    tabs.forEach((t, idx) => {
-      t.classList.toggle('active', idx === i);
-      if (idx === i) centre(t);
-    });
-    updateCopy(i);
+    pillSwiper.slideToLoop(i);
+    setActive(i);
   });
 })();
