@@ -7,7 +7,7 @@
   const section = document.querySelector('.applications-process');
   if (!section) return;
 
-  /* ── main image swiper ───────────────────────────────────────────── */
+  /* ─────────── IMAGE SWIPER ─────────── */
   const appSwiper = new Swiper(section.querySelector('.applications-swiper'), {
     loop: true,
     centeredSlides: true,
@@ -25,47 +25,54 @@
     }
   });
 
-  /* ── pill swiper ─────────────────────────────────────────────────── */
-  const pillSwiper = new Swiper(section.querySelector('.tabs-swiper'), {
+  /* ─────────── PILL SWIPER ─────────── */
+  const pillsEl   = section.querySelector('.tabs-swiper');
+  const pillCount = pillsEl.querySelectorAll('.swiper-slide').length;   // 11
+
+  const pillSwiper = new Swiper(pillsEl, {
     loop: true,
+    initialSlide: pillCount,                 // start on the first clone
+    loopAdditionalSlides: pillCount,
     slidesPerView: 'auto',
     centeredSlides: true,
     spaceBetween: 16,
+    mousewheel: { forceToAxis: true },
+    touchRatio: 1,
     slideToClickedSlide: true
   });
 
-  /* show clones on the left from the start */
+  /* centre “Wall Cladding” on load */
   pillSwiper.slideToLoop(0, 0, false);
 
-  const allTabs  = [...section.querySelectorAll('.tabs-swiper .tab')];
-  const allTexts = [...section.querySelectorAll('.process-text')];
+  /* ─────────── DOM refs ─────────── */
+  const pills = [...pillsEl.querySelectorAll('.tab')];
+  const texts = [...section.querySelectorAll('.process-text')];
 
-  /* helper to toggle active pill + copy */
-  function setActive(i) {
-    allTabs.forEach(btn => btn.classList.toggle('active', +btn.dataset.slide === i));
-    allTexts.forEach(p   => p.classList.toggle('active', +p.dataset.step  === i));
-  }
+  const setActive = i => {
+    pills.forEach(b => b.classList.toggle('active', +b.dataset.slide === i));
+    texts.forEach(t => t.classList.toggle('active', +t.dataset.step  === i));
+  };
+  setActive(0);                              // highlight first pill
 
-  /* initial highlight */
-  setActive(0);
+  /* pill click → move images (pill row moves by itself) */
+  pills.forEach((btn, i) =>
+    btn.addEventListener('click', () => {
+      appSwiper.slideToLoop(i);
+      setActive(i);
+    })
+  );
 
-  /* click / tap on a pill */
-  pillSwiper.on('tap', () => {
-    const slide = pillSwiper.clickedSlide;
-    if (!slide) return;
-    const i = +slide.querySelector('.tab').dataset.slide;
-    appSwiper.slideToLoop(i);              // sync images with pills
-  });
-
-  /* images finished sliding → centre matching pill */
+  /* images finished → centre matching pill */
   appSwiper.on('slideChangeTransitionEnd', () => {
     const i = appSwiper.realIndex;
     pillSwiper.slideToLoop(i);
     setActive(i);
   });
 
-  /* pills dragged → update highlight / copy */
+  /* pill row dragged → update active state + images */
   pillSwiper.on('slideChangeTransitionEnd', () => {
-    setActive(pillSwiper.realIndex);
+    const i = pillSwiper.realIndex % pillCount;
+    appSwiper.slideToLoop(i);
+    setActive(i);
   });
 })();

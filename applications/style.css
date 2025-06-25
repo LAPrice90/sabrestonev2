@@ -133,11 +133,13 @@
   object-fit:cover;         /* fills the canvas, crops overflow */
 }
 
-/* pill-carousel */
 .tabs-swiper{
   width:100%;
-  margin-bottom:40px;
-  overflow:visible;
+  overflow:visible;   /* let clones peek out */
 }
-.tabs-swiper .swiper-wrapper{align-items:center;}
-.tabs-swiper .swiper-slide{width:auto;}
+.tabs-swiper .swiper-wrapper{
+  align-items:center; /* vertical-centre the pills */
+}
+.tabs-swiper .swiper-slide{
+  width:auto;         /* slide width = pill width */
+}
