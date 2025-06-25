@@ -133,13 +133,19 @@
   object-fit:cover;         /* fills the canvas, crops overflow */
 }
 
-.tabs-swiper{
-  width:100%;
-  overflow:visible;   /* let clones peek out */
+.tabs-swiper {
+  overflow: hidden;
+  padding: 0 16px;
 }
-.tabs-swiper .swiper-wrapper{
-  align-items:center; /* vertical-centre the pills */
+
+.tabs-swiper .swiper-wrapper {
+  display: flex;
+  gap: 16px;              /* controls space between pills */
+  justify-content: center;
+  align-items: center;
 }
-.tabs-swiper .swiper-slide{
-  width:auto;         /* slide width = pill width */
+
+.tabs-swiper .swiper-slide {
+  flex: 0 0 auto;
+  width: auto;
 }

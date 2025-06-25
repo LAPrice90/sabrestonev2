@@ -8,15 +8,11 @@
   if (!section) return;
 
   const pillsEl = section.querySelector('.tabs-swiper');
-  const pillCount = pillsEl.querySelectorAll('.swiper-slide').length;
-
-  const pills = [...pillsEl.querySelectorAll('.tab')];
+  const trackEl = pillsEl.querySelector('.swiper-wrapper');
+  const originalPills = [...trackEl.querySelectorAll('.swiper-slide')];
   const texts = [...section.querySelectorAll('.process-text')];
-
-  const setActive = i => {
-    pills.forEach(b => b.classList.toggle('active', +b.dataset.slide === i));
-    texts.forEach(t => t.classList.toggle('active', +t.dataset.step === i));
-  };
+  const total = originalPills.length;
+  let activeIndex = 0;
 
   const appSwiper = new Swiper(section.querySelector('.applications-swiper'), {
     loop: true,
@@ -35,43 +31,53 @@
     }
   });
 
-  const pillSwiper = new Swiper(pillsEl, {
-    loop: true,
-    loopAdditionalSlides: pillCount,
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: 16,
-    touchRatio: 1,
-    slideToClickedSlide: true,
-    on: {
-      init(swiper) {
-        swiper.slideToLoop(0, 0, false);
-        setActive(0);
-      }
-    }
-  });
-  pillSwiper.init();
+  function setActive(i) {
+    activeIndex = i;
+    const tabs = trackEl.querySelectorAll('.tab');
+    tabs.forEach(btn => btn.classList.toggle('active', +btn.dataset.slide === i));
+    texts.forEach(t => t.classList.toggle('active', +t.dataset.step === i));
+  }
 
-  pillSwiper.on('tap', () => {
-    const clicked = pillSwiper.clickedSlide;
-    if (!clicked) return;
-    const i = +clicked.querySelector('.tab')?.dataset.slide;
-    if (!isNaN(i)) {
+  function addTabClick(tab) {
+    tab.addEventListener('click', () => {
+      const i = +tab.dataset.slide;
       appSwiper.slideToLoop(i);
-      pillSwiper.slideToLoop(i);
+      buildInitialPills(i);
       setActive(i);
-    }
-  });
+    });
+  }
 
+  function buildInitialPills(centerIndex) {
+    trackEl.innerHTML = '';
+    const visible = 20;
+    const half = Math.floor(visible / 2);
+    for (let offset = -half; offset <= half; offset++) {
+      const i = (centerIndex + offset + total) % total;
+      const clone = originalPills[i].cloneNode(true);
+      const tab = clone.querySelector('.tab');
+      if (tab) addTabClick(tab);
+      trackEl.appendChild(clone);
+    }
+  }
+
+  function movePill(direction) {
+    let next = direction === 'next' ? activeIndex + 1 : activeIndex - 1;
+    if (next >= total) next = 0;
+    if (next < 0) next = total - 1;
+    buildInitialPills(next);
+    setActive(next);
+  }
+
+  // image swipes
   appSwiper.on('slideChangeTransitionEnd', () => {
     const i = appSwiper.realIndex;
-    pillSwiper.slideToLoop(i);
+    buildInitialPills(i);
     setActive(i);
   });
 
-  pillSwiper.on('slideChangeTransitionEnd', () => {
-    const i = pillSwiper.realIndex % pillCount;
-    appSwiper.slideToLoop(i);
-    setActive(i);
-  });
+  section.querySelector('.swiper-button-next')?.addEventListener('click', () => movePill('next'));
+  section.querySelector('.swiper-button-prev')?.addEventListener('click', () => movePill('prev'));
+
+  buildInitialPills(0);
+  setActive(0);
 })();
