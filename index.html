@@ -135,6 +135,22 @@
       });
     </script>
 
+    <!-- Projects section target -->
+    <div id="benifits-section"></div>
+
+    <script>
+    fetch('benifits/benifits.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('benifits-section').innerHTML = html;
+
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'benifits/style.css';
+        document.head.appendChild(style);
+      });
+    </script>
+
   <!-- Inject header HTML and its script -->
   <script>
     fetch('header/header.html')

@@ -1,5 +1,7 @@
 /* === APPLICATIONS carousel (matches old Installation logic) =========== */
 (function () {
+  if (window.__applicationsInit) return;  // guard against multiple executions
+  window.__applicationsInit = true;
   if (typeof Swiper === 'undefined') return;              // Swiper must already be loaded
 
   const section = document.querySelector('.applications-process');
@@ -28,9 +30,6 @@
     navigation: { nextEl: nextBtn, prevEl: prevBtn }
   });
 
-  /* Safety: extra click listeners */
-  if (nextBtn) nextBtn.addEventListener('click', () => appSwiper.slideNext());
-  if (prevBtn) prevBtn.addEventListener('click', () => appSwiper.slidePrev());
 
   /* Helper: centre a pill inside its scroll box */
   function centre(tab) {

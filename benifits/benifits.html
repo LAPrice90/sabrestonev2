@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabre Stone - Installation Precision</title>
+
+  <!-- Header styles -->
+  <link rel="stylesheet" href="../header/style.css">
+
+  <!-- Global site styles -->
+  <link rel="stylesheet" href="../style/reset.css">
+  <link rel="stylesheet" href="../style/variables.css">
+  <link rel="stylesheet" href="../style/base.css">
+  <link rel="stylesheet" href="../style/layout.css">
+  <link rel="stylesheet" href="../style/buttons.css">
+  <link rel="stylesheet" href="../style/forms.css">
+  <link rel="stylesheet" href="../style/animations.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="main-header"></div>
+
+  <div id="hero-section"></div>
+  <script>
+    fetch('../hero/hero.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('hero-section').innerHTML = html;
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = '../hero/style.css';
+        document.head.appendChild(style);
+      });
+  </script>
+
+  <section id="benefits" class="section" aria-labelledby="benefits-heading">
+    <h1 id="benefits-heading" class="install-heading">
+      Why Leading Designers Choose Sabre Stone
+    </h1>
+
+    <div class="install-wrapper">
+      <figure class="install-img">
+        <img src="../images/products-column.jpg" alt="Precision porcelain installation">
+      </figure>
+
+      <div class="content">
+        <p class="subheading">
+          Precision-built surfaces. Seamless delivery. Confidence on every project.
+        </p>
+
+        <ul class="benefits-list">
+          <li><span>End-to-end service</span> From technical advice to final fitting</li>
+          <li><span>Millimetre-level accuracy</span> Every cut and join engineered to fit</li>
+          <li><span>Large-format porcelain</span> Lightweight, durable, and zero-compromise on finish</li>
+          <li><span>In-house fabrication</span> Faster lead times and full design control</li>
+          <li><span>Reliable commercial partner</span> Trusted across retail, hospitality, and luxury builds</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <script>
+    fetch('../header/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-header').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = '../header/script.js';
+        document.body.appendChild(s);
+      });
+  </script>
+</body>
+</html>
