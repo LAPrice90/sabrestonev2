@@ -14,3 +14,20 @@
   margin: 0;
 }
 
+@media (max-width: 1024px) {
+  .page-title {
+    padding: 0 1.25rem;
+    min-height: 170px;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-title {
+    padding: 0 1rem;
+    min-height: 170px;
+    display: flex;
+    align-items: flex-end;
+  }
+}

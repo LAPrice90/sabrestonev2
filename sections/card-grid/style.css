@@ -1,28 +1,30 @@
-/* ========== PROJECTS GRID (Laminam style) ========== */
+/* ========== PROJECTS GRID – mobile perfect ========== */
 
-/* grid wrapper */
 .card-grid{
   display:flex;
   flex-direction:column;
-  gap:64px;                 /* wider gaps */
-  padding:0 20px 80px;      /* side gutters + bottom space */
+  gap:48px;
+  padding:0 20px 80px;
 }
 
-/* individual card */
+/* card */
 .card{
   display:flex;
   flex-direction:column;
   gap:12px;
-  position:relative;        /* lets us absolutely-position the arrow */
 }
 
 /* image */
-.card__img{
-  width:100%;
-  aspect-ratio:3 / 2;        /* wider crop like Laminam */
-  overflow:hidden;
-  border-radius:0.5rem;
+.card__img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin: 0;        /* <-- add this */
+  padding: 0;       /* <-- add this */
+  display: block;   /* <-- add this to neutralize browser defaults */
 }
+
 
 .card__img img{
   width:100%;
@@ -30,55 +32,80 @@
   object-fit:cover;
   transition:transform .4s ease;
 }
-
 .card:hover .card__img img{
-  transform:scale(1.05);    /* gentle zoom on hover */
+  transform:scale(1.05);
 }
 
-/* title */
-.card__title{
-  font-family:var(--font-heading);
-  font-size:1.5rem;          /* larger, bolder */
-  font-weight:600;
-  line-height:1.2;
-  color:var(--color-blue);
-  margin:0.75rem 0 0.25rem;
+.card__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-blue);
+  margin: 0;
 }
 
-/* tags & meta */
-.card__tags,
-.card__meta{
-  font-size:1rem;
-  line-height:1.4;
-  color:var(--color-text);
+.card__tags {
+  font-size: 1rem;
+  line-height: 1.;
+  color: var(--color-text);
+  margin: 0; /* remove default margin */
 }
+
+.card__meta {
+  font-size: 1rem;
+  line-height: 1.;
+  color: var(--color-text);
+  margin: 0;
+}
+
 
 /* arrow */
 .card__arrow{
-  position:absolute;
-  right:0;
-  top:calc(50% - 0.75rem);
+  align-self:flex-end;
   font-size:1.5rem;
   color:var(--color-blue);
   text-decoration:none;
 }
 
-/* ========== BREAKPOINTS ========== */
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* two-up ≥768 px */
-@media (min-width:768px){
-  .card-grid{
-    flex-direction:row;
-    flex-wrap:wrap;
-  }
-  .card{
-    flex:0 0 calc(50% - 64px);
+@media (max-width: 767px) {
+  .card-grid {
+    gap: 10px;
+    padding: 0 20px 0;
+    margin-bottom: 10px;
   }
 }
 
-/* three-up ≥1024 px */
-@media (min-width:1024px){
-  .card{
-    flex:0 0 calc(33.333% - 64px);
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 20px; /* vertical and horizontal spacing */
+    padding: 0 20px 0;
+    margin-bottom: 10px;
+  }
+
+  .card {
+    flex: 0 0 calc(50% - 10px); /* two cards per row with gutter */
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 20px;
+    padding: 0 20px 0;
+  }
+
+  .card {
+    flex: 0 0 calc(33.333% - 13.33px); /* three per row */
   }
 }
