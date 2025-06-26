@@ -123,3 +123,9 @@
     padding-bottom: 8vh;
   }
 }
+
+/* ---------- Mobile: force text above image --------------- */
+@media (max-width: 767px) {
+  .media-left__image   { order: 2; }   /* show after content */
+  .media-left__content { order: 1; }   /* show before image  */
+}

@@ -126,3 +126,35 @@
   font-weight: 700;
   margin-right: 0.25rem;
 }
+
+/* Mobile stacking for media-right */
+@media (max-width: 767px) {
+  .media-right__image   { order: 2; }
+  .media-right__content { order: 1; }
+}
+
+/* --- mobile: make the right-hand image behave like media-left --- */
+.media-right__image {
+  margin: 0 1.5rem;          /* same side padding as media-left */
+  max-height: 75vh;          /* allow it to grow taller          */
+}
+
+.media-right__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fill the width, crop overflow    */
+  object-position: center;
+}
+
+/* --- mobile: make media-right image truly full-width ------ */
+@media (max-width: 767px) {
+  .media-right__image {
+    margin: 0;          /* flush with text edges            */
+    width: 100%;        /* stretch to the whole column      */
+    max-height: 75vh;   /* same vertical cap as media-left  */
+  }
+
+  .media-right__image img {
+    object-fit: cover;  /* already present, keep it */
+  }
+}
