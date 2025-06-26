@@ -73,11 +73,6 @@ a {
   transition: color 0.3s ease;
 }
 
-/* === GLOBAL SPACING ======================================= */
-section {
-  margin-bottom: 150px;
-}
-
 section:last-of-type {
   margin-bottom: 0;
 }
