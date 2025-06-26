@@ -3,7 +3,7 @@ section { margin-bottom: 100px; }
 
 /* Tablet: 768 – 1023 px → 80 px gap */
 @media (max-width: 1023px) {
-  section { margin-bottom: 80px; }
+  section { margin-bottom: 60px; }
 }
 
 /* Mobile: ≤ 767 px → 60 px gap */

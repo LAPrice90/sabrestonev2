@@ -92,3 +92,26 @@ document.addEventListener('keydown', (e) => {
     updateHeaderState();
   }
 });
+
+// ▾ Toggle “Porcelain Finishes” submenu (mobile)
+document.querySelectorAll('.menu-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.classList.toggle('open');
+  });
+});
+
+// swap main ↔ sub menu
+const mainNav       = document.querySelector('.main-nav');
+const porcelainNav  = document.querySelector('.porcelain-nav');
+
+document.querySelector('[data-target="porcelain-nav"]')
+  .addEventListener('click', () => {
+    mainNav.style.display      = 'none';
+    porcelainNav.style.display = 'flex';
+  });
+
+document.querySelector('.submenu-back')
+  .addEventListener('click', () => {
+    porcelainNav.style.display = 'none';
+    mainNav.style.display      = 'flex';
+  });

@@ -1,24 +1,41 @@
 <header class="site-header">
   <div class="navbar">
-    <!-- left: logo -->
+    <!-- logo -->
     <a href="index.html" class="logo">
       <img id="header-logo" src="images/symbol-blue.svg" alt="Sabre Stone Logo">
     </a>
 
-    <!-- center/right: primary nav (desktop) -->
-    <nav id="primary-menu" class="nav-wrapper">
-      <ul class="nav-links">
+    <!-- nav wrapper -->
+    <nav class="nav-wrapper">
+      <!-- MAIN MENU -->
+      <ul class="nav-links main-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About&nbsp;Us</a></li>
         <li><a href="product-range.html">Product&nbsp;Range</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="wall-cladding.html">Wall&nbsp;Cladding</a></li>
-        <li><a href="porcelain-finishes">Porcelain&nbsp;Finishes</a></li>
+        <li><button class="menu-toggle" data-target="porcelain-nav">Porcelain&nbsp;Finishes</button></li>
         <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- PORCELAIN SUB-MENU -->
+      <ul class="nav-links porcelain-nav" style="display:none">
+        <li class="submenu-header">
+          <button class="submenu-back">
+            <span class="arrow">‹</span>
+            <span class="label">Porcelain Finishes</span>
+          </button>
+        </li>
+        <li><a href="porcelain-marble.html">Marble</a></li>
+        <li><a href="porcelain-metal.html">Metal</a></li>
+        <li><a href="porcelain-solid-colours.html">Solid&nbsp;Colours</a></li>
+        <li><a href="porcelain-stone.html">Stone</a></li>
+        <li><a href="porcelain-texture.html">Texture</a></li>
+        <li><a href="porcelain-wood.html">Wood</a></li>
       </ul>
     </nav>
 
-    <!-- right: hamburger (shown on ≤1199 px) -->
+    <!-- hamburger -->
     <button class="hamburger"
             aria-label="Toggle navigation"
             aria-expanded="false"
