@@ -1,0 +1,16 @@
+/* === PAGE-TITLE (simple hero) ============================== */
+
+.page-title {
+  /* pushes content clear of fixed header (adjust if header grows) */
+  padding: 160px 1.5rem 60px;      /* 160 = header height + air */
+  text-align: left;
+}
+
+.page-title__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 7vw, 88px);
+  color: var(--color-blue);
+  text-transform: uppercase;
+  margin: 0;
+}
+
