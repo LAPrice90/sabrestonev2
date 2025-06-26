@@ -1,0 +1,128 @@
+/* === MEDIA-RIGHT (image right, text left) ================== */
+
+/* --- Base / mobile --------------------------------------- */
+.media-right {
+  padding: 100px 1.5rem;
+}
+
+.media-right__wrapper {
+  display: grid;
+  grid-template-columns: 1fr;   /* single column on mobile */
+  gap: 2rem;
+}
+
+.media-right__heading {
+  font-family: var(--font-heading);
+  color: var(--color-blue);
+  font-size: clamp(32px, 5vw, 60px);
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.subheading {
+  font-weight: 600;
+  color: var(--color-blue);
+  margin-bottom: 1.5rem;
+}
+
+.intro {
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* mobile image */
+.media-right__image img {
+  width: 100%;
+  margin: 0 1.5rem;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+/* --- Tablet (768–1023 px) -------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .media-right {
+    padding: 100px 3rem;        /* extra side space */
+  }
+
+  .media-right__wrapper {
+    grid-template-columns: 1fr; /* still one column */
+    grid-template-rows: auto auto;
+  }
+
+  .media-right__content {
+    max-width: 760px;
+    margin: 0 auto 2rem;        /* centre text block */
+  }
+
+  .media-right__image {
+    justify-self: end;          /* push logo right */
+    width: 45%;
+    max-width: 350px;
+  }
+
+  .media-right__image img { margin: 0; }
+}
+
+/* --- Desktop (≥ 1024 px) --------------------------------- */
+@media (min-width: 1024px) {
+  .media-right {
+    padding: 100px 4rem;
+  }
+
+  .media-right__wrapper {
+    grid-template-columns: 1fr 0.8fr;  /* text | image */
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .media-right__image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 0;
+  }
+}
+
+/* --- Mobile fix: logo flush with text edges --------------- */
+@media (max-width: 767px) {
+  .media-right__image img {
+    margin: 0;
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+  }
+}
+
+/* === Optional bullet list for media-left =================== */
+/* Usage:  <ul class="media-left__list"> … </ul>               */
+
+.media-left__list {
+  list-style: none;          /* remove default discs   */
+  margin: 0;
+  padding: 0;
+}
+
+.media-left__list li {
+  position: relative;
+  padding-left: 2.25rem;     /* space for custom dot   */
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.media-left__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;               /* vertically centres dot */
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--color-blue); /* outlined dot     */
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* bold “lead-in” phrase → wrap in <span> */
+.media-left__list li span {
+  font-weight: 700;
+  margin-right: 0.25rem;
+}

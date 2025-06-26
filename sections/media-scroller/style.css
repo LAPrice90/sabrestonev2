@@ -1,0 +1,80 @@
+/* === MOBILE-FIRST STYLES: MEDIA-SCROLLER =================== */
+
+/* Heading */
+.media-scroller .scroller-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5vw, 60px);
+  color: var(--color-blue);
+  margin: 0 1.5rem 3rem;
+  text-transform: uppercase;
+  text-align: center;                 /* default centre */
+}
+
+/* Optional left-aligned variant — add `media-scroller--left` to section */
+.media-scroller--left .scroller-heading {
+  text-align: left;
+  margin: 2rem 1.5rem 3rem;
+}
+
+/* Horizontal track (mobile / small-tablet) */
+.scroller-track {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem 1.5rem;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1.5rem;
+  -ms-overflow-style: none;     /* IE/Edge */
+  scrollbar-width: none;        /* Firefox */
+}
+.scroller-track::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+
+/* Card */
+.scroller-item {
+  flex: 0 0 80%;
+  max-width: 500px;
+  scroll-snap-align: start;
+  overflow: hidden;             /* hide zoom edges */
+}
+.scroller-item img {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+.scroller-item:hover img { transform: scale(1.05); }
+
+.scroller-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-blue);
+  margin-bottom: 0.5rem;
+}
+.scroller-item p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* --- Mobile: one card (edge peek) -------------------------- */
+@media (max-width: 767px) {
+  .scroller-item { flex: 0 0 95%; max-width: 95%; }
+}
+
+/* --- Small-tablet: two cards side-by-side ------------------ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .scroller-item { flex: 0 0 48%; max-width: 48%; }
+}
+
+/* --- Desktop & large-tablet: grid, no scroll --------------- */
+@media (min-width: 1024px) {
+  .scroller-track {
+    display: grid;                           /* flex → grid */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    overflow: visible;
+    padding: 0 1.5rem;
+  }
+  .scroller-item { flex: none; max-width: none; }
+}

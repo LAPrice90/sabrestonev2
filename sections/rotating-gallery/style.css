@@ -1,6 +1,5 @@
 /* ─── rotating-gallery (inherits Installation-Process layout) ───────────── */
 .rotating-gallery-process {
-  all: unset;
   background: #fff;
   text-align: center;
   position: relative;
@@ -124,7 +123,7 @@
 
   }
   .process-copy {
-    height: 6em;        /* fits 3 lines comfortably */
+    height: 7em;        /* fits 3 lines comfortably */
     overflow: hidden;
   }
 }

@@ -153,71 +153,127 @@
   </section>
 
   <link rel="stylesheet" href="sections/rotating-gallery/style.css">
-  <script defer src="sections/rotating-gallery/script.js"></script>
+  <script src="sections/rotating-gallery/script.js" defer></script>
 
-    <!-- Installation section target -->
-    <div id="installation-section"></div>
 
-    <script>
-    fetch('landingpage/Installation/installation.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('installation-section').innerHTML = html;
 
-        const style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'landingpage/Installation/style.css';
-        document.head.appendChild(style);
-      });
-    </script>
+  <!-- Installation Section -->
+  <section id="media-left" class="section media-left" aria-labelledby="media-left-heading">
+    <h1 id="media-left-heading" class="media-left__heading">Seamless Installation, Perfect Finish</h1>
+    <div class="media-left__wrapper">
+      <figure class="media-left__image">
+        <img src="images/Installation.jpg" alt="On-site porcelain slab installation">
+      </figure>
+      <div class="media-left__content">
+        <p class="subheading">From first measurements to final fitting, every detail is handled with care and precision.</p>
+        <p class="intro">At Sabre Stone Commercial, we deliver seamless, high-precision installation for stone and porcelain surfaces — from templating and fabrication to final fitting. Every detail is crafted for perfect alignment, durability, and a refined finish.</p>
+        <ul class="steps">
+          <li><strong>Templating</strong> – Measured to the millimetre using advanced tools</li>
+          <li><strong>Fabrication</strong> – Crafted in our Surrey facility with Italian-sourced porcelain</li>
+          <li><strong>Final Fit</strong> – Installed with clean joins, seamless alignment, and zero compromise</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects section target -->
-    <div id="projects-section"></div>
+  <link rel="stylesheet" href="sections/media-left/style.css">
 
-    <script>
-    fetch('landingpage/projects/projects.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('projects-section').innerHTML = html;
 
-        const style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'landingpage/projects/style.css';
-        document.head.appendChild(style);
-      });
-    </script>
 
-    <!-- Projects section target -->
-    <div id="partnership-section"></div>
 
-    <script>
-    fetch('landingpage/partnership/partnership.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('partnership-section').innerHTML = html;
+  <!-- Projects Section -->
+  <link rel="stylesheet" href="sections/media-scroller/style.css">
 
-        const style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'landingpage/partnership/style.css';
-        document.head.appendChild(style);
-      });
-    </script>
+  <section class="media-scroller media-scroller--left" aria-labelledby="media-scroller-heading">
+    <h2 id="media-scroller-heading" class="scroller-heading">
+      Trusted by Designers, Builders, and Visionaries
+    </h2>
+    <div class="scroller-track">
+      <div class="scroller-item">
+        <img src="images/arabescato-gold-laminam.png" alt="Project 1">
+        <h3>Urban Retreat</h3>
+        <p>A calming residential design blending nature with sculpted surfaces.</p>
+      </div>
+      <div class="scroller-item">
+        <img src="images/arabescato-gold-laminam.png" alt="Project 2">
+        <h3>Modern Workspace</h3>
+        <p>A forward-thinking office layout with bold, expressive textures.</p>
+      </div>
+      <div class="scroller-item">
+        <img src="images/arabescato-gold-laminam.png" alt="Project 3">
+        <h3>Coastal Residence</h3>
+        <p>Open-plan living brought to life with premium porcelain finishes.</p>
+      </div>
+      <div class="scroller-item">
+        <img src="images/arabescato-gold-laminam.png" alt="Project 4">
+        <h3>Retail Gallery</h3>
+        <p>Minimalist and inviting, this showroom redefines material display.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects section target -->
-    <div id="benifits-section"></div>
 
-    <script>
-    fetch('landingpage/benifits/benifits.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('benifits-section').innerHTML = html;
 
-        const style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'landingpage/benifits/style.css';
-        document.head.appendChild(style);
-      });
-    </script>
+  <!-- Partnership Section -->
+  <link rel="stylesheet" href="sections/media-right/style.css">
+
+  <section class="media-right" aria-labelledby="media-right-heading">
+    <div class="media-right__wrapper">
+      <div class="media-right__content">
+        <h2 id="media-right-heading" class="media-right__heading">
+          In Partnership With Laminam, Italy
+        </h2>
+        <p class="subheading">The pioneers of Italian porcelain innovation.</p>
+        <p class="intro">
+          At Sabre Stone Commercial, we work exclusively with Laminam — Italy’s leading manufacturer of premium porcelain slabs.
+          Known for their refined textures, technical performance, and commitment to sustainable innovation, Laminam materials form
+          the foundation of our most ambitious projects. Their dedication to both form and function aligns perfectly with our values:
+          timeless beauty, enduring strength, and unmatched precision.
+        </p>
+      </div>
+
+      <figure class="media-right__image">
+        <img src="images/Laminam_Logo_Black.jpg" alt="Laminam logo">
+      </figure>
+    </div>
+  </section>
+
+
+
+
+  <!-- Benefits section -->
+  <link rel="stylesheet" href="sections/media-left/style.css">
+
+  <section id="benefits" class="section media-left" aria-labelledby="benefits-heading">
+    <h1 id="benefits-heading" class="media-left__heading">
+      Why Leading Designers Choose Sabre Stone
+    </h1>
+
+    <div class="media-left__wrapper">
+      <!-- Image -->
+      <figure class="media-left__image">
+        <img src="images/slabs.jpg" alt="Precision porcelain installation">
+      </figure>
+
+      <!-- Copy -->
+      <div class="media-left__content">
+        <p class="subheading">
+          Precision-built surfaces. Seamless delivery. Confidence on every project.
+        </p>
+
+        <ul class="media-left__list">
+          <li><span>End-to-end service</span> From technical advice to final fitting</li>
+          <li><span>Millimetre-level accuracy</span> Every cut and join engineered to fit</li>
+          <li><span>Large-format porcelain</span> Lightweight, durable, zero-compromise finish</li>
+          <li><span>In-house fabrication</span> Faster lead times and full design control</li>
+          <li><span>Reliable partner</span> Trusted across retail, hospitality, and luxury builds</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
 
   <!-- Footer container -->
   <div id="main-footer"></div>
