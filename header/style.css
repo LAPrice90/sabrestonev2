@@ -4,7 +4,7 @@
    Depends on global variables defined in style/variables.css
    ========================================================= */
 
-/* ---------- 1.  Wrapper & scrolling state --------------- */
+/* ---------- Base styles --------------------------------- */
 #main-header {
   position: fixed;
   top: 0;
@@ -34,8 +34,6 @@
 .site-header.scrolled::after {
   background: #ffffff;
 }
-
-
 
 #main-header.scrolled,
 #main-header:hover {
@@ -76,40 +74,34 @@
   object-fit: contain;
 }
 
-/* logo turns white only when header is navy (desktop) */
-@media (min-width: 1200px) {
-  #main-header.scrolled  #header-logo,
-  #main-header:hover     #header-logo {
-    filter: brightness(0) invert(1);
-  }
-}
-
 /* ---------- 4.  Hamburger (visible < 1200 px) ----------- */
 .hamburger {
   display: none; /* default = hidden on desktop */
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
 .hamburger .line {
-  width: 24px; height: 2px;
+  width: 24px;
+  height: 2px;
   background: var(--color-blue);
   transition: transform 0.3s, background 0.3s;
 }
 
 /* “X” animation & white lines when open */
-.hamburger.active .line:nth-child(1) { transform: translateY(5px)  rotate(45deg); }
+.hamburger.active .line:nth-child(1) { transform: translateY(5px) rotate(45deg); }
 .hamburger.active .line:nth-child(2) { transform: translateY(-5px) rotate(-45deg); }
 .hamburger.active .line              { background: #fff !important; }
 
 /* ---------- 5.  Primary nav links ----------------------- */
-.nav-wrapper            { display: flex; }
-.nav-links              { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+.nav-wrapper { display: flex; }
+.nav-links   { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
 
 .nav-links a {
   font-family: var(--font-body);
@@ -125,21 +117,93 @@
 
 /* white links when header is navy */
 #main-header.scrolled  .nav-links a,
-#main-header:hover     .nav-links a {
-  color: #fff;
+#main-header:hover     .nav-links a { color: #fff; }
+
+#main-header:not(.scrolled):not(.menu-open) .nav-links a:hover { color: var(--color-gold); }
+#main-header.scrolled .nav-links a:hover { color: var(--color-gold); }
+#main-header:hover #header-logo { filter: brightness(0) invert(1); }
+
+/* ---------- Dropdown basics ----------------------------- */
+.has-submenu { position: relative; }
+.menu-toggle {
+  background: none;
+  border: none;
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 10vw, 60px);
+  color: var(--color-blue);
+  cursor: pointer;
+  line-height: 1.2;
+  padding: 0;
+}
+.menu-toggle::after {
+  content: "›";
+  display: inline-block;
+  margin-left: 8px;
+  transform: translateY(-2px);
+  font-size: 0.8em;
 }
 
+.submenu {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+}
+.has-submenu.open .submenu { display: flex; }
+.submenu a {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--color-blue);
+  text-decoration: none;
+}
 
-/* ---------- 6.  Responsive ( < 1200 px ) ---------------- */
+.submenu-header {
+  width: 100%;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.submenu-back {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 6vw, 36px);
+  background: none;
+  border: none;
+  color: var(--color-blue);
+  cursor: pointer;
+  padding: 8px 20px;
+  width: auto;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.submenu-back:hover { background: rgba(0, 0, 0, 0.03); }
+.submenu-back .arrow { font-size: 0.9em; line-height: 1; transform: translateY(-1px); }
+.submenu-back .label { font-weight: 600; }
+
+.submenu-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-blue);
+  text-align: center;
+  padding-bottom: 10px;
+  display: none; /* hidden on mobile by default */
+}
+
+/* ---------- Mobile (<1200px) ---------------------------- */
 @media (max-width: 1199px) {
-
-  .hamburger {
-    display: flex;
-  }
+  .hamburger { display: flex; }
 
   .nav-wrapper {
     position: fixed;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
@@ -162,7 +226,6 @@
     visibility: visible;
     pointer-events: auto;
   }
-
 
   .nav-links {
     flex-direction: column;
@@ -190,14 +253,7 @@
     padding: 0 20px;
   }
 
-  .logo img {
-    height: 50px;
-  }
-
-  .nav-wrapper {
-    top: 70px;
-    height: calc(100vh - 60px);
-  }
+  .logo img { height: 50px; }
 
   .nav-wrapper.open::after {
     content: "";
@@ -207,18 +263,20 @@
     margin-top: 40px;
   }
 
-  #main-header:hover .hamburger .line {
-    background: #fff;
-  }
+  #main-header:hover .hamburger .line { background: #fff; }
 
-
+  #porcelainDropdown { display: none; }
+  #porcelainDropdown .nav-links a { color: var(--color-blue) !important; }
 }
 
-
-/* ---------- 7.  Desktop ( ≥ 1200 px ) ------------------- */
+/* ---------- Desktop (≥1200px) --------------------------- */
 @media (min-width: 1200px) {
+  #main-header.scrolled  #header-logo,
+  #main-header:hover     #header-logo {
+    filter: brightness(0) invert(1);
+  }
 
-  .hamburger { display: none; }           /* hidden on large screens */
+  .hamburger { display: none; }
 
   .nav-wrapper {
     position: static;
@@ -229,76 +287,8 @@
     background: transparent !important;
   }
 
-  .nav-links  { gap: 40px; }               /* wider spacing on desktop */
-}
+  .nav-links { gap: 40px; }
 
-#main-header:not(.scrolled):not(.menu-open) .nav-links a:hover {
-  color: var(--color-gold);
-}
-
-#main-header.scrolled .nav-links a:hover {
-  color: var(--color-gold);
-}
-
-#main-header:hover #header-logo {
-  filter: brightness(0) invert(1);
-}
-
-
-/* ========== DROPDOWN SUB-MENU (Porcelain Finishes) ========== */
-
-/* parent */
-.has-submenu {
-  position: relative;
-}
-
-/* toggle looks like main links */
-.menu-toggle {
-  background: none;
-  border: none;
-  font-family: var(--font-heading);
-  font-size: clamp(38px, 10vw, 60px); /* same as top-level mobile */
-  color: var(--color-blue);
-  cursor: pointer;
-  line-height: 1.2;
-  padding: 0;
-}
-
-/* tiny arrow indicator */
-.menu-toggle::after {
-  content: "›";
-  display: inline-block;
-  margin-left: 8px;
-  transform: translateY(-2px);
-  font-size: 0.8em;
-}
-
-/* submenu list – hidden by default */
-.submenu {
-  list-style: none;
-  margin: 24px 0 0;
-  padding: 0;
-  display: none;
-  flex-direction: column;
-  gap: 24px;
-}
-
-/* show submenu when parent gets .open */
-.has-submenu.open .submenu {
-  display: flex;
-}
-
-/* submenu links */
-.submenu a {
-  font-family: var(--font-body);
-  font-size: 20px;
-  color: var(--color-blue);
-  text-decoration: none;
-}
-
-/* ========= DESKTOP (≥1200 px) ========= */
-@media (min-width: 1200px) {
-  /* shrink toggle to match desktop nav size */
   .menu-toggle {
     font-family: var(--font-body);
     font-size: 16px;
@@ -306,7 +296,6 @@
   }
   .menu-toggle::after { content: "▾"; transform: none; font-size: 0.6em; }
 
-  /* desktop dropdown */
   .submenu {
     position: absolute;
     top: 100%;
@@ -318,199 +307,13 @@
     min-width: 220px;
     gap: 12px;
   }
-
   .submenu a {
     display: block;
     padding: 6px 20px;
     font-size: 15px;
   }
+  .has-submenu:hover .submenu { display: block; }
 
-  /* hover to open on desktop */
-  .has-submenu:hover .submenu {
-    display: block;
-  }
-}
-
-.submenu-header {
-  width: 100%;
-  padding: 0 0 20px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: center;
-}
-
-.submenu-back {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-heading);
-  font-size: clamp(24px, 6vw, 36px);
-  background: none;
-  border: none;
-  color: var(--color-blue);
-  cursor: pointer;
-  padding: 8px 20px;
-  width: auto;
-  text-align: left;
-  border-radius: 6px;
-  transition: background 0.3s;
-}
-
-.submenu-back:hover {
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.submenu-back .arrow {
-  font-size: 1.3em;
-  line-height: 1;
-}
-
-.submenu-back .label {
-  font-weight: 600;
-}
-
-
-.submenu-back .arrow {
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-.submenu-back .arrow {
-  font-size: 0.9em;
-  transform: translateY(-1px);
-}
-
-
-@media (min-width: 1200px) {
-  .dropdown-bar .nav-links {
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-  }
-
-  .dropdown-bar .nav-links a {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    color: var(--color-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .dropdown-bar .nav-links a:hover {
-    color: var(--color-gold);
-  }
-
-  /* keep header navy when dropdown is active */
-  #main-header.dropdown-active,
-  #main-header.dropdown-active .site-header,
-  #main-header.dropdown-active .navbar {
-    background: var(--color-navy) !important;
-  }
-
-  /* all links white while dropdown is open */
-  #main-header.dropdown-active .nav-links a {
-    color: #fff !important;
-  }
-
-  /* logo white while dropdown is open */
-  #main-header.dropdown-active #header-logo {
-    filter: brightness(0) invert(1);
-  }
-
-  /* highlight active top-level toggle (Porcelain Finishes) */
-  #main-header.dropdown-active .nav-links .menu-toggle {
-    color: var(--color-gold) !important;
-  }
-
-  /* sub-category links: navy default + gold hover */
-  #main-header.dropdown-active .dropdown-bar .nav-links a {
-    color: var(--color-blue) !important;
-  }
-
-  #main-header.dropdown-active .dropdown-bar .nav-links a:hover {
-    color: var(--color-gold) !important;
-  }
-
-
-
-}
-
-
-@media (min-width: 1200px) {
-  /* Default: navy like other links */
-  .nav-links .menu-toggle {
-    color: var(--color-blue);
-  }
-
-  /* When header is scrolled or hovered, turn white like other links */
-  #main-header.scrolled .nav-links .menu-toggle,
-  #main-header:hover .nav-links .menu-toggle {
-    color: white;
-  }
-
-  /* When dropdown is active, return to navy for clarity */
-  #main-header.dropdown-active .nav-links .menu-toggle {
-    color: var(--color-blue);
-  }
-}
-
-@media (min-width: 1200px) {
-  .nav-links .menu-toggle {
-    transition: color 0.3s ease; /* add this for smooth fade */
-  }
-}
-
-/* Subtle unclickable heading for dropdown on desktop */
-.submenu-title {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  color: var(--color-blue);
-  font-weight: 600;
-  display: block;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-@media (max-width: 1199px) {
-  .submenu-title {
-    display: none; /* hide on mobile to retain back button */
-  }
-}
-
-/* desktop vs. mobile visibility for the header row */
-.submenu-title    { display:none; }      /* default hidden */
-.submenu-back     { display:flex; }      /* default mobile */
-
-@media (min-width:1200px){
-  .submenu-title {            /* show small heading */
-    display:block;
-    font-family: var(--font-heading);
-    font-size:18px;
-    font-weight:600;
-    color:var(--color-blue);
-    text-align:center;
-    padding-bottom:10px;
-  }
-  .submenu-back  { display:none; }  /* hide the big button */
-}
-
-/* Hide the mobile back button and show a neat desktop heading */
-@media (min-width: 1200px) {
-  /* 1. get rid of the big mobile-style “< Porcelain Finishes” button */
-  .dropdown-active .submenu-back { display: none !important; }
-
-  /* 2. style the subtle static title that’s already in the markup */
-  .submenu-title {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-blue);
-    margin-right: auto;        /* keep it flush left */
-    pointer-events: none;      /* ensure it’s not clickable */
-  }
-}
-
-@media (min-width: 1200px) {
   .dropdown-bar {
     position: absolute;
     top: 100%;
@@ -519,13 +322,12 @@
     background: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 20px 40px;
-
-    /* Fade/slide settings */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-12px);
     pointer-events: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 5;
   }
 
   .dropdown-bar.active {
@@ -535,31 +337,57 @@
     pointer-events: auto;
   }
 
-  .nav-links .menu-toggle:hover {
-    color: var(--color-gold) !important;
+  .dropdown-bar .nav-links {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
   }
-}
+  .dropdown-bar .nav-links a {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--color-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .dropdown-bar .nav-links a:hover { color: var(--color-gold); }
 
-@media (min-width: 1200px) {
-  .navbar {
-    position: relative;
-    z-index: 10;
+  /* keep header navy when dropdown is active */
+  #main-header.dropdown-active,
+  #main-header.dropdown-active .site-header,
+  #main-header.dropdown-active .navbar {
+    background: var(--color-navy) !important;
   }
 
-  .dropdown-bar {
-    position: absolute;
-    z-index: 5;
-  }
-}
+  /* all links white while dropdown is open */
+  #main-header.dropdown-active .nav-links a { color: #fff !important; }
 
-@media (max-width: 1199px) {
-  #porcelainDropdown {
-    display: none;
-  }
-}
+  /* logo white while dropdown is open */
+  #main-header.dropdown-active #header-logo { filter: brightness(0) invert(1); }
 
-@media (max-width: 1199px) {
-  #porcelainDropdown .nav-links a {
-    color: var(--color-blue) !important; /* forces visible navy links on mobile */
+  /* highlight active top-level toggle */
+  #main-header.dropdown-active .nav-links .menu-toggle { color: var(--color-gold) !important; }
+
+  /* sub-category links: navy default + gold hover */
+  #main-header.dropdown-active .dropdown-bar .nav-links a { color: var(--color-blue) !important; }
+  #main-header.dropdown-active .dropdown-bar .nav-links a:hover { color: var(--color-gold) !important; }
+
+  .nav-links .menu-toggle {
+    color: var(--color-blue);
+    transition: color 0.3s ease;
   }
+  #main-header.scrolled .nav-links .menu-toggle,
+  #main-header:hover   .nav-links .menu-toggle { color: white; }
+  #main-header.dropdown-active .nav-links .menu-toggle { color: var(--color-blue); }
+  .nav-links .menu-toggle:hover { color: var(--color-gold) !important; }
+
+  .submenu-title {
+    display: block;
+    margin-right: auto;
+    pointer-events: none;
+  }
+  .submenu-back { display: none; }
+
+  .dropdown-active .submenu-back { display: none !important; }
+
+  .navbar { position: relative; z-index: 10; }
 }
