@@ -1,5 +1,5 @@
 <header class="site-header">
-  <div class="navbar">
+  <div class="navbar"> 
     <!-- logo -->
     <a href="index.html" class="logo">
       <img id="header-logo" src="images/symbol-blue.svg" alt="Sabre Stone Logo">
@@ -14,17 +14,27 @@
         <li><a href="product-range.html">Product&nbsp;Range</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="wall-cladding.html">Wall&nbsp;Cladding</a></li>
-        <li><button class="menu-toggle" data-target="porcelain-nav">Porcelain&nbsp;Finishes</button></li>
+        <li>
+          <button class="menu-toggle" data-target="porcelain-nav">
+            Porcelain&nbsp;Finishes
+          </button>
+        </li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+    </nav>
 
-      <!-- PORCELAIN SUB-MENU -->
-      <ul class="nav-links porcelain-nav" style="display:none">
+    <!-- PORCELAIN SUB-MENU DROPDOWN BAR -->
+      <div class="dropdown-bar" id="porcelainDropdown">
+        <ul class="nav-links porcelain-nav" id="porcelainNav">
         <li class="submenu-header">
-          <button class="submenu-back">
+          <!-- MOBILE back button (unchanged behaviour) -->
+          <button class="submenu-back" aria-label="Back to main menu">
             <span class="arrow">‹</span>
             <span class="label">Porcelain Finishes</span>
           </button>
+
+          <!-- DESKTOP static heading -->
+          <span class="submenu-title">Porcelain Finishes</span>
         </li>
         <li><a href="porcelain-marble.html">Marble</a></li>
         <li><a href="porcelain-metal.html">Metal</a></li>
@@ -33,7 +43,7 @@
         <li><a href="porcelain-texture.html">Texture</a></li>
         <li><a href="porcelain-wood.html">Wood</a></li>
       </ul>
-    </nav>
+    </div>
 
     <!-- hamburger -->
     <button class="hamburger"

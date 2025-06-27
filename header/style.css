@@ -380,8 +380,186 @@
   transform: translateY(-1px);
 }
 
-/* =========================================================
-   END OF HEADER / NAVIGATION MODULE
-   ========================================================= */
 
-  
+@media (min-width: 1200px) {
+  .dropdown-bar .nav-links {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .dropdown-bar .nav-links a {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--color-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-bar .nav-links a:hover {
+    color: var(--color-gold);
+  }
+
+  /* keep header navy when dropdown is active */
+  #main-header.dropdown-active,
+  #main-header.dropdown-active .site-header,
+  #main-header.dropdown-active .navbar {
+    background: var(--color-navy) !important;
+  }
+
+  /* all links white while dropdown is open */
+  #main-header.dropdown-active .nav-links a {
+    color: #fff !important;
+  }
+
+  /* logo white while dropdown is open */
+  #main-header.dropdown-active #header-logo {
+    filter: brightness(0) invert(1);
+  }
+
+  /* highlight active top-level toggle (Porcelain Finishes) */
+  #main-header.dropdown-active .nav-links .menu-toggle {
+    color: var(--color-gold) !important;
+  }
+
+  /* sub-category links: navy default + gold hover */
+  #main-header.dropdown-active .dropdown-bar .nav-links a {
+    color: var(--color-blue) !important;
+  }
+
+  #main-header.dropdown-active .dropdown-bar .nav-links a:hover {
+    color: var(--color-gold) !important;
+  }
+
+
+
+}
+
+
+@media (min-width: 1200px) {
+  /* Default: navy like other links */
+  .nav-links .menu-toggle {
+    color: var(--color-blue);
+  }
+
+  /* When header is scrolled or hovered, turn white like other links */
+  #main-header.scrolled .nav-links .menu-toggle,
+  #main-header:hover .nav-links .menu-toggle {
+    color: white;
+  }
+
+  /* When dropdown is active, return to navy for clarity */
+  #main-header.dropdown-active .nav-links .menu-toggle {
+    color: var(--color-blue);
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav-links .menu-toggle {
+    transition: color 0.3s ease; /* add this for smooth fade */
+  }
+}
+
+/* Subtle unclickable heading for dropdown on desktop */
+.submenu-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--color-blue);
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 1199px) {
+  .submenu-title {
+    display: none; /* hide on mobile to retain back button */
+  }
+}
+
+/* desktop vs. mobile visibility for the header row */
+.submenu-title    { display:none; }      /* default hidden */
+.submenu-back     { display:flex; }      /* default mobile */
+
+@media (min-width:1200px){
+  .submenu-title {            /* show small heading */
+    display:block;
+    font-family: var(--font-heading);
+    font-size:18px;
+    font-weight:600;
+    color:var(--color-blue);
+    text-align:center;
+    padding-bottom:10px;
+  }
+  .submenu-back  { display:none; }  /* hide the big button */
+}
+
+/* Hide the mobile back button and show a neat desktop heading */
+@media (min-width: 1200px) {
+  /* 1. get rid of the big mobile-style “< Porcelain Finishes” button */
+  .dropdown-active .submenu-back { display: none !important; }
+
+  /* 2. style the subtle static title that’s already in the markup */
+  .submenu-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-blue);
+    margin-right: auto;        /* keep it flush left */
+    pointer-events: none;      /* ensure it’s not clickable */
+  }
+}
+
+@media (min-width: 1200px) {
+  .dropdown-bar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px 40px;
+
+    /* Fade/slide settings */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .dropdown-bar.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-links .menu-toggle:hover {
+    color: var(--color-gold) !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    position: relative;
+    z-index: 10;
+  }
+
+  .dropdown-bar {
+    position: absolute;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 1199px) {
+  #porcelainDropdown {
+    display: none;
+  }
+}
+
+@media (max-width: 1199px) {
+  #porcelainDropdown .nav-links a {
+    color: var(--color-blue) !important; /* forces visible navy links on mobile */
+  }
+}

@@ -1,3 +1,14 @@
+// =========================================================
+//  SABRE STONE — HEADER / NAVIGATION JS
+//  ---------------------------------------------------------
+//  Desktop (≥1200px)
+//    • Top‑level "Porcelain Finishes" opens dropdown on HOVER
+//    • Header stays navy while dropdown visible
+//    • Logo + links turn white, active toggle turns gold
+//  Mobile (<1200px)
+//    • Behaviour unchanged (tap to reveal stacked sub‑menu)
+// =========================================================
+
 const header     = document.getElementById("main-header");
 const logo       = document.getElementById("header-logo");
 const hamburger  = document.querySelector(".hamburger");
@@ -5,56 +16,42 @@ const navWrapper = document.querySelector(".nav-wrapper");
 
 // Determine absolute path to the project root based on this script's location
 const basePath = (() => {
-  // document.currentScript is the <script> element loading this file
-  const src = document.currentScript?.src || '';
-  // script is located in "header/script.js" - one level below project root
-  return new URL('../', src).href; // e.g. https://user.github.io/repo/
+  const src = document.currentScript?.src || "";
+  return new URL("../", src).href; // e.g. https://user.github.io/repo/
 })();
 
-function isHomePage() {
-  const p = window.location.pathname;
-  return p === '/' || p.endsWith('index.html');
-}
-
-function isMobile() {
-  return window.innerWidth < 1200;
-}
+// ---------------------------------------------------------
+//  Helpers
+// ---------------------------------------------------------
+const isMobile   = () => window.innerWidth < 1200;
+const isScrolled = () => window.scrollY > 10;
 
 function getCorrectLogo() {
-  const isMenuOpen = navWrapper.classList.contains("open");
-  const isMobileView = window.innerWidth < 1200;
-  const scrolled = window.scrollY > 10;
-
-  const whiteLogo = basePath + "images/symbol-white.svg";
-  const blueLogo  = basePath + "images/symbol-blue.svg";
-
-  if (isMenuOpen && isMobileView) return whiteLogo;
-  if (scrolled) return whiteLogo;
-  return blueLogo;
+  const isMenuOpen    = navWrapper.classList.contains("open");
+  const shouldBeWhite = (isMenuOpen && isMobile()) || isScrolled() || header.classList.contains("dropdown-active");
+  return shouldBeWhite ? basePath + "images/symbol-white.svg"
+                       : basePath + "images/symbol-blue.svg";
 }
 
-
-
-
 function updateHeaderState() {
-  const scrolled = window.scrollY > 10;
+  const scrolled       = isScrolled();
   const mobileMenuOpen = navWrapper.classList.contains("open");
+  const desktopDrop    = header.classList.contains("dropdown-active");
 
-  // Only add .scrolled if user has scrolled or the menu is open
-  if (scrolled || mobileMenuOpen) {
+  if (scrolled || mobileMenuOpen || desktopDrop) {
     header.classList.add("scrolled");
   } else {
     header.classList.remove("scrolled");
   }
 
-  // Determine correct logo
-  const logoSrc = getCorrectLogo();
-  if (!logo.src.includes(logoSrc)) {
-    logo.src = logoSrc;
-  }
+  // swap logo if required
+  const newSrc = getCorrectLogo();
+  if (!logo.src.includes(newSrc)) logo.src = newSrc;
 }
 
-// 🟡 Toggle Mobile Menu
+// ---------------------------------------------------------
+//  Mobile hamburger
+// ---------------------------------------------------------
 hamburger.addEventListener("click", () => {
   navWrapper.classList.toggle("open");
   hamburger.classList.toggle("active");
@@ -63,28 +60,25 @@ hamburger.addEventListener("click", () => {
   updateHeaderState();
 });
 
-// 🟦 Scroll behavior
-window.addEventListener("scroll", updateHeaderState);
-window.addEventListener("resize", updateHeaderState);
-updateHeaderState();
-
-// 🟡 Close menu when any nav link is clicked (mobile only)
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    if (isMobile() && navWrapper.classList.contains('open')) {
-      navWrapper.classList.remove('open');
-      hamburger.classList.remove('active');
-      header.classList.remove('menu-open');
+// Close mobile menu when link tapped
+navWrapper.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    if (isMobile() && navWrapper.classList.contains("open")) {
+      navWrapper.classList.remove("open");
+      hamburger.classList.remove("active");
+      header.classList.remove("menu-open");
       hamburger.setAttribute("aria-expanded", "false");
       updateHeaderState();
     }
   });
 });
 
-// 🔑 Close menu on ESC key
-document.addEventListener('keydown', (e) => {
-  const escPressed = e.key === "Escape" || e.key === "Esc";
-  if (escPressed && navWrapper.classList.contains("open")) {
+// ---------------------------------------------------------
+//  Close mobile on ESC
+// ---------------------------------------------------------
+document.addEventListener("keydown", e => {
+  const esc = e.key === "Escape" || e.key === "Esc";
+  if (esc && navWrapper.classList.contains("open")) {
     navWrapper.classList.remove("open");
     hamburger.classList.remove("active");
     header.classList.remove("menu-open");
@@ -93,25 +87,89 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ▾ Toggle “Porcelain Finishes” submenu (mobile)
-document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.parentElement.classList.toggle('open');
+// ---------------------------------------------------------
+//  MOBILE sub‑menu swap (unchanged)
+// ---------------------------------------------------------
+const mainNav      = document.querySelector(".main-nav");
+const porcelainNav = document.getElementById("porcelainNav");
+
+// On mobile, tapping the toggle slides to sub‑nav
+navWrapper.querySelectorAll(".menu-toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (isMobile()) btn.parentElement.classList.toggle("open");
   });
 });
 
-// swap main ↔ sub menu
-const mainNav       = document.querySelector('.main-nav');
-const porcelainNav  = document.querySelector('.porcelain-nav');
+document.querySelector('[data-target="porcelain-nav"]').addEventListener("click", () => {
+  if (isMobile()) {
+    mainNav.style.display      = "none";
+    porcelainNav.style.display = "flex";
+  }
+});
 
-document.querySelector('[data-target="porcelain-nav"]')
-  .addEventListener('click', () => {
-    mainNav.style.display      = 'none';
-    porcelainNav.style.display = 'flex';
-  });
+document.querySelector(".submenu-back").addEventListener("click", () => {
+  porcelainNav.style.display = "none";
+  mainNav.style.display      = "flex";
+});
 
-document.querySelector('.submenu-back')
-  .addEventListener('click', () => {
-    porcelainNav.style.display = 'none';
-    mainNav.style.display      = 'flex';
-  });
+// ---------------------------------------------------------
+//  DESKTOP — Hover‑triggered dropdown
+// ---------------------------------------------------------
+
+
+const porcelainToggle   = document.querySelector('[data-target="porcelain-nav"]');
+const porcelainDropdown = document.getElementById('porcelainDropdown');
+
+function openDropdown() {
+  header.classList.add('dropdown-active');
+  porcelainDropdown.classList.add('active');
+}
+
+function closeDropdown() {
+  header.classList.remove('dropdown-active');
+  porcelainDropdown.classList.remove('active');
+}
+
+porcelainToggle.addEventListener('click', e => {
+  if (window.innerWidth >= 1200) {
+    e.preventDefault();                                 // keep it non-navigable
+    header.classList.contains('dropdown-active') ? closeDropdown() : openDropdown();
+  }
+});
+
+/* click anywhere outside to close */
+document.addEventListener('click', e => {
+  if (
+    window.innerWidth >= 1200 &&
+    header.classList.contains('dropdown-active') &&
+    !porcelainDropdown.contains(e.target) &&
+    !porcelainToggle.contains(e.target)
+  ) {
+    closeDropdown();
+  }
+});
+
+
+// ---------------------------------------------------------
+//  Fallback click for mobile (safe‑guard)
+// ---------------------------------------------------------
+porcelainToggle.addEventListener("click", e => {
+  if (!isMobile()) {
+    // Prevent page‑jump when clicked on desktop
+    e.preventDefault();
+  }
+});
+
+// ---------------------------------------------------------
+//  Scroll / resize housekeeping
+// ---------------------------------------------------------
+window.addEventListener("scroll",  updateHeaderState);
+window.addEventListener("resize", () => {
+  updateHeaderState();
+  // close dropdown if window resized to mobile
+  if (isMobile()) closeDropdown();
+});
+
+// Initial paint
+updateHeaderState();
+
