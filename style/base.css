@@ -66,6 +66,11 @@ h3 {
   line-height: 1.4;
 }
 
+h4 {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
 /* === LINKS ================================================ */
 a {
   text-decoration: none;
