@@ -60,6 +60,7 @@ hamburger.addEventListener("click", () => {
   header.classList.toggle("menu-open", navWrapper.classList.contains("open"));
   hamburger.setAttribute("aria-expanded", navWrapper.classList.contains("open"));
   updateHeaderState();
+  if (!navWrapper.classList.contains("open")) closeMobileSubmenu();
 });
 
 // Close mobile menu when link tapped
@@ -71,6 +72,7 @@ navWrapper.querySelectorAll(".nav-links a").forEach(link => {
       header.classList.remove("menu-open");
       hamburger.setAttribute("aria-expanded", "false");
       updateHeaderState();
+      closeMobileSubmenu();
     }
   });
 });
@@ -86,6 +88,7 @@ document.addEventListener("keydown", e => {
     header.classList.remove("menu-open");
     hamburger.setAttribute("aria-expanded", "false");
     updateHeaderState();
+    closeMobileSubmenu();
   }
 });
 
@@ -94,6 +97,12 @@ document.addEventListener("keydown", e => {
 // ---------------------------------------------------------
 const mainNav      = document.querySelector(".main-nav");
 const porcelainNav = document.getElementById("porcelainNav");
+
+function closeMobileSubmenu() {
+  porcelainNav.style.display = "none";
+  mainNav.style.display      = "flex";
+  porcelainDropdown.classList.remove("active");
+}
 
 // On mobile, tapping the toggle slides to sub‑nav
 navWrapper.querySelectorAll(".menu-toggle").forEach(btn => {
@@ -106,15 +115,11 @@ porcelainToggle.addEventListener("click", () => {
   if (isMobile()) {
     mainNav.style.display      = "none";
     porcelainNav.style.display = "flex";
-    porcelainDropdown.style.display = "block";
+    porcelainDropdown.classList.add("active");
   }
 });
 
-document.querySelector(".submenu-back").addEventListener("click", () => {
-  porcelainNav.style.display = "none";
-  mainNav.style.display      = "flex";
-  porcelainDropdown.style.display = "none";
-});
+document.querySelector(".submenu-back").addEventListener("click", closeMobileSubmenu);
 
 // ---------------------------------------------------------
 //  DESKTOP — Hover‑triggered dropdown
