@@ -1,33 +1,42 @@
-/* === PAGE-TITLE (simple hero) ============================== */
+/* === PAGE-TITLE (clean Laminam-like mobile-first) ========== */
 
 .page-title {
-  /* pushes content clear of fixed header (adjust if header grows) */
-  padding: 160px 1.5rem 60px;      /* 160 = header height + air */
+  padding: 120px 1.5rem 40px;
   text-align: left;
 }
 
 .page-title__heading {
   font-family: var(--font-heading);
-  font-size: clamp(36px, 7vw, 88px);
+  font-size: clamp(32px, 7vw, 60px);
   color: var(--color-blue);
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
 }
 
-@media (max-width: 1024px) {
+.page-title__sub {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 4vw, 24px);
+  color: var(--color-blue);
+  font-weight: 700; /* BOLDER */
+  margin: 0 0 0.5rem 0;
+}
+
+.page-title__body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-blue);
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
   .page-title {
-    padding: 0 1.25rem;
-    min-height: 170px;
-    display: flex;
-    align-items: flex-end;
+    padding: 140px 2rem 60px;
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 1200px) {
   .page-title {
-    padding: 0 1rem;
-    min-height: 170px;
-    display: flex;
-    align-items: flex-end;
+    padding: 160px 2rem 80px;
   }
 }
