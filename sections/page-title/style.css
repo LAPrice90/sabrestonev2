@@ -1,42 +1,107 @@
 /* === PAGE-TITLE (clean Laminam-like mobile-first) ========== */
 
 .page-title {
-  padding: 120px 1.5rem 40px;
-  text-align: left;
+  padding: 40px 20px;
+  padding-top: 140px; /* adjust value as needed for desired header gap */
+  max-width: 600px;
+  margin: 0 auto 40px auto;
 }
 
 .page-title__heading {
   font-family: var(--font-heading);
-  font-size: clamp(32px, 7vw, 60px);
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 500;
   color: var(--color-blue);
-  text-transform: uppercase;
-  margin: 0 0 0.5rem 0;
+  margin-bottom: 16px;
 }
 
-.page-title__sub {
-  font-family: var(--font-heading);
-  font-size: clamp(18px, 4vw, 24px);
-  color: var(--color-blue);
-  font-weight: 700; /* BOLDER */
-  margin: 0 0 0.5rem 0;
-}
-
-.page-title__body {
+.page-title .sub {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.5;
+  font-weight: 700;
   color: var(--color-blue);
-  max-width: 600px;
+  margin-bottom: 16px;
 }
 
-@media (min-width: 768px) {
-  .page-title {
-    padding: 140px 2rem 60px;
-  }
+.page-title .intro {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-blue);
+  line-height: 1.6;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .page-title {
     padding: 160px 2rem 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 40px;
+  }
+
+  .page-title__heading {
+    grid-column: 1 / 3; /* spans both columns */
+    text-align: left;
+    margin: 0 0 20px 0;
+    font-size: clamp(40px, 6vw, 56px);
+  }
+
+  .page-title-text {
+    grid-column: 2 / 3; /* right column */
+    text-align: left;
+    max-width: 480px;
+    justify-self: end;
+  }
+
+  .page-title .sub {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .page-title .intro {
+    font-size: 16px;
+    line-height: 1.7;
   }
 }
+
+
+
+@media (min-width: 1024px) {
+  .page-title {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 180px 0 80px;
+    text-align: left;
+    position: relative;
+  }
+
+  .page-title__heading {
+    font-size: clamp(48px, 5vw, 72px);
+    margin: 0 0 40px 0;
+    max-width: 100%;
+  }
+
+  .page-title-text {
+    max-width: 33%;
+    margin-left: auto;
+    text-align: left;
+  }
+
+  .page-title .sub {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .page-title .intro {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+
+

@@ -109,3 +109,24 @@
     flex: 0 0 calc(33.333% - 13.33px); /* three per row */
   }
 }
+
+/* ========== SWATCH GRID VARIANT ========== */
+
+/* Swatch: 1:1 image ratio */
+.card-grid--swatches .card__img {
+  aspect-ratio: 1 / 1;
+}
+
+/* Tablet: 3 per row for swatches */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-grid--swatches .card {
+    flex: 0 0 calc(33.333% - 13.33px);
+  }
+}
+
+/* Desktop: 7 per row for swatches */
+@media (min-width: 1024px) {
+  .card-grid--swatches .card {
+    flex: 0 0 calc(14.285% - 10px); /* 7 per row */
+  }
+}
