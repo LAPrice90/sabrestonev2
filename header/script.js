@@ -9,10 +9,12 @@
 //    • Behaviour unchanged (tap to reveal stacked sub‑menu)
 // =========================================================
 
-const header     = document.getElementById("main-header");
-const logo       = document.getElementById("header-logo");
-const hamburger  = document.querySelector(".hamburger");
-const navWrapper = document.querySelector(".nav-wrapper");
+const header            = document.getElementById("main-header");
+const logo              = document.getElementById("header-logo");
+const hamburger         = document.querySelector(".hamburger");
+const navWrapper        = document.querySelector(".nav-wrapper");
+const porcelainToggle   = document.querySelector('[data-target="porcelain-nav"]');
+const porcelainDropdown = document.getElementById("porcelainDropdown");
 
 // Determine absolute path to the project root based on this script's location
 const basePath = (() => {
@@ -100,16 +102,18 @@ navWrapper.querySelectorAll(".menu-toggle").forEach(btn => {
   });
 });
 
-document.querySelector('[data-target="porcelain-nav"]').addEventListener("click", () => {
+porcelainToggle.addEventListener("click", () => {
   if (isMobile()) {
     mainNav.style.display      = "none";
     porcelainNav.style.display = "flex";
+    porcelainDropdown.style.display = "block";
   }
 });
 
 document.querySelector(".submenu-back").addEventListener("click", () => {
   porcelainNav.style.display = "none";
   mainNav.style.display      = "flex";
+  porcelainDropdown.style.display = "none";
 });
 
 // ---------------------------------------------------------
@@ -117,8 +121,6 @@ document.querySelector(".submenu-back").addEventListener("click", () => {
 // ---------------------------------------------------------
 
 
-const porcelainToggle   = document.querySelector('[data-target="porcelain-nav"]');
-const porcelainDropdown = document.getElementById('porcelainDropdown');
 
 function openDropdown() {
   header.classList.add('dropdown-active');
