@@ -265,7 +265,23 @@
 
   #main-header:hover .hamburger .line { background: #fff; }
 
-  #porcelainDropdown { display: none; }
+  #porcelainDropdown {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: #fff;
+    padding-top: 80px;
+    z-index: 999;
+  }
+  #porcelainDropdown.active { display: block; }
+  #porcelainDropdown .nav-links {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
   #porcelainDropdown .nav-links a { color: var(--color-blue) !important; }
 }
 
