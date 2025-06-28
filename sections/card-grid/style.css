@@ -130,3 +130,13 @@
     flex: 0 0 calc((100% - 100px) / 6);
   }
 }
+
+/* Load more button */
+.card-grid__load-more {
+  display: block;
+  margin: 20px auto;
+}
+
+.card--hidden {
+  display: none;
+}
