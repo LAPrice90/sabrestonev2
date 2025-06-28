@@ -19,7 +19,7 @@
   width: 100%;
   aspect-ratio: 3/2;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 0rem;
   margin: 0;        /* <-- add this */
   padding: 0;       /* <-- add this */
   display: block;   /* <-- add this to neutralize browser defaults */
@@ -127,6 +127,6 @@
 /* Desktop: 7 per row for swatches */
 @media (min-width: 1024px) {
   .card-grid--swatches .card {
-    flex: 0 0 calc(14.285% - 10px); /* 7 per row */
+    flex: 0 0 calc((100% - 100px) / 6);
   }
 }
