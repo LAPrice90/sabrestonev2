@@ -131,11 +131,25 @@
 /* uniform 4 : 3 canvas for every slide */
 .rotating-gallery-swiper .swiper-slide{
   aspect-ratio: 3 / 4;      /* pick any ratio you prefer */
+  position: relative;       /* allow overlay positioning */
 }
 .rotating-gallery-swiper .swiper-slide img{
   width:100%;
   height:100%;
   object-fit:cover;         /* fills the canvas, crops overflow */
+}
+
+/* slide title overlay */
+.rotating-gallery-swiper .slide-title{
+  position:absolute;
+  top:50px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:40px;
+  color:#fff;
+  z-index:2;
+  pointer-events:none;
+  margin:0;                 /* reset default margin */
 }
 
 .tabs-swiper {
