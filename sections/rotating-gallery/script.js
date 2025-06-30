@@ -103,6 +103,8 @@
     syncing = true;
     const i = pillsSwiper.realIndex;
     gallerySwiper.slideToLoop(i);
+    // ensure the active pill is centred after dragging
+    pillsSwiper.slideToLoop(i);
     setActive(i);
     syncing = false;
   }
