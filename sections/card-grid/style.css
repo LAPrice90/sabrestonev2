@@ -93,7 +93,7 @@
   }
 
   .card {
-    flex: 0 0 calc(50% - 10px); /* two cards per row with gutter */
+    flex: 0 0 calc(50% - 4px); /* two cards per row with gutter */
   }
 }
 
@@ -120,7 +120,7 @@
 /* Tablet: 2 per row for swatches */
 @media (min-width: 768px) and (max-width: 1023px) {
   .card-grid--swatches .card {
-    flex: 0 0 calc(50% - 13.33px);
+    flex: 0 0 calc(50% - 4px);
   }
 }
 
