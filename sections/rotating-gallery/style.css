@@ -150,6 +150,10 @@
 .tabs-swiper {
   overflow: hidden;
   padding: 0 16px;
+  margin-inline: auto;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+          mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 16px), transparent);
 }
 
 .tabs-swiper .swiper-wrapper {

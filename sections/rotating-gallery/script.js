@@ -7,8 +7,9 @@
   const section = document.querySelector('.rotating-gallery-process');
   if (!section) return;
 
-  const pillsEl = section.querySelector('.tabs-swiper');
-  const texts   = [...section.querySelectorAll('.process-text')];
+  const pillsEl   = section.querySelector('.tabs-swiper');
+  const texts     = [...section.querySelectorAll('.process-text')];
+  const totalPills = pillsEl.querySelectorAll('.swiper-slide').length;
 
   /* --- image carousel --- */
   const gallerySwiper = new Swiper(
@@ -51,7 +52,13 @@
   });
 
   /* --- pill carousel --- */
-  const totalPills = pillsEl.querySelectorAll('.swiper-slide').length;
+  function updatePillWidth() {
+    const slideWidth = gallerySwiper.width / gallerySwiper.params.slidesPerView;
+    pillsEl.style.width = `${slideWidth}px`;
+  }
+
+  gallerySwiper.on('resize', updatePillWidth);
+
   const pillsSwiper = new Swiper(pillsEl, {
     slidesPerView: 'auto',
     centeredSlides: true,
@@ -60,7 +67,6 @@
     loopAdditionalSlides: totalPills,
   });
 
-  /* --- helpers --- */
   function setActive(i) {
     pillsEl.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
     pillsSwiper.slides[pillsSwiper.activeIndex]
@@ -102,6 +108,7 @@
   pillsSwiper.on('slideChangeTransitionEnd', syncFromPills);
 
   updateScale();
+  updatePillWidth();
   syncFromGallery();
 })();
 
