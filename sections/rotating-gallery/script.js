@@ -21,6 +21,7 @@
       loop: true,
       centeredSlides: true,
       spaceBetween: 20,
+      watchSlidesProgress: true,
       slidesPerView: 1.35,
       breakpoints: {
         1200: { slidesPerView: 2.4 },
@@ -34,6 +35,24 @@
       }
     }
   );
+
+  /* --- dynamic scaling based on slide progress --- */
+  function updateScale() {
+    gallerySwiper.slides.forEach(slide => {
+      const progress = Math.min(Math.abs(slide.progress), 1);
+      const scale = 0.9 + (1 - progress) * 0.13; // 0.9 -> 1.03
+      const img = slide.querySelector('img');
+      if (img) img.style.transform = `scale(${scale})`;
+    });
+  }
+
+  gallerySwiper.on('progress', updateScale);
+  gallerySwiper.on('setTransition', duration => {
+    gallerySwiper.slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if (img) img.style.transitionDuration = `${duration}ms`;
+    });
+  });
 
   /* --- helpers --- */
   function setActive(i) {
@@ -62,6 +81,7 @@
       addTabClick(clone.querySelector('.tab'));
       trackEl.appendChild(clone);
     }
+    updateScale();
   }
 
   function move(dir) {
@@ -83,4 +103,6 @@
 
   buildPills(0);          /* initialise */
   setActive(0);
+  updateScale();
 })();
+
