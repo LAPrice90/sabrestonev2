@@ -1,0 +1,14 @@
+.fade-init {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fade-visible {
+  visibility: visible;
+  animation: fade-in 0.5s forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
