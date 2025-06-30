@@ -166,19 +166,18 @@
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const formData = {
+    const params = new URLSearchParams({
       name: this.name.value,
       company: this.company.value,
       phone: this.phone.value,
       email: this.email.value,
       address: this.address.value,
       message: this.message.value
-    };
+    });
 
     fetch('https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec', {
       method: 'POST',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' }
+      body: params
     })
     .then(response => response.json())
     .then(data => {
