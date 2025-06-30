@@ -35,6 +35,22 @@
     }
   );
 
+  /* --- dynamic scaling based on slide progress --- */
+  function updateScale() {
+    gallerySwiper.slides.forEach(slide => {
+      const progress = Math.min(Math.abs(slide.progress), 1);
+      const scale = 0.9 + (1 - progress) * 0.13; // 0.9 -> 1.03
+      slide.style.transform = `translate3d(${slide.swiperSlideOffset}px,0,0) scale(${scale})`;
+    });
+  }
+
+  gallerySwiper.on('progress', updateScale);
+  gallerySwiper.on('setTransition', duration => {
+    gallerySwiper.slides.forEach(slide => {
+      slide.style.transitionDuration = `${duration}ms`;
+    });
+  });
+
   /* --- helpers --- */
   function setActive(i) {
     activeIndex = i;
@@ -62,6 +78,7 @@
       addTabClick(clone.querySelector('.tab'));
       trackEl.appendChild(clone);
     }
+    updateScale();
   }
 
   function move(dir) {
@@ -83,4 +100,5 @@
 
   buildPills(0);          /* initialise */
   setActive(0);
+  updateScale();
 })();
