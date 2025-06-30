@@ -179,11 +179,8 @@
       method: 'POST',
       body: params
     })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.text();
-    })
-    .then(() => {
+    .then(response => response.json())
+    .then(data => {
       alert('Message sent successfully!');
       this.reset();
     })
