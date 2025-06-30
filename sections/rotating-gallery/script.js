@@ -51,11 +51,13 @@
   });
 
   /* --- pill carousel --- */
+  const totalPills = pillsEl.querySelectorAll('.swiper-slide').length;
   const pillsSwiper = new Swiper(pillsEl, {
     slidesPerView: 'auto',
     centeredSlides: true,
     spaceBetween: 16,
     loop: true,
+    loopAdditionalSlides: totalPills,
   });
 
   /* --- helpers --- */
