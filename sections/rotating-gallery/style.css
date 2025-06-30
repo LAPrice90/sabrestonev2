@@ -154,6 +154,7 @@
 
 .tabs-swiper .swiper-wrapper {
   display: flex;
+  gap: 16px;              /* controls space between pills */
   justify-content: center;
   align-items: center;
 }
