@@ -166,22 +166,11 @@
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const params = new URLSearchParams({
-      name: this.name.value,
-      company: this.company.value,
-      phone: this.phone.value,
-      email: this.email.value,
-      address: this.address.value,
-      message: this.message.value
-    });
+    const formData = new FormData(this);
 
     fetch('https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec', {
       method: 'POST',
-      body: params
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.text();
+      body: formData
     })
     .then(() => {
       alert('Message sent successfully!');
