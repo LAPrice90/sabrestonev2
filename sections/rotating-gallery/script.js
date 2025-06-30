@@ -53,11 +53,14 @@
 
   /* --- pill carousel --- */
   function updatePillWidth() {
-    const slideWidth = gallerySwiper.width / gallerySwiper.params.slidesPerView;
+    const activeSlide = gallerySwiper.slides[gallerySwiper.activeIndex];
+    if (!activeSlide) return;
+    const slideWidth = activeSlide.offsetWidth;
     pillsEl.style.width = `${slideWidth}px`;
   }
 
   gallerySwiper.on('resize', updatePillWidth);
+  gallerySwiper.on('slideChangeTransitionEnd', updatePillWidth);
 
   const pillsSwiper = new Swiper(pillsEl, {
     slidesPerView: 'auto',
