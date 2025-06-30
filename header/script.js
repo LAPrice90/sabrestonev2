@@ -179,4 +179,3 @@ window.addEventListener("resize", () => {
 
 // Initial paint
 updateHeaderState();
-
