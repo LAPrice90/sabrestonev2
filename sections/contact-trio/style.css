@@ -1,48 +1,52 @@
-/* contact-trio container */
+/* ========== CONTACT-TRIO (responsive like project cards) ========== */
+
+/* container */
 .contact-trio {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;          /* 20 px between the three cards */
-  max-width: 1600px;  /* overall width */
-  margin: 0 auto;     /* centred on the page */
+  grid-template-columns: 1fr;     /* mobile ≤ 767 px – one per row */
+  gap: 20px;
+  max-width: 1600px;              /* stay inside 1600 px on desktop */
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* navy only behind the image, lower 80 % */
+/* tablet: two per row */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contact-trio { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* desktop: three per row */
+@media (min-width: 1024px) {
+  .contact-trio { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* card */
+.contact-trio .person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* navy behind lower 80 % of head-shot */
 .contact-trio .avatar-wrap {
   width: 100%;
-  aspect-ratio: 3 / 4;                 /* portrait box */
-  background: linear-gradient(
-    to bottom,
-    transparent 0 20%,
-    var(--color-blue) 20% 100%
-  );
+  aspect-ratio: 3/4;
+  background: linear-gradient(to bottom,
+              transparent 0 20%,
+              var(--color-blue) 20% 100%);
   margin-bottom: 16px;
   overflow: hidden;
 }
 
-/* image + subtle shadow */
+/* image with drop-shadow following transparency */
 .contact-trio .avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
 }
 
+/* text (unchanged) */
+.contact-trio h3 { margin-bottom: var(--space-xs); }
+.contact-trio p  { margin: 0 0 var(--space-xs); font-size: 14px; line-height: 1.4; }
 
-/* unchanged image settings */
-.contact-trio .avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: relative;        /* keeps it above the pseudo-element */
-}
-
-.contact-trio h3 {
-  margin-bottom: var(--space-xs);
-}
-
-.contact-trio p {
-  margin: 0 0 var(--space-xs);
-  font-size: 14px;
-  line-height: 1.4;
-}
