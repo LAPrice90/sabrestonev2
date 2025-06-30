@@ -166,22 +166,24 @@
 
 
   <script>
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
+  const scriptURL =
+    'https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec';
+
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    fetch(
-      'https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec',
-      {
-        method: 'POST',
-        mode: 'no-cors',          // ← added
-        body: new FormData(this)
-      }
-    )
-      .then(() => {
-        alert('Message sent successfully!');
-        this.reset();
-      })
-      .catch(() => alert('Error sending message.'));
+    // build plain-JSON payload
+    const data = Object.fromEntries(new FormData(e.target).entries());
+
+    await fetch(scriptURL, {
+      method: 'POST',
+      redirect: 'follow',                     // follow Google’s one-time redirect
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, // “simple” header
+      body: JSON.stringify(data)              // JSON, same as your Postman test
+    });
+
+    alert('Message sent successfully!');
+    e.target.reset();
   });
   </script>
 
