@@ -1,0 +1,169 @@
+/* ─── rotating-gallery (inherits Installation-Process layout) ───────────── */
+.rotating-gallery-process {
+  background: #fff;
+  text-align: center;
+  position: relative;
+}
+
+
+/* section heading */
+.rotating-gallery-process .section-title{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(32px,6vw,72px);
+  font-weight:400;
+  letter-spacing:.08em;
+  color:#003b5c;
+  margin:0 0 60px;
+}
+
+/* pill tabs (scrollable on mobile) */
+.process-tabs{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:0;
+}
+.process-tabs .tab{
+  font-family:'Work Sans',sans-serif;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  padding:6px 32px;
+  border-radius:40px;
+  border:2px solid #003b5c;
+  background:#fff;
+  color:#003b5c;
+  cursor:pointer;
+  transition:.3s;
+}
+.process-tabs .tab:hover,
+.process-tabs .tab.active{
+  background:#003b5c;
+  color:#fff;
+}
+
+/* headline + body copy that swaps per tab */
+.process-copy{
+  max-width:640px;
+  margin:0 auto 40px;
+  text-align:center;
+}
+.process-text{display:none;}
+.process-text.active{display:block;}
+
+/* swiper arrows */
+.rotating-gallery-process .swiper-button-prev,
+.rotating-gallery-process .swiper-button-next{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:1px solid #ccc;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  z-index:6;
+}
+.rotating-gallery-process .swiper-button-prev{left:100px;}
+.rotating-gallery-process .swiper-button-next{right:100px;}
+.rotating-gallery-process .swiper-button-prev::after,
+.rotating-gallery-process .swiper-button-next::after{
+  font-size:18px;
+  color:#003b5c;
+}
+@media (max-width:1024px){
+  .rotating-gallery-process .swiper-button-prev,
+  .rotating-gallery-process .swiper-button-next{display:none!important;}
+}
+
+/* swiper track */
+.rotating-gallery-swiper{
+  max-width:none!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+}
+.rotating-gallery-swiper .swiper-wrapper{overflow:visible!important;}
+.rotating-gallery-swiper .swiper-slide{
+  aspect-ratio: 3 / 4;      /* pick any ratio you prefer */
+  position: relative;       /* allow overlay positioning */
+}
+.rotating-gallery-swiper .swiper-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;         /* fills the canvas, crops overflow */
+  display:block;
+  transition: transform .3s;
+}
+
+/* keep pills + arrows aligned */
+.process-tabs-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:24px;
+  margin-bottom:40px;
+}
+
+/* single-row pills on narrow screens */
+@media (max-width:600px){
+  .process-tabs{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .process-tabs::-webkit-scrollbar{display:none;}
+  .process-tabs .tab{
+    flex:0 0 auto;
+    padding:6px 24px;
+    font-size:13px;
+
+  }
+  .process-copy {
+    height: 7em;        /* fits 3 lines comfortably */
+    overflow: hidden;
+  }
+}
+
+/* uniform 4 : 3 canvas for every slide */
+
+/* slide title overlay */
+.rotating-gallery-swiper .slide-title{
+  position:absolute;
+  top:50px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:40px;
+  color:#fff;
+  z-index:2;
+  pointer-events:none;
+  margin:0;                 /* reset default margin */
+}
+
+.tabs-swiper {
+  overflow: hidden;
+  padding: 0 16px;
+}
+
+.tabs-swiper .swiper-wrapper {
+  display: flex;
+  gap: 16px;              /* controls space between pills */
+  justify-content: center;
+  align-items: center;
+}
+
+.tabs-swiper .swiper-slide {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.rotating-gallery-process .process-copy {
+  padding: 0 1.5rem; /* match install section's side padding */
+}
