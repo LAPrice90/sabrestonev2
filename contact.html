@@ -162,26 +162,29 @@
     </form>
   </section>
 
-  <script>
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
 
-    const formData = new FormData(this);
 
-    fetch('https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec', {
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  fetch(
+    'https://script.google.com/macros/s/AKfycbxOimB0eS_TywNQ3oOXgdNJeM8D_mxC0yW3SLRSDUYfKAjg8n9ZvNp4dl6ltaxpvrei/exec',
+    {
       method: 'POST',
-      body: formData
-    })
+      mode: 'no-cors',          // ← added
+      body: new FormData(this)
+    }
+  )
     .then(() => {
       alert('Message sent successfully!');
       this.reset();
     })
-    .catch(error => {
-      alert('Error sending message.');
-      console.error(error);
-    });
-  });
-  </script>
+    .catch(() => alert('Error sending message.'));
+});
+</script>
+
 
 
 
