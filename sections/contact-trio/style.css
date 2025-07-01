@@ -33,7 +33,7 @@
   aspect-ratio: 3/4;
   background: linear-gradient(to bottom,
               transparent 0 20%,
-              var(--color-blue) 20% 100%);
+              var(--color-navy) 20% 100%);
   margin-bottom: 16px;
   overflow: hidden;
 }
