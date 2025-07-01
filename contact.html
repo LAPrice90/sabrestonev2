@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="sections/contact-trio/style.css">
   <link rel="stylesheet" href="sections/media-left/style.css">
   <link rel="stylesheet" href="sections/contact-form/style.css">
+  <link rel="stylesheet" href="sections/popup/style.css">
   <link rel="stylesheet" href="sections/cookies/style.css" />
   
   <!-- Logo preload -->
@@ -77,6 +78,13 @@
       </p>
   </div>
   </section>
+
+  <div id="popup">
+    <div class="popup__content">
+      <p>Thank you for your enquiry. We’ve received your message and aim to get in touch within 24 hours.</p>
+      <button id="popup-close" class="btn btn--primary">Close</button>
+    </div>
+  </div>
 
   <!-- Call to Action Banner -->
   <section class="contact-trio container">
@@ -203,8 +211,13 @@
       body: JSON.stringify(data)              // JSON, same as your Postman test
     });
 
-    alert('Message sent successfully!');
+    const popup = document.getElementById('popup');
+    popup.classList.add('open');
     e.target.reset();
+
+    document.getElementById('popup-close').addEventListener('click', () => {
+      popup.classList.remove('open');
+    }, { once: true });
   });
   </script>
 
