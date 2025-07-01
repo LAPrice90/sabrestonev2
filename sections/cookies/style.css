@@ -1,0 +1,22 @@
+.cookie-banner {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 31, 63, 0.95); /* matches --color-navy */
+	color: #fff;
+	padding: 16px;
+	text-align: center;
+	z-index: 9999;
+	font-family: var(--font-body);
+	font-size: 14px;
+}
+
+.cookie-banner p {
+	margin: 0;
+	display: inline;
+}
+
+.cookie-banner .btn {
+	margin-left: 16px;
+}
