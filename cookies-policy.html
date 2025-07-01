@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookies Policy | Sabre Stone</title>
+  <meta name="description" content="Learn how Sabre Stone Commercial uses cookies and how you can manage them." />
+  <link id="favicon" rel="icon" href="images/favicon.svg" type="image/svg+xml" data-icon="images/favicon.svg" />
+  <link rel="canonical" href="https://sabrestonecommercial.com/cookies-policy.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cookies Policy | Sabre Stone" />
+  <meta property="og:description" content="Learn how Sabre Stone Commercial uses cookies and how you can manage them." />
+  <meta property="og:image" content="https://sabrestonecommercial.com/images/socials-cover.jpg" />
+  <meta property="og:url" content="https://sabrestonecommercial.com/cookies-policy.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cookies Policy | Sabre Stone" />
+  <meta name="twitter:description" content="Learn how Sabre Stone Commercial uses cookies and how you can manage them." />
+  <meta name="twitter:image" content="https://sabrestonecommercial.com/images/socials-cover.jpg" />
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/images/favicon.svg" />
+
+  <!-- Header styles -->
+  <link rel="stylesheet" href="header/style.css" />
+
+  <!-- Global site styles -->
+  <link rel="stylesheet" href="style/reset.css" />
+  <link rel="stylesheet" href="style/variables.css" />
+  <link rel="stylesheet" href="style/base.css" />
+  <link rel="stylesheet" href="style/layout.css" />
+  <link rel="stylesheet" href="style/buttons.css" />
+  <link rel="stylesheet" href="style/forms.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+  <link rel="stylesheet" href="sections/documentations/style.css" />
+  <link rel="stylesheet" href="sections/cookies/style.css" />
+
+  <!-- Logo preload -->
+  <link rel="preload" href="images/symbol-blue.svg" as="image" />
+  <link rel="preload" href="images/symbol-white.svg" as="image" />
+</head>
+<body>
+
+  <div id="main-header"></div>
+
+
+  <section class="policy-wrapper container">
+    <h1>Cookies Policy</h1>
+    <p><strong>Last updated: 1 July 2024</strong></p>
+
+    <p>Sabre Stone Commercial uses cookies on this website (sabrestonecommercial.com) to improve your browsing experience and to understand how our site is used.</p>
+
+    <h2>What are cookies?</h2>
+    <p>Cookies are small text files stored on your device when you visit a website. They help websites remember your actions and preferences (such as login, language, and other settings).</p>
+
+    <h2>How we use cookies:</h2>
+    <ul>
+      <li>To remember if you’ve accepted our cookie notice</li>
+      <li>To gather anonymous usage statistics through Google Analytics</li>
+      <li>To ensure the website functions correctly</li>
+    </ul>
+
+    <h2>Types of cookies we use:</h2>
+    <ul>
+      <li><strong>Essential cookies:</strong> Required for the site to work (e.g., remembering your cookie preferences).</li>
+      <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with the site so we can improve your experience. (You can refuse analytics cookies through the cookie banner.)</li>
+    </ul>
+
+    <h2>Managing cookies:</h2>
+    <p>You can change your cookie preferences at any time by clearing your browser’s cookies or adjusting your browser settings. Most browsers let you refuse or delete cookies, but this may affect how the website works.</p>
+
+    <h2>More information:</h2>
+    <p>For more details about how we use and protect your data, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
+    <p>If you have any questions about our use of cookies, please contact us at <a href="mailto:info@sabrestonecommercial.co.uk">info@sabrestonecommercial.co.uk</a>.</p>
+  </section>
+  <div id="main-footer"></div>
+
+  <!-- Inject footer HTML and footer CSS -->
+  <script>
+    fetch('Footer/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-footer').innerHTML = html;
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'Footer/style.css';
+        document.head.appendChild(link);
+      });
+  </script>
+
+  <!-- Inject header HTML and its script -->
+  <script>
+    fetch('header/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-header').innerHTML = html;
+
+        const s = document.createElement('script');
+        s.src = 'header/script.js';
+        document.body.appendChild(s);
+      });
+  </script>
+
+  <script>
+    const activeTab = document.querySelector('.btn--tab.active');
+    if (activeTab) {
+      activeTab.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+  </script>
+
+  <script>
+  fetch('sections/cookies/cookies.html')
+    .then(res => res.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('accept-cookies');
+
+      if (!localStorage.getItem('cookiesAccepted')) {
+        banner.style.display = 'block';
+      }
+
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        banner.style.display = 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
