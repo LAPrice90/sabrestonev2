@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="style/forms.css" />
   <link rel="stylesheet" href="style/animations.css" />
   <link rel="stylesheet" href="sections/media-left/style.css">
+  <link rel="stylesheet" href="sections/cookies/style.css" />
 
 
   <!-- Logo preload -->
@@ -408,6 +409,26 @@
   </script>
 
 
+  
+  <script>
+  fetch('sections/cookies/cookies.html')
+    .then(res => res.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('accept-cookies');
+
+      if (!localStorage.getItem('cookiesAccepted')) {
+        banner.style.display = 'block';
+      }
+
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        banner.style.display = 'none';
+      });
+    });
+  </script>
 
 
 </body>
