@@ -17,3 +17,25 @@
 .policy-wrapper li {
   margin-bottom: 0.5rem;
 }
+
+/* === 404 Error Page ===================================== */
+.error-wrapper {
+  text-align: center;
+  padding: 160px 20px 120px;
+}
+
+.error-wrapper h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 12vw, 120px);
+  margin: 0 0 20px;
+  color: var(--color-blue);
+}
+
+.error-message {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.error-wrapper .btn {
+  margin-top: 10px;
+}

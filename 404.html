@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | Sabre Stone</title>
+  <meta name="description" content="The page you are looking for does not exist." />
+  <link id="favicon" rel="icon" href="images/favicon.svg" type="image/svg+xml" data-icon="images/favicon.svg" />
+  <link rel="canonical" href="https://sabrestonecommercial.com/404.html" />
+
+  <!-- Header styles -->
+  <link rel="stylesheet" href="header/style.css" />
+
+  <!-- Global site styles -->
+  <link rel="stylesheet" href="style/reset.css" />
+  <link rel="stylesheet" href="style/variables.css" />
+  <link rel="stylesheet" href="style/base.css" />
+  <link rel="stylesheet" href="style/layout.css" />
+  <link rel="stylesheet" href="style/buttons.css" />
+  <link rel="stylesheet" href="style/forms.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+  <link rel="stylesheet" href="sections/documentations/style.css" />
+  <link rel="stylesheet" href="sections/cookies/style.css" />
+
+  <!-- Logo preload -->
+  <link rel="preload" href="images/symbol-blue.svg" as="image" />
+  <link rel="preload" href="images/symbol-white.svg" as="image" />
+</head>
+<body>
+
+  <div id="main-header"></div>
+
+  <section class="error-wrapper container" aria-labelledby="error-heading">
+    <h1 id="error-heading">404</h1>
+    <p class="error-message">Sorry, the page you requested could not be found.</p>
+    <a class="btn btn--primary" href="index.html">Back to Home</a>
+  </section>
+
+  <div id="main-footer"></div>
+
+  <!-- Inject footer HTML and footer CSS -->
+  <script>
+    fetch('Footer/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-footer').innerHTML = html;
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'Footer/style.css';
+        document.head.appendChild(link);
+      });
+  </script>
+
+  <!-- Inject header HTML and its script -->
+  <script>
+    fetch('header/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('main-header').innerHTML = html;
+
+        const s = document.createElement('script');
+        s.src = 'header/script.js';
+        document.body.appendChild(s);
+      });
+  </script>
+
+  <script>
+  if (!localStorage.getItem('cookiesAccepted')) {
+    fetch('sections/cookies/cookies.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+
+        const banner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('accept-cookies');
+
+        banner.style.display = 'block';
+
+        acceptBtn.addEventListener('click', () => {
+          localStorage.setItem('cookiesAccepted', 'true');
+          banner.style.display = 'none';
+        });
+      });
+  }
+  </script>
+
+</body>
+</html>
