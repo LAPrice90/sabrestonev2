@@ -23,6 +23,45 @@ const basePath = (() => {
 })();
 
 // ---------------------------------------------------------
+//  Favicon color swap for dark mode
+// ---------------------------------------------------------
+const faviconLink = document.getElementById("favicon");
+const faviconPath = faviconLink?.dataset.icon || "images/favicon.svg";
+
+let whiteFaviconData = null;
+
+async function generateWhiteIcon() {
+  if (!faviconLink || whiteFaviconData) return;
+  try {
+    const res = await fetch(basePath + faviconPath);
+    let svgText = await res.text();
+    svgText = svgText.replace(/fill="#000000"/gi, 'fill="#ffffff"');
+    whiteFaviconData = `data:image/svg+xml;base64,${btoa(svgText)}`;
+  } catch (_) {
+    whiteFaviconData = null;
+  }
+}
+
+function applyFaviconColor(isDark) {
+  if (!faviconLink) return;
+  if (isDark && whiteFaviconData) {
+    faviconLink.href = whiteFaviconData;
+  } else {
+    faviconLink.href = basePath + faviconPath;
+  }
+}
+
+const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+(async () => {
+  await generateWhiteIcon();
+  applyFaviconColor(colorScheme.matches);
+  colorScheme.addEventListener('change', () => {
+    applyFaviconColor(colorScheme.matches);
+  });
+})();
+
+// ---------------------------------------------------------
 //  Helpers
 // ---------------------------------------------------------
 const isMobile   = () => window.innerWidth < 1200;
