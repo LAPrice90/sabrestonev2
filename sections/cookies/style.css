@@ -12,6 +12,7 @@
 	font-size: 14px;
 }
 
+/* Desktop: button beside text */
 .cookie-banner p {
 	margin: 0;
 	display: inline;
@@ -19,4 +20,22 @@
 
 .cookie-banner .btn {
 	margin-left: 16px;
+}
+
+@media (max-width: 1023px) {
+	.cookie-banner {
+		font-size: 15px;
+	}
+	.cookie-banner p, .cookie-banner .btn {
+		display: block;
+	}
+	.cookie-banner .btn {
+		margin-left: 0;
+		margin-top: 16px;
+		width: 100%;
+		max-width: 220px;
+		margin-right: auto;
+		margin-left: auto;
+		text-align: center;
+	}
 }

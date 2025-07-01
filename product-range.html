@@ -40,7 +40,8 @@
   <link rel="stylesheet" href="sections/media-right/style.css">
   <link rel="stylesheet" href="sections/page-title/style.css">
   <link rel="stylesheet" href="sections/cta-banner/style.css">
-
+  <link rel="stylesheet" href="sections/cookies/style.css" />
+  
   <!-- Logo preload -->
   <link rel="preload" href="images/symbol-blue.svg" as="image" />
   <link rel="preload" href="images/symbol-white.svg" as="image" />
@@ -405,7 +406,7 @@
 
   
   <script>
-  fetch('/sections/cookies/cookies.html')
+  fetch('sections/cookies/cookies.html')
     .then(res => res.text())
     .then(html => {
       document.body.insertAdjacentHTML('beforeend', html);
