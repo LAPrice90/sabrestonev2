@@ -198,26 +198,35 @@
   const scriptURL =
     'https://script.google.com/macros/s/AKfycbxQ7HAy2DdHX6dqUl_NFra0d3bxLbqXd3TdwHcroy-JWHWDV8vA5FblypKmFbtmOYXXOw/exec';
 
+  let isSubmitting = false;
+
   document.getElementById('contact-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+    isSubmitting = true;
 
     // build plain-JSON payload
     const data = Object.fromEntries(new FormData(e.target).entries());
 
-    await fetch(scriptURL, {
-      method: 'POST',
-      redirect: 'follow',                     // follow Google’s one-time redirect
-      headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, // “simple” header
-      body: JSON.stringify(data)              // JSON, same as your Postman test
-    });
+    try {
+      await fetch(scriptURL, {
+        method: 'POST',
+        redirect: 'follow',                     // follow Google’s one-time redirect
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, // “simple” header
+        body: JSON.stringify(data)              // JSON, same as your Postman test
+      });
 
-    const popup = document.getElementById('popup');
-    popup.classList.add('open');
-    e.target.reset();
+      const popup = document.getElementById('popup');
+      popup.classList.add('open');
+      e.target.reset();
 
-    document.getElementById('popup-close').addEventListener('click', () => {
-      popup.classList.remove('open');
-    }, { once: true });
+      document.getElementById('popup-close').addEventListener('click', () => {
+        popup.classList.remove('open');
+      }, { once: true });
+    } finally {
+      isSubmitting = false;
+    }
   });
   </script>
 
