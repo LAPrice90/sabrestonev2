@@ -1,0 +1,29 @@
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  padding: 20px;
+  font-family: var(--font-body);
+}
+#popup.open {
+  display: flex;
+}
+#popup .popup__content {
+  background: var(--color-white);
+  color: var(--color-blue);
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 4px;
+  max-width: 400px;
+  width: 100%;
+}
+#popup p {
+  margin: 0 0 20px;
+}
