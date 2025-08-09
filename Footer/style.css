@@ -107,17 +107,26 @@
 .footer-brand{flex:1 1 280px}
 
 /* link columns */
-.footer-links{
-  flex:2 1 600px;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  gap:2rem 4rem;
+  .footer-links{
+    flex:2 1 600px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:2rem 4rem;
+  }
+
+/* small print */
+.footer-smallprint{
+  text-align:center;
+  margin-top:2rem;
+  font-size:.75rem;
+  line-height:1.4;
+  color:#f8f8f8;
 }
 
-
-/* mobile stack */
-@media(max-width:767px){
+  
+  /* mobile stack */
+  @media(max-width:767px){
   .footer-inner{flex-direction:column}
   .footer-links{flex-direction:column}
   .footer-logo{max-width:180px}
