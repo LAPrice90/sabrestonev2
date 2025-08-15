@@ -1,0 +1,18 @@
+.timeline {
+  padding: 4rem 1rem;
+}
+
+.timeline__track {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.timeline__title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timeline__text {
+  font-size: 0.9rem;
+}
